@@ -16,9 +16,9 @@
 			if (MemberDao.idCheck(userId)) {
 				session.setAttribute("id", userId);
 				session.setMaxInactiveInterval(60);
-				response.sendRedirect("/Baegopang/jsp/signIn.jsp?userId=" + userId);
+				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId=" + userId);
 			} else {
-				response.sendRedirect("/Baegopang/jsp/signIn.jsp?fail=id");
+				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?fail=id");
 			}
 		}else if(userId!=null&userId!=null){
 			if(MemberDao.passwordCheck((String)session.getAttribute("id"),userPw)){

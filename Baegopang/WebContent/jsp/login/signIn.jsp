@@ -57,6 +57,7 @@ body {
 			obj.submit();
 		}
 	}
+	
 	$(document).ready(function() {
 		$(".inputError").effect("shake");
 	});
@@ -67,7 +68,7 @@ body {
 		String fail = request.getParameter("fail");
 		String userId = request.getParameter("userId");
 	%>
-	<form action="/Baegopang/jsp/signInProcess.jsp" method="post" name="log">
+	<form action="/Baegopang/jsp/login/signInProcess.jsp" method="post" name="log">
 		<div class="layer">
 			<span class="content"><img src="/Baegopang/img/noimg.png"></span>
 			<div class="inputLog">
