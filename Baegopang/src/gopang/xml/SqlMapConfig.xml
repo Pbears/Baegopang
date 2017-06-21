@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE sqlMapConfig      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map Config 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-config-2.dtd">
+
+<sqlMapConfig>
+	<settings useStatementNamespaces="true" />
+	<transactionManager type="JDBC">
+		<dataSource type="SIMPLE">
+			<property name="JDBC.Driver" value="oracle.jdbc.OracleDriver"/>
+			<property name="JDBC.ConnectionURL" value="jdbc:oracle:thin:@babyseaninstance.c6levu9qrvwi.us-east-1.rds.amazonaws.com:1521/ORCL"/>
+			<property name="JDBC.Username" value="babysean"/>
+			<property name="JDBC.Password" value="12341234"/>
+		</dataSource>
+	</transactionManager>
+	
+	<sqlMap resource="gopang/xml/Member.xml" />
+
+
+	
+</sqlMapConfig>
