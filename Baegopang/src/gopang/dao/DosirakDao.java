@@ -7,18 +7,20 @@ import org.apache.ibatis.session.SqlSessionFactory;
 import gopang.bean.BrandBean;
 import gopang.util.SqlSessionFactoryManager;
 
-public class PizzaDao {
+public class DosirakDao {
 private SqlSessionFactory sqlSessionFactory;
 
-	public PizzaDao() {
+	public DosirakDao() {
 		sqlSessionFactory=SqlSessionFactoryManager.getSqlSessionFactory();
 	}
 	
-	public List<BrandBean>selectPizza(int brandNo){
-		return sqlSessionFactory.openSession().selectList("selectChicken",brandNo);
+	public List<BrandBean>selectDosirak(int brandNo){
+		return sqlSessionFactory.openSession().selectList("selectDosirak",brandNo);
 	}
 	
-	public Integer getPizzaTotalRow(int brandNo){
-		return sqlSessionFactory.openSession().selectOne("getPizzaTotalRow",brandNo);
+	public Integer getDodirakTotalRow(int brandNo){
+		return sqlSessionFactory.openSession().selectOne("getDodirakTotalRow",brandNo);
 	}
+	
+	
 }

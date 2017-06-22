@@ -1,6 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <style>
 	html{
 		margin: 50px;
@@ -58,7 +58,7 @@
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
 				<a href="index.jsp">
-					<img alt="" src="../img/beagopangTitle.png">
+					<img alt="" src="/Baegopang/img/beagopangTitle.png">
 				</a>
 			</div>
 			<div id="searchContainer">

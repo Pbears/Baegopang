@@ -1,8 +1,5 @@
-<%@page import="bae.dao.PizzaDao"%>
-<%@page import="bae.dao.UserDao"%>
-<%@page import="java.util.ArrayList"%>
-<%@page import="bae.bean.BrandBean"%>
-<%@page import="java.util.List"%>
+<%@page import="gopang.dao.FastFoodDao"%>
+<%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
 
@@ -10,7 +7,7 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
-<link href="../css/bootstrap.min.css" rel="stylesheet">
+<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
 	ul {
@@ -58,39 +55,42 @@
 		margin-right : 10px;
 		margin-top: 50px;
 	}
+
 </style>
 </head>
 <body>
 	<%
-		PizzaDao pizzaDao = new PizzaDao();
+		FastFoodDao fastFoodDao = new FastFoodDao();	
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>
 	<ul>
-	  <li><a href="chickenMain.jsp">피자</a></li>
-	  <li><a class="active" href="pizzaMain.jsp">피자</a></li>
-	  <li><a href="chinaMain.jsp">중국집</a></li>
-	  <li><a href="koreanFoodMain.jsp">한식</a></li>
-	  <li><a href="jockMain.jsp">족발, 보쌈</a></li>
+	  <li><a href="chickenMain.jsp">치킨</a></li>
+	  <li><a href="pizzaMain.jsp">피자</a></li>
+	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
+	  <li><a href="koreaFoodMain.jsp">한식</a></li>
+	  <li><a href="jockFoodMain.jsp">족발, 보쌈</a></li>
 	  <li><a href="japanFoodMain.jsp">일식</a></li>
 	  <li><a href="dosirakMain.jsp">도시락</a></li>
-	  <li><a href="fastFoodMain.jsp">패스트푸드</a></li>
+	  <li><a class="active" href="fastFoodMain.jsp">패스트푸드</a></li>
 	</ul>
 	
 	<div id="storeContiner" align="center">
 	<% 
-		for(int i=0; i<pizzaDao.getPizzaTotalRow(3); i++){
+		for(int i=0; i<fastFoodDao.getFastFoodTotalRow(9); i++){
 	%>
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
+	<a href="#">
 	    <div class="thumbnail">
-	      <img src="..<%=pizzaDao.selectPizza(3).get(i).getPicture()%>" alt="..." width="150px" height="100px">
+ 	      <img src="/Baegopang<%=fastFoodDao.selectFastFood(9).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=pizzaDao.selectPizza(3).get(i).getBrandName()%></h3>
+	        <h3><%=fastFoodDao.selectFastFood(9).get(i).getBrandName() %></h3>
 	        <p>별점 주소 댓글 수 등등..</p>
 	      </div>
 	    </div>
+	</a>
 	  </div>
 	</div>
 	</span>
