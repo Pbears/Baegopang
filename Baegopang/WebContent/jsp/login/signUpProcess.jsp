@@ -10,5 +10,6 @@
 <%
 	String birth = request.getParameter("birth");
 %>
+<%=birth %>
 </body>
 </html>

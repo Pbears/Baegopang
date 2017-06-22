@@ -129,7 +129,7 @@ body {
 						onclick="sendId()">
 				</div>
 				<div class="form-group">
-					<a href="#">배고프시죠? 어서들어오세요 ㅎㅎ</a>
+					<a href="/Baegopang/jsp/login/signUp.jsp">배고프시죠? 어서들어오세요 ㅎㅎ</a>
 				</div>
 				<%
 					}

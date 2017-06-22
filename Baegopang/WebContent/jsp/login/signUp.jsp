@@ -9,7 +9,7 @@
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>Insert title here</title>
+<title>회원가입</title>
 <style type="text/css">
 body {
 	background: #ccc
@@ -60,6 +60,7 @@ body {
 		buttonImage : "/Baegopang/img/calendar.ico",
 		buttonText : "Calendar"
 	});
+	
 	function sendData(){
 		alert($('#datepicker').val());
 		this.signupFrm.submit();
