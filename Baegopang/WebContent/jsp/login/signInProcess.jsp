@@ -24,7 +24,7 @@
 			if(MemberDao.passwordCheck((String)session.getAttribute("id"),userPw)){
 				response.sendRedirect("/Baegopang/jsp/main.jsp");
 			}else{
-				response.sendRedirect("/Baegopang/jsp/signIn.jsp?userId="+userId+"&fail=pw");
+				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId="+userId+"&fail=pw");
 			}
 		}
 	%>

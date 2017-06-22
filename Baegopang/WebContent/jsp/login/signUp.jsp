@@ -57,28 +57,9 @@ body {
 	$.datepicker.setDefaults({
 		showOn : "both",
 		buttonImageOnly : true,
-		buttonImage : "/Baegopang/img/calendar.ico",
+		buttonImage : "/Baegopang/img/calendar.png",
 		buttonText : "Calendar"
 	});
-	
-	function sendData(){
-		alert($('#datepicker').val());
-		this.signupFrm.submit();
-	}
-	function checkId(){
-		var obj = document.signupFrm.id;
-		if(!obj.value || obj.value.trim().length==0){
-			obj.focus();
-			alert('띠링');
-			// 무한반복 ..
-		}
-	}
-	function checkPw(){
-		var obj = document.signupFrm.pw;
-		if(!obj.value || obj.value.trim().length==0){
-			alert('띠링');
-		}
-	}
 </script>
 
 </head>
@@ -90,41 +71,35 @@ body {
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="id" name="id"
-								placeholder="ID" onblur="checkId()">
+							<input type="text" class="form-control" id="id" name="id" placeholder="ID">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPw" class="col-sm-2 control-label">Password</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="pw" name="pw"
-								placeholder="Password" onblur="checkPw()">
+							<input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPw" class="col-sm-2 control-label">Confirm</label>
 						<div class="col-sm-10">
-							<input type="password" class="form-control" id="pwConfirm"
-								name="pwConfirm" placeholder="Password Confirm" onblur="checkPwConfirm()">
+							<input type="password" class="form-control" id="pwConfirm" name="pwConfirm" placeholder="Password Confirm">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputName" class="col-sm-2 control-label">Name</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" id="name" name="name"
-								placeholder="Name">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Name">
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputAddress" class="col-sm-2 control-label">Address</label>
 						<div class="col-sm-10">
-							<button type="button" class="btn btn-default" style="width: 100%">
-								<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+							<button type="button" class="btn btn-default" style="width: 100%" id="address" name="address">
+								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 							</button>
-							<input type="text" class="form-control" id="address1"
-								name="address1" disabled="disabled"> <input type="text"
-								class="form-control" id="address2" name="address2"
-								placeholder="Detail Address">
+							<input type="text" class="form-control" id="address1" name="address1" disabled="disabled">
+							<input type="text" class="form-control" id="address2" name="address2" placeholder="Detail Address">
 						</div>
 					</div>
 					<div class="form-group">
@@ -145,7 +120,6 @@ body {
 							</label> <label class="radio-inline"> <input type="radio"
 								name="gender" id="female" value="female"> 여
 							</label>
-							
 						</div>
 					</div>
 					<div class="form-group">
@@ -156,7 +130,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<input type="button" class="btn btn-primary" value="Sign in" onclick="sendData()">
+							<input type="button" class="btn btn-primary" value="Sign in">
 						</div>
 					</div>
 				</form>
@@ -168,5 +142,9 @@ body {
 	$("#datepicker").datepicker();
 	
 	$( "input[type='radio']" ).checkboxradio();
+	
+	$("button[name='address']").click(function(){
+		window.open("/Baegopang/jsp/login/addressPage.jsp");
+	});
 </script>
 </html>
