@@ -47,6 +47,7 @@ body {
 .inner{
 	width: 80%;
 	text-align: center;
+	vertical-align: middle;
 	margin: 0 auto;
 }
 #datepicker{
@@ -144,7 +145,7 @@ body {
 	$( "input[type='radio']" ).checkboxradio();
 	
 	$("button[name='address']").click(function(){
-		window.open("/Baegopang/jsp/login/addressPage.jsp");
+		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
 	});
 </script>
 </html>
