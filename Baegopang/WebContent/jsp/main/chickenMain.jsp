@@ -1,5 +1,4 @@
 <%@page import="gopang.dao.ChickenDao"%>
-<%@page import="gopang.dao.UserDao"%>
 <%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
@@ -87,8 +86,15 @@
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=chickenDao.selectChicken(1).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=chickenDao.selectChicken(1).get(i).getBrandName() %></h3>
-	        <p>별점 주소 댓글 수 등등..</p>
+	        <h3><%=chickenDao.selectChicken(1).get(i).getStorename()%></h3>
+	        <p>
+	        	<%=chickenDao.selectChicken(1).get(i).getGpa()%>
+	        	
+	        	<br>
+	        	<%=chickenDao.selectChicken(1).get(i).getLocation()%><br>
+	        	<%=chickenDao.selectChicken(1).get(i).getTel()%>
+	        
+	        </p>
 	      </div>
 	    </div>
 	</a>

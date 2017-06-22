@@ -21,6 +21,4 @@ private SqlSessionFactory sqlSessionFactory;
 	public Integer getFastFoodTotalRow(int brandNo){
 		return sqlSessionFactory.openSession().selectOne("getFastFoodTotalRow",brandNo);
 	}
-	
-	
 }

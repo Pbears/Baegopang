@@ -69,6 +69,7 @@ body {
 	<%
 		String fail = request.getParameter("fail");
 		String userId = request.getParameter("userId");
+		
 	%>
 	<form action="/Baegopang/jsp/login/signInProcess.jsp" method="post" name="log">
 		<div class="layer">

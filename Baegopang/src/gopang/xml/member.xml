@@ -2,11 +2,11 @@
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<sqlMap namespace="gopang.xml.member">
+<mapper namespace="gopang.xml.member"> 
 	<select id="idCheck" parameterType="java.lang.String" resultType="java.lang.String" >
-		SELECT ID FROM MEMBER WHERE ID=#{userid}
+		SELECT ID FROM MEMBER WHERE ID=#{id}
 	</select>
-	<select id="passwordCheck" parameterType="java.lang.String" resultType="java.lang.String">
-		SELECT PW FROM MEMBER WHERE ID=#{userid}
+	<select id="pwCheck" parameterType="java.lang.String" resultType="java.lang.String">
+		SELECT PW FROM MEMBER WHERE ID=#{id}
 	</select>
-</sqlMap>
+</mapper>

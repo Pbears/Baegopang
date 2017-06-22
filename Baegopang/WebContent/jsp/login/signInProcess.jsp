@@ -12,8 +12,10 @@
 	<%
 		String userId = request.getParameter("userId");
 		String userPw = request.getParameter("userPw");
+		MemberDao memberDao = new MemberDao();
+		
 		if (userId != null && userPw == null) {
-			if (MemberDao.idCheck(userId)) {
+			if (memberDao.idCheck(userId)) {
 				session.setAttribute("id", userId);
 				session.setMaxInactiveInterval(60);
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId=" + userId);
@@ -21,7 +23,7 @@
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?fail=id");
 			}
 		}else if(userId!=null&userId!=null){
-			if(MemberDao.passwordCheck((String)session.getAttribute("id"),userPw)){
+			if(memberDao.pwCheck((String)session.getAttribute("id"),userPw)){
 				response.sendRedirect("/Baegopang/jsp/main.jsp");
 			}else{
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId="+userId+"&fail=pw");
