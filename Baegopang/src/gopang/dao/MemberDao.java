@@ -1,7 +1,10 @@
 package gopang.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSessionFactory;
 
+import gopang.bean.ZipcodeBean;
 import gopang.util.SqlSessionFactoryManager;
 
 public class MemberDao {
@@ -19,5 +22,9 @@ public class MemberDao {
 	public boolean pwCheck(String id, String pw){
 		String userPw = sqlSessionFactory.openSession().selectOne("pwCheck", id);
 		return pw.equals(userPw)?true:false;
+	}
+	
+	public List<ZipcodeBean> searchAddress(String dong){
+		return sqlSessionFactory.openSession().selectList("searchAddress",dong);
 	}
 }
