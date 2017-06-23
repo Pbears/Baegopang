@@ -22,9 +22,9 @@
 			} else {
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?fail=id");
 			}
-		}else if(userId!=null&userId!=null){
-			if(memberDao.pwCheck((String)session.getAttribute("id"),userPw)){
-				response.sendRedirect("/Baegopang/jsp/main.jsp");
+		}else if(userId!=null&userPw!=null){
+			if(memberDao.pwCheck(userId ,userPw)){
+				response.sendRedirect("/Baegopang/jsp/main/index.jsp");
 			}else{
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId="+userId+"&fail=pw");
 			}
