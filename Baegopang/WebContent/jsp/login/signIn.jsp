@@ -3,7 +3,7 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -11,10 +11,6 @@
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Insert title here</title>
 <style type="text/css">
-body {
-	background: #ccc
-}
-
 .layer {
 	position: absolute;
 	top: 0;
@@ -76,7 +72,7 @@ body {
 			<span class="content"><img src="/Baegopang/img/noimg.png"></span>
 			<div class="inputLog">
 				<div class="form-group">
-					<h1>배고팡</h1>
+					<h1 class="baegopang">배고팡</h1>
 				</div>
 				<%
 					if (userId != null) {
