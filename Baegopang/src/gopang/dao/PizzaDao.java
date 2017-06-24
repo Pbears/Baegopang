@@ -15,7 +15,7 @@ private SqlSessionFactory sqlSessionFactory;
 	}
 	
 	public List<BrandBean>selectPizza(int brandNo){
-		return sqlSessionFactory.openSession().selectList("selectChicken",brandNo);
+		return sqlSessionFactory.openSession().selectList("selectPizza",brandNo);
 	}
 	
 	public Integer getPizzaTotalRow(int brandNo){

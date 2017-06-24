@@ -50,7 +50,8 @@
 	}
 	.thumbnail{
 		width: 320px;
-		height : 200px;
+		height : 240px;
+		padding : 5px;
 		margin-left: 40px;
 		margin-right : 10px;
 		margin-top: 50px;
@@ -74,7 +75,7 @@
 	  <li><a href="dosirakMain.jsp">µµ½Ã¶ô</a></li>
 	  <li><a href="fastFoodMain.jsp">ÆÐ½ºÆ®Çªµå</a></li>
 	</ul>
-	
+
 	<div id="storeContiner" align="center">
 	<% 
 		for(int i=0; i<chickenDao.getChickenTotalRow(1); i++){
@@ -86,13 +87,25 @@
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=chickenDao.selectChicken(1).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=chickenDao.selectChicken(1).get(i).getStorename()%></h3>
+	        <h3><strong><%=chickenDao.selectChicken(1).get(i).getStorename()%></strong></h3>
 	        <p>
-	        	<%=chickenDao.selectChicken(1).get(i).getGpa()%>
-	        	
+	        	<%
+					for (int j=0; j < chickenDao.selectChicken(1).get(i).getGpa() ; j++){
+				%>
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				<%
+						if(j == chickenDao.selectChicken(1).get(i).getGpa() && j <5){
+							for(int k=0; k < 5-chickenDao.selectChicken(1).get(i).getGpa(); k++){
+				%>
+					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
+				<% 
+							}
+						}
+					}
+				%>
 	        	<br>
 	        	<%=chickenDao.selectChicken(1).get(i).getLocation()%><br>
-	        	<%=chickenDao.selectChicken(1).get(i).getTel()%>
+	        	¸®ºä : <strong>(50)</strong>   ´ñ±Û : <strong>(50)</strong>
 	        
 	        </p>
 	      </div>

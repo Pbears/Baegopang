@@ -49,8 +49,8 @@
 		margin: auto;
 	}
 	.thumbnail{
-		width: 320px;
-		height : 200px;
+		width: 340px;
+		height : 250px;
 		margin-left: 40px;
 		margin-right : 10px;
 		margin-top: 50px;
@@ -86,8 +86,27 @@
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=koreaFoodDao.selectKoreaFood(4).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=koreaFoodDao.selectKoreaFood(4).get(i).getBrandName() %></h3>
-	        <p>º°Á¡ ÁÖ¼Ò ´ñ±Û ¼ö µîµî..</p>
+	        <h3><%=koreaFoodDao.selectKoreaFood(4).get(i).getStorename() %></h3>
+	        <p>
+	        	<%
+					for (int j=0; j < koreaFoodDao.selectKoreaFood(4).get(i).getGpa() ; j++){
+				%>
+					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+				<%
+						if(j == koreaFoodDao.selectKoreaFood(4).get(i).getGpa() && j <5){
+							for(int k=0; k < 5-koreaFoodDao.selectKoreaFood(4).get(i).getGpa(); k++){
+				%>
+					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
+				<% 
+							}
+						}
+					}
+				%>
+	        	<br>
+	        	<%=koreaFoodDao.selectKoreaFood(4).get(i).getLocation()%><br>
+	        	¸®ºä : <strong>(50)</strong>   ´ñ±Û : <strong>(50)</strong>
+	        
+	        </p>
 	      </div>
 	    </div>
 	</a>
