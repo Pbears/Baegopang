@@ -9,9 +9,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<select id="pwCheck" parameterType="java.lang.String" resultType="java.lang.String">
 		SELECT PW FROM MEMBER WHERE ID=#{id}
 	</select>
-	<select id="searchAddress" parameterType="java.lang.String" resultType="zipcode">
-		SELECT ZIPCODE, SIDO, GUGUN, DONG, BUNJI, SEQ 
-		FROM ZIPCODE
-		WHERE DONG LIKE '%'||#{dong}||'%'
-	</select>
+	<insert id="memberInsert" parameterType="member">
+		INSERT INTO MEMBER VALUES(#{id},#{pw},#{name},#{address},#{tel},#{gender},TO_DATE(#{birth},'YY/MM/DD'))
+	</insert>
+
 </mapper>

@@ -60,6 +60,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       </environment>
     </environments>
     <mappers>
+      <mapper resource="gopang/xml/zipcode.xml"/>
       <mapper resource="gopang/xml/member.xml"/>
       <mapper resource="gopang/xml/chicken.xml"/>
       <mapper resource="gopang/xml/pizza.xml"/>
