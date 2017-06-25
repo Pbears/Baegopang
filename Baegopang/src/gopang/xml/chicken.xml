@@ -17,6 +17,19 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	ON B.BRANDNO=S.BRANDNO
 		WHERE B.BRANDNO LIKE #{brandNo}||'%'
   	</select>
+  	<select id="selectChickenMenu" parameterType="java.lang.Integer" resultType="store">
+		SELECT STORENAME, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
+		FROM BRAND B
+        	FULL OUTER JOIN STORE S
+        	ON B.BRANDNO=S.BRANDNO
+		WHERE B.BRANDNO LIKE #{brandNo}||'%'
+  	</select>
+  	<select id="getChickenMenuTotalRow" resultType="java.lang.Integer" parameterType="java.lang.Integer">
+  		SELECT COUNT(*) FROM BRAND B
+        	FULL OUTER JOIN STORE S
+        	ON B.BRANDNO=S.BRANDNO
+		WHERE B.BRANDNO LIKE #{brandNo}||'%'
+  	</select>
 </mapper>
 
 
