@@ -1,10 +1,9 @@
 package gopang.dao;
 
-import java.util.List;
-
+import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
-import gopang.bean.ZipcodeBean;
+import gopang.bean.MemberBean;
 import gopang.util.SqlSessionFactoryManager;
 
 public class MemberDao {
@@ -24,7 +23,15 @@ public class MemberDao {
 		return pw.equals(userPw)?true:false;
 	}
 	
-	public List<ZipcodeBean> searchAddress(String dong){
-		return sqlSessionFactory.openSession().selectList("searchAddress",dong);
+	public void memberInsert(MemberBean bean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.insert("memberInsert", bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.commit();
+			session.close();
+		}
 	}
 }

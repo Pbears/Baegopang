@@ -1,3 +1,5 @@
+<%@page import="gopang.dao.ZipCodeDao"%>
+<%@page import="java.net.URLDecoder"%>
 <%@page import="gopang.dao.MemberDao"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.bean.ZipcodeBean"%>
@@ -8,6 +10,9 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<%
+	request.setCharacterEncoding("EUC-KR");
+%>
 <meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
 <link rel="stylesheet"
@@ -50,36 +55,54 @@ body {
 	background-color: #EAEAEA;
 }
 </style>
+<script type="text/javascript">
+	function searchAd(){
+		var obj = document.addFrm.searchDong;
+		location.replace('/Baegopang/jsp/login/addressProcess.jsp?dong='+obj.value);
+	}
+	function checkDong(obj){
+		var ojt = document.getElementById(obj.id).childNodes[0].nodeValue;
+		opener.document.getElementById("address1").value=ojt;
+		window.close();
+	}
+</script>
 </head>
 <body>
 <%
-	MemberDao dao = new MemberDao();
-	String dong = request.getParameter("dong")==null?"":request.getParameter("dong");
-	List<ZipcodeBean> list = dao.searchAddress("fff"); 
+	List<ZipcodeBean> list = (List<ZipcodeBean>)request.getAttribute("addList");
 %>
-<%=list %>
 	<div class="layer">
 		<div class="form-group add">
 			<label>우편번호찾기</label>
 			<div class="form-inline">
-			<form action="" method="post">
-				<input type="text" id="dong" value="<%=dong %>" class="form-contro" placeholder="우편번호">
-				<button type="submit" id="searchAdd" name="searchAdd"
-					class="btn btn-default">
-					<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
-				</button>
+				<form action="" method="post" name="addFrm">
+					<input type="text" id="searchDong" name="searchDong" class="form-contro" placeholder="우편번호">
+					<button type="button" id="searchAdd" name="searchAdd"
+						class="btn btn-default" onclick="searchAd()">
+						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
+					</button>
 				</form>
 			</div>
-			<table class="table">
-				<tr>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>1</td>
-				</tr>
-				<tr>
-					<td>1</td>
-				</tr>
+			<table class="table" name="addT">
+				<%
+					if(list!=null){
+						ZipcodeBean bean = null;
+						for(int i=0 ; i<list.size() ; i++){
+							bean = list.get(i);
+							%>
+							<tr>
+								<td onclick="checkDong(this)" id="add<%=i%>"><%=bean.getSido()+" "+bean.getGugun()+" "+bean.getDong()+" "+bean.getBunji() %></td>
+							</tr>
+							<%
+						}
+					}else{
+						%>
+						<tr>
+							<td>검색하세요</td>
+						</tr>
+						<%
+					}
+				%>
 			</table>
 		</div>
 	</div>

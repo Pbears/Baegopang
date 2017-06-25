@@ -58,6 +58,7 @@ body {
 	$.datepicker.setDefaults({
 		showOn : "both",
 		buttonImageOnly : true,
+		dateFormat: "yy-mm-dd",
 		buttonImage : "/Baegopang/img/calendar.png",
 		buttonText : "Calendar"
 	});
@@ -99,7 +100,7 @@ body {
 							<button type="button" class="btn btn-default" style="width: 100%" id="address" name="address">
 								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 							</button>
-							<input type="text" class="form-control" id="address1" name="address1" disabled="disabled">
+							<input type="text" class="form-control" id="address1" name="address1" >
 							<input type="text" class="form-control" id="address2" name="address2" placeholder="Detail Address">
 						</div>
 					</div>
@@ -131,7 +132,7 @@ body {
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<input type="button" class="btn btn-primary" value="Sign in">
+							<input type="submit" class="btn btn-primary" value="Sign in">
 						</div>
 					</div>
 				</form>
@@ -147,5 +148,6 @@ body {
 	$("button[name='address']").click(function(){
 		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
 	});
+
 </script>
 </html>

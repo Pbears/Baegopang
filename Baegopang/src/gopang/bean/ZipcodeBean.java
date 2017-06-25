@@ -7,6 +7,10 @@ public class ZipcodeBean {
 	private String dong;
 	private String bunji;
 	private String seq;
+	
+	public ZipcodeBean() {
+		super();
+	}
 
 	public ZipcodeBean(String zipzode, String sido, String gugun, String dong, String bunji, String seq) {
 		super();
