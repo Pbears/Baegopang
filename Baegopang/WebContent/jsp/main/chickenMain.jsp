@@ -83,7 +83,7 @@
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	<a href="#">
+	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=chickenDao.selectChicken(1).get(i).getBrandNo() %>" >
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=chickenDao.selectChicken(1).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
