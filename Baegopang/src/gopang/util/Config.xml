@@ -20,6 +20,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     <typeAliases>
     	<typeAlias type="gopang.bean.BrandBean" alias="brand"/>
     	<typeAlias type="gopang.bean.StoreBean" alias="store"/>
+    	<typeAlias type="gopang.bean.MenuBean" alias="menu"/>
     	<typeAlias type="gopang.bean.MemberBean" alias="member"/>
     	<typeAlias type="gopang.bean.ZipcodeBean" alias="zipcode"/>
     </typeAliases>

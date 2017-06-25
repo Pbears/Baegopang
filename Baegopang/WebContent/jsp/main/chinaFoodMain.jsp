@@ -93,8 +93,8 @@
 				%>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				<%
-						if(j == chinaFoodDao.selectChinaFood(2).get(i).getGpa() && j <5){
-							for(int k=0; k < 5-chinaFoodDao.selectChinaFood(2).get(i).getGpa(); k++){
+						if(j == chinaFoodDao.selectChinaFood(2).get(i).getGpa()-1 && j <5){
+							for(int k=0; k < 4-j; k++){
 				%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
 				<% 

@@ -1,3 +1,4 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ChickenDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -40,17 +41,48 @@ ul {
 	    background-color: #ff5722;
 	}
 	
-	div.panel.panel-default{
-		width: 1050px;
+	#storeInfoContainer {
+		width: 1600px;
 		margin: auto;
 		margin-top: 50px;
+		
+	}
+	#menuContiner{
+		margin: auto;
+		margin-left: 0px;
+		width: 1250px;
+		display: inline-block;
+	}
+	.row{
+		display: inline-block;
+		margin: auto;
+	}
+	.thumbnail{
+		width: 250px;
+		height : 250px;
+		padding : 5px;
+		margin-left: 40px;
+		margin-right : 10px;
+		margin-top: 50px;
+	}
+	
+	#selectMenuContainer{
+		left : 0px;
+		bottom : auto;
+	 	width: 350px;
+	 	height : 800px;
+	 	display : inline-block;
+	 	position: relative;
 	}
 </style>
 <body>
 	<%
+		request.setCharacterEncoding("EUC-KR");
 		int brandNo = Integer.parseInt(request.getParameter("brandno"));
 		ChickenDao chickenDao = new ChickenDao();
+		String storeName = chickenDao.selectChickenStore(brandNo).get(0).getStoreName();
 	%>
+	
 	<jsp:include page="../main/header.jsp"></jsp:include>
 	<ul>
 	  <li><a class="active" href="chickenMain.jsp">치킨</a></li>
@@ -62,18 +94,19 @@ ul {
 	  <li><a href="dosirakMain.jsp">도시락</a></li>
 	  <li><a href="fastFoodMain.jsp">패스트푸드</a></li>
 	</ul>
-	
+	<div id="storeInfoContainer">
 	<div class="panel panel-default">
 	  <div class="panel-body">
-	   <%=chickenDao.selectChickenMenu(brandNo).get(0).getStoreName()%>  &nbsp;|&nbsp;
-	   <%=chickenDao.selectChickenMenu(brandNo).get(0).getLocation()%>  &nbsp;|&nbsp;
+	   <strong>매장명 : <%=storeName%></strong>  &nbsp;|&nbsp;
+	   <strong>매장 주소 : <%=chickenDao.selectChickenStore(brandNo).get(0).getLocation()%></strong>  &nbsp;|&nbsp;
+	   별점 : 
 	   <%
-			for (int j=0; j < chickenDao.selectChickenMenu(brandNo).get(0).getGpa() ; j++){
+			for (int j=0; j < chickenDao.selectChickenStore(brandNo).get(0).getGpa() ; j++){
 		%>
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 		<%
-				if(j == chickenDao.selectChickenMenu(brandNo).get(0).getGpa() && j <5){
-						for(int k=0; k < 5-chickenDao.selectChickenMenu(brandNo).get(0).getGpa(); k++){
+				if(j == chickenDao.selectChickenStore(brandNo).get(0).getGpa()-1 && j <5){
+						for(int k=0; k < 4-j; k++){
 		%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
 		<% 
@@ -81,44 +114,29 @@ ul {
 				}
 			}
 		%>  &nbsp;|&nbsp;
+		좋아요
 		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
 		<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
 		<strong>(50)</strong></span>
 	  </div>
 	</div>
-	<div id="storeContiner" align="center">
+	</div>
+	<div id="menuContiner" align="center">
 	<% 
-		for(int i=0; i<chickenDao.getChickenTotalRow(1); i++){
+ 		for(int i=0; i<chickenDao.getChickenMenuTotalRow(brandNo); i++){ 
 	%>
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	  <!-- 메뉴 리스트 출력부 -->
 	<a href="#" >
 	    <div class="thumbnail">
- 	      <img src=".." alt="..." width="150px" height="100px"> 
+ 	      <img src="/Baegopang<%=chickenDao.selectChickenMenu(brandNo).get(i).getPicture() %>" alt="..." width="150px" height="100px"/> 
 	      <div class="caption">
-	        <h3><strong><%=chickenDao.selectChickenMenu(brandNo).get(0)%></strong></h3>
+	        <h4><strong><%=chickenDao.selectChickenMenu(brandNo).get(i).getMenuName() %></strong></h4>
 	        <p>
-	        	<%
-					for (int j=0; j < chickenDao.selectChicken(1).get(i).getGpa() ; j++){
-				%>
-					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-				<%
-						if(j == chickenDao.selectChicken(1).get(i).getGpa() && j <5){
-							for(int k=0; k < 5-chickenDao.selectChicken(1).get(i).getGpa(); k++){
-				%>
-					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
-				<% 
-							}
-						}
-					}
-				%>
-	        	<br>
-	        	<%=chickenDao.selectChicken(1).get(i).getLocation()%><br>
-	        	리뷰 : <strong>(50)</strong>   댓글 : <strong>(50)</strong>
-	        
+	        	<%=chickenDao.selectChickenMenu(brandNo).get(i).getInfo() %>
 	        </p>
+	        	<h5><%=chickenDao.selectChickenMenu(brandNo).get(i).getPrice() %></h5>
 	      </div>
 	    </div>
 	</a>
@@ -128,6 +146,32 @@ ul {
 	<%
 		} 
 	%>
+	</div> 
+	 
+	<div id="selectMenuContainer">
+	<div class="panel panel-default">
+	  <div class="panel-heading">매장 정보</div>
+	  <div class="panel-body">
+	    <%=chickenDao.selectChickenStore(brandNo).get(0).getInfo()%>
+	  </div>
 	</div>
+	<div class="panel panel-default">
+	  <div class="panel-heading">최소 주문 금액</div>
+	  <div class="panel-body">
+	    <%=chickenDao.selectChickenStore(brandNo).get(0).getMinprice()%>
+	  </div>
+	</div>
+	
+	<div class="panel panel-default">
+	  <div class="panel-heading">
+	    <h3 class="panel-title">주문 목록</h3>
+	  </div>
+	  <div class="panel-body">
+	    고추 바사삭 치킨 1 18000
+	   
+	  </div>
+	</div>
+	</div>
+	
 </body>
 </html>

@@ -5,6 +5,7 @@ import java.util.List;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import gopang.bean.BrandBean;
+import gopang.bean.MenuBean;
 import gopang.bean.StoreBean;
 import gopang.util.SqlSessionFactoryManager;
 
@@ -23,12 +24,16 @@ private SqlSessionFactory sqlSessionFactory;
 		return sqlSessionFactory.openSession().selectOne("getChickenTotalRow",brandNo);
 	}
 	
-	public List<StoreBean> selectChickenMenu(int brandNo){
-		return sqlSessionFactory.openSession().selectList("selectChickenMenu", brandNo);
+	public List<StoreBean> selectChickenStore(int brandNo){
+		return sqlSessionFactory.openSession().selectList("selectChickenStore", brandNo);
 	}
 	
 	public Integer getChickenMenuTotalRow(int brandNo){
 		return sqlSessionFactory.openSession().selectOne("getChickenMenuTotalRow", brandNo);
+	}
+	
+	public List<MenuBean> selectChickenMenu(int brandNo){
+		return sqlSessionFactory.openSession().selectList("selectChickenMenu", brandNo);
 	}
 	
 	

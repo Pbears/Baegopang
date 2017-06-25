@@ -1,8 +1,9 @@
+<%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ChickenDao"%>
 <%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
     pageEncoding="EUC-KR"%>
-
+<%request.setCharacterEncoding("EUC-KR"); %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -61,7 +62,8 @@
 </head>
 <body>
 	<%
-		ChickenDao chickenDao = new ChickenDao();	
+		ChickenDao chickenDao = new ChickenDao();
+
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>
@@ -83,7 +85,7 @@
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=chickenDao.selectChicken(1).get(i).getBrandNo() %>" >
+	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=chickenDao.selectChicken(1).get(i).getBrandNo()%>" >
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=chickenDao.selectChicken(1).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
@@ -94,8 +96,8 @@
 				%>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				<%
-						if(j == chickenDao.selectChicken(1).get(i).getGpa() && j <5){
-							for(int k=0; k < 5-chickenDao.selectChicken(1).get(i).getGpa(); k++){
+						if(j == chickenDao.selectChicken(1).get(i).getGpa()-1 && j <5){
+							for(int k=0; k < 4-j; k++){
 				%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
 				<% 
