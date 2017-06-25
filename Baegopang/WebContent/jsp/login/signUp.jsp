@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
@@ -66,49 +67,57 @@ body {
 
 </head>
 <body>
+<%
+	String checkId = "true";
+%>
 	<div class="layer">
 		<div class="inputLog">
 			<div class="inner">
 				<form class="form-horizontal" method="post" action="/Baegopang/jsp/login/signUpProcess.jsp" name="signupFrm">
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">ID</label>
-						<div class="col-sm-10">
+						<div class="col-sm-10" id="divId">
 							<input type="text" class="form-control" id="id" name="id" placeholder="ID">
+							<label id="labelId"></label>
 						</div>
 					</div>
 					<div class="form-group">
-						<label for="inputPw" class="col-sm-2 control-label">Password</label>
-						<div class="col-sm-10">
+						<label for="inputPw" class="col-sm-2 control-label">PW</label>
+						<div class="col-sm-10" id="divPw">
 							<input type="password" class="form-control" id="pw" name="pw" placeholder="Password">
+							<label id="labelPw"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputPw" class="col-sm-2 control-label">Confirm</label>
-						<div class="col-sm-10">
+						<div class="col-sm-10" id="divPwConfirm">
 							<input type="password" class="form-control" id="pwConfirm" name="pwConfirm" placeholder="Password Confirm">
+							<label id="labelPwConfirm"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputName" class="col-sm-2 control-label">Name</label>
-						<div class="col-sm-10">
+						<div class="col-sm-10" id="divName">
 							<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+							<label id="labelName"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputAddress" class="col-sm-2 control-label">Address</label>
-						<div class="col-sm-10">
+						<div class="col-sm-10" id="divAddress">
 							<button type="button" class="btn btn-default" style="width: 100%" id="address" name="address">
 								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 							</button>
-							<input type="text" class="form-control" id="address1" name="address1" >
+							<input type="text" class="form-control" id="address1" name="address1" readonly>
 							<input type="text" class="form-control" id="address2" name="address2" placeholder="Detail Address">
+							<label id="labelAddress"></label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputTel" class="col-sm-2 control-label">Tel</label>
 						<div class="col-sm-10">
-							<div class="controls controls-row">
-								<input style="width: 30%;" type="text" id="tel1" name="tel1">
+							<div class="controls controls-row" id="divTel">
+								<input style="width: 30%;" type="text" id="tel1" name="tel1" value="010" readonly>
 								- <input style="width: 30%;" type="text" id="tel2" name="tel2">
 								- <input style="width: 30%;" type="text" id="tel3" name="tel3">
 							</div>
@@ -116,17 +125,18 @@ body {
 					</div>
 					<div class="form-group">
 						<label for="inputGender" class="col-sm-2 control-label">Gender</label>
-						<div class="col-sm-10">
-							<label class="radio-inline"> <input type="radio" controls
-								name="gender" id="male" value="male" checked="checked"> 남
-							</label> <label class="radio-inline"> <input type="radio"
-								name="gender" id="female" value="female"> 여
+						<div class="col-sm-10" id="divGender">
+							<label class="radio-inline"> 
+								<input type="radio" name="gender" id="gender" value="male" checked="checked"> 남
+							</label> 
+							<label class="radio-inline"> 
+								<input type="radio" name="gender" id="gender" value="female"> 여
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputBirth" class="col-sm-2 control-label">Birth</label>
-						<div class="col-sm-10">
+						<div class="col-sm-10" id="divBirth">
 								<input id="datepicker" class="form-control" name="birth" >
 						</div>
 					</div>
@@ -148,6 +158,55 @@ body {
 	$("button[name='address']").click(function(){
 		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
 	});
-
+	
+	$("input#id").blur(function(){
+		window.open("/Baegopang/jsp/login/idCheck.jsp?id="+$(this).val());
+	});
+	
+	$("input#pw").blur(function(){
+		if($("input#pw").val().trim().length==0 || !$("input#pw").val()){
+			$("div#divPw").attr('class','col-sm-10 has-error');
+			$("input#pw").val('');
+			$("input#pw").focus();
+			$("label#labelPw").text('비밀번호를 정확히 입력하세요.');
+		}else{
+			$("div#divPw").attr('class','col-sm-10 has-success');
+			$("label#labelPw").text('');
+		}
+	});
+	$("input#pwConfirm").blur(function(){
+		if($("input#pw").val()==$(this).val()){
+			$("div#divPwConfirm").attr('class','col-sm-10 has-success');
+			$("label#labelPwConfirm").text('');
+		}else if($("input#pw").val()!=$(this).val()){
+			$("div#divPwConfirm").attr('class','col-sm-10 has-error');
+			$("input#pwConfirm").focus();
+			$("input#pwConfirm").val('');
+			$("label#labelPwConfirm").text('비밀번호와 일치하지않습니다.');
+		}
+	});
+	$("input#name").blur(function(){
+		if($("input#name").val().trim().length==0 || !$("input#name").val()){
+			$("div#divName").attr('class','col-sm-10 has-error');
+			$("input#name").focus();
+			$("input#name").val('');
+			$("label#labelName").text('이름을 기입해주세요.');
+		}else{
+			$("div#divName").attr('class','col-sm-10 has-success');
+			$("label#labelName").text('');
+		}
+	});
+	$("input#address2").blur(function(){
+		if($("input#address2").val().trim().length==0 || !$("input#address2").val()){
+			$("div#divAddress").attr('class','col-sm-10 has-error');
+			$("input#address2").focus();
+			$("input#address2").val('');
+			$("label#labelAddress").text('상세주소를 기입하세요.');
+		}else{
+			$("div#divAddress").attr('class','col-sm-10 has-success');
+			$("label#labelAddress").text('');
+		}
+	});
+	
 </script>
 </html>
