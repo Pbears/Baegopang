@@ -13,7 +13,7 @@
 <title>Insert title here</title>
 </head>
 <style>
-ul {
+	ul {
 	    list-style-type: none;
 	    margin: auto;
 	    padding: 0;
@@ -49,8 +49,8 @@ ul {
 		width: 1600px;
 		margin: auto;
 		margin-top: 50px;
-		
 	}
+	
 	#menuContiner{
 		margin: auto;
 		margin-left: 53px;
@@ -58,10 +58,12 @@ ul {
 		height : auto;
 		display: inline-block;
 	}
+	
 	.row{
 		display: inline-block;
 		margin: auto;
 	}
+	
 	.thumbnail{
 		width: 250px;
 		height : 250px;
@@ -139,7 +141,7 @@ ul {
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
 	<a href="#" >
 	    <div class="thumbnail">
- 	      <img src="/Baegopang<%=menu.getPicture() %>" alt="..." width="150px" height="100px"/> 
+ 	      <img src="/Baegopang<%=menu.getPicture() %>" width="150px" height="100px" style="text-decoration: none;"/> 
 	      <div class="caption">
 	        <h4><strong><%=menu.getMenuName() %></strong></h4>
 	        <p>

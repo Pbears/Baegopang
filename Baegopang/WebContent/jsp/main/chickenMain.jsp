@@ -87,7 +87,7 @@
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=brand.getBrandNo()%>" >
+	   <a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=brand.getBrandNo()%>" style="text-decoration: none;">
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
