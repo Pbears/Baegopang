@@ -1,3 +1,4 @@
+<%@page import="gopang.bean.BrandBean"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.dao.PizzaDao"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
