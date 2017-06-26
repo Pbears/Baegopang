@@ -1,3 +1,4 @@
+<%@page import="java.net.URLDecoder"%>
 <%@page import="gopang.bean.MenuBean"%>
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
@@ -81,7 +82,7 @@ ul {
 </style>
 <body>
 	<%
-		request.setCharacterEncoding("EUC-KR");
+		request.setCharacterEncoding("UTF-8");
 		int brandNo = Integer.parseInt(request.getParameter("brandno"));
 		ChickenDao chickenDao = new ChickenDao();
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);

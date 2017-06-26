@@ -4,16 +4,16 @@
 <%@page import="java.util.List"%>
 <%@page import="gopang.bean.ZipcodeBean"%>
 <%@page import="java.util.ArrayList"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-	pageEncoding="EUC-KR"%>
-<%request.setCharacterEncoding("EUC-KR");%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+	pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("UTF-8");%>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
 <%
-	request.setCharacterEncoding("EUC-KR");
+	request.setCharacterEncoding("UTF-8");
 %>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
 <link rel="stylesheet"
 	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
@@ -73,10 +73,10 @@ body {
 %>
 	<div class="layer">
 		<div class="form-group add">
-			<label>¿ìÆí¹øÈ£Ã£±â</label>
+			<label>ìš°íŽ¸ë²ˆí˜¸ì°¾ê¸°</label>
 			<div class="form-inline">
 				<form action="" method="post" name="addFrm">
-					<input type="text" id="searchDong" name="searchDong" class="form-contro" placeholder="¿ìÆí¹øÈ£">
+					<input type="text" id="searchDong" name="searchDong" class="form-contro" placeholder="ìš°íŽ¸ë²ˆí˜¸">
 					<button type="button" id="searchAdd" name="searchAdd"
 						class="btn btn-default" onclick="searchAd()">
 						<span class="glyphicon glyphicon-search" aria-hidden="true"></span>
@@ -98,7 +98,7 @@ body {
 					}else{
 						%>
 						<tr>
-							<td>°Ë»öÇÏ¼¼¿ä</td>
+							<td>ê²€ìƒ‰í•˜ì„¸ìš”</td>
 						</tr>
 						<%
 					}

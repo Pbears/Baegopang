@@ -2,13 +2,13 @@
 <%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ChickenDao"%>
 <%@page import="gopang.bean.BrandBean"%>
-<%@ page language="java" contentType="text/html; charset=EUC-KR"
-    pageEncoding="EUC-KR"%>
-<%request.setCharacterEncoding("EUC-KR"); %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<%request.setCharacterEncoding("UTF-8"); %>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=EUC-KR">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
@@ -70,14 +70,14 @@
 		
 	<jsp:include page="header.jsp"></jsp:include>
 	<ul>
-	  <li><a class="active" href="chickenMain.jsp">Ä¡Å²</a></li>
-	  <li><a href="pizzaMain.jsp">ÇÇÀÚ</a></li>
-	  <li><a href="chinaFoodMain.jsp">Áß±¹Áý</a></li>
-	  <li><a href="koreaFoodMain.jsp">ÇÑ½Ä</a></li>
-	  <li><a href="jockFoodMain.jsp">Á·¹ß, º¸½Ó</a></li>
-	  <li><a href="japanFoodMain.jsp">ÀÏ½Ä</a></li>
-	  <li><a href="dosirakMain.jsp">µµ½Ã¶ô</a></li>
-	  <li><a href="fastFoodMain.jsp">ÆÐ½ºÆ®Çªµå</a></li>
+	  <li><a class="active" href="chickenMain.jsp">ì¹˜í‚¨</a></li>
+	  <li><a href="pizzaMain.jsp">í”¼ìž</a></li>
+	  <li><a href="chinaFoodMain.jsp">ì¤‘êµ­ì§‘</a></li>
+	  <li><a href="koreaFoodMain.jsp">í•œì‹</a></li>
+	  <li><a href="jockFoodMain.jsp">ì¡±ë°œ, ë³´ìŒˆ</a></li>
+	  <li><a href="japanFoodMain.jsp">ì¼ì‹</a></li>
+	  <li><a href="dosirakMain.jsp">ë„ì‹œë½</a></li>
+	  <li><a href="fastFoodMain.jsp">íŒ¨ìŠ¤íŠ¸í‘¸ë“œ</a></li>
 	</ul>
 
 	<div id="storeContiner" align="center">
@@ -109,7 +109,7 @@
 				%>
 	        	<br>
 	        	<%=brand.getLocation()%><br>
-	        	¸®ºä : <strong>(50)</strong>   ´ñ±Û : <strong>(50)</strong>
+	        	ë¦¬ë·° : <strong>(50)</strong>   ëŒ“ê¸€ : <strong>(50)</strong>
 	        
 	        </p>
 	      </div>
@@ -123,7 +123,7 @@
 	%>
 	</div>
 	<div id="moreView" align="center">
-		<a href="#">´õº¸±â¡å</a>
+		<a href="#">ë”ë³´ê¸°â–¼</a>
 	</div>
 	<jsp:include page="footer.jsp"></jsp:include>	
 </body>
