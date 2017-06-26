@@ -11,12 +11,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	ON B.BRANDNO=S.BRANDNO
 		WHERE B.BRANDNO LIKE #{brandNo}||'%'
   	</select>
-  	<select id="getChickenTotalRow" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-  		SELECT COUNT(*) FROM BRAND B
-        	FULL OUTER JOIN STORE S
-        	ON B.BRANDNO=S.BRANDNO
-		WHERE B.BRANDNO LIKE #{brandNo}||'%'
-  	</select>
   	<select id="selectChickenStore" resultType="store" parameterType="java.lang.Integer">
 		SELECT STORENAME, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
 		FROM BRAND B

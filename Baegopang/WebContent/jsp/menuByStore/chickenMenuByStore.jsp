@@ -1,3 +1,6 @@
+<%@page import="gopang.bean.MenuBean"%>
+<%@page import="gopang.bean.StoreBean"%>
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ChickenDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -49,8 +52,9 @@ ul {
 	}
 	#menuContiner{
 		margin: auto;
-		margin-left: 0px;
+		margin-left: 53px;
 		width: 1250px;
+		height : auto;
 		display: inline-block;
 	}
 	.row{
@@ -67,8 +71,8 @@ ul {
 	}
 	
 	#selectMenuContainer{
-		left : 0px;
-		bottom : auto;
+		left : 50px;
+		bottom : 1255px;
 	 	width: 350px;
 	 	height : 800px;
 	 	display : inline-block;
@@ -80,7 +84,8 @@ ul {
 		request.setCharacterEncoding("EUC-KR");
 		int brandNo = Integer.parseInt(request.getParameter("brandno"));
 		ChickenDao chickenDao = new ChickenDao();
-		String storeName = chickenDao.selectChickenStore(brandNo).get(0).getStoreName();
+		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
+		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
 	%>
 	
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -94,18 +99,20 @@ ul {
 	  <li><a href="dosirakMain.jsp">도시락</a></li>
 	  <li><a href="fastFoodMain.jsp">패스트푸드</a></li>
 	</ul>
+	
 	<div id="storeInfoContainer">
 	<div class="panel panel-default">
 	  <div class="panel-body">
-	   <strong>매장명 : <%=storeName%></strong>  &nbsp;|&nbsp;
-	   <strong>매장 주소 : <%=chickenDao.selectChickenStore(brandNo).get(0).getLocation()%></strong>  &nbsp;|&nbsp;
+	  	
+	   <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
+	   <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
 	   별점 : 
 	   <%
-			for (int j=0; j < chickenDao.selectChickenStore(brandNo).get(0).getGpa() ; j++){
+			for (int j=0; j < storeList.get(0).getGpa() ; j++){
 		%>
 				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 		<%
-				if(j == chickenDao.selectChickenStore(brandNo).get(0).getGpa()-1 && j <5){
+				if(j == storeList.get(0).getGpa() -1 && j <5){
 						for(int k=0; k < 4-j; k++){
 		%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
@@ -121,57 +128,61 @@ ul {
 	  </div>
 	</div>
 	</div>
+	
 	<div id="menuContiner" align="center">
-	<% 
- 		for(int i=0; i<chickenDao.getChickenMenuTotalRow(brandNo); i++){ 
-	%>
 	<span>
+		<%
+			for(MenuBean menu : menuList){
+		%>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
 	<a href="#" >
 	    <div class="thumbnail">
- 	      <img src="/Baegopang<%=chickenDao.selectChickenMenu(brandNo).get(i).getPicture() %>" alt="..." width="150px" height="100px"/> 
+ 	      <img src="/Baegopang<%=menu.getPicture() %>" alt="..." width="150px" height="100px"/> 
 	      <div class="caption">
-	        <h4><strong><%=chickenDao.selectChickenMenu(brandNo).get(i).getMenuName() %></strong></h4>
+	        <h4><strong><%=menu.getMenuName() %></strong></h4>
 	        <p>
-	        	<%=chickenDao.selectChickenMenu(brandNo).get(i).getInfo() %>
+	        	<%=menu.getInfo() %>
 	        </p>
-	        	<h5><%=chickenDao.selectChickenMenu(brandNo).get(i).getPrice() %></h5>
+	        	<h5><%=menu.getPrice() %></h5>
 	      </div>
 	    </div>
 	</a>
 	  </div>
 	</div>
-	</span>
 	<%
-		} 
+			}	
 	%>
+	</span>
+	<span>
 	</div> 
-	 
-	<div id="selectMenuContainer">
-	<div class="panel panel-default">
-	  <div class="panel-heading">매장 정보</div>
-	  <div class="panel-body">
-	    <%=chickenDao.selectChickenStore(brandNo).get(0).getInfo()%>
-	  </div>
-	</div>
-	<div class="panel panel-default">
-	  <div class="panel-heading">최소 주문 금액</div>
-	  <div class="panel-body">
-	    <%=chickenDao.selectChickenStore(brandNo).get(0).getMinprice()%>
-	  </div>
-	</div>
 	
-	<div class="panel panel-default">
-	  <div class="panel-heading">
-	    <h3 class="panel-title">주문 목록</h3>
-	  </div>
-	  <div class="panel-body">
-	    고추 바사삭 치킨 1 18000
-	   
-	  </div>
-	</div>
-	</div>
+		<div id="selectMenuContainer">
+		<div class="panel panel-default">
+		  <div class="panel-heading">매장 정보</div>
+		  <div class="panel-body">
+		    <%=storeList.get(0).getInfo()%>
+		  </div>
+		</div>
+		<div class="panel panel-default">
+		  <div class="panel-heading">최소 주문 금액</div>
+		  <div class="panel-body">
+		    <%=storeList.get(0).getMinprice()%>
+		  </div>
+		</div>
+		
+		<div class="panel panel-default">
+		  <div class="panel-heading">
+		    <h3 class="panel-title">주문 목록</h3>
+		  </div>
+		  <div class="panel-body">
+		    고추 바사삭 치킨 1 18000
+		   
+		  </div>
+		</div>
+		</div>
+	
+	 </span>
 	
 </body>
 </html>

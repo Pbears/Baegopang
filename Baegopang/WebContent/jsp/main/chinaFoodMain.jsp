@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="gopang.dao.ChinaFoodDao"%>
 <%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=EUC-KR"
@@ -60,7 +61,8 @@
 </head>
 <body>
 	<%
-		ChinaFoodDao chinaFoodDao = new ChinaFoodDao();	
+		ChinaFoodDao chinaFoodDao = new ChinaFoodDao();
+		List<BrandBean>brandList=chinaFoodDao.selectChinaFood(2);
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>
@@ -77,23 +79,23 @@
 	
 	<div id="storeContiner" align="center">
 	<% 
-		for(int i=0; i<chinaFoodDao.getChinaFoodtotalRow(2); i++){
+		for(BrandBean brand : brandList){
 	%>
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
 	<a href="#">
 	    <div class="thumbnail">
- 	      <img src="/Baegopang<%=chinaFoodDao.selectChinaFood(2).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
+ 	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=chinaFoodDao.selectChinaFood(2).get(i).getBrandName() %></h3>
+	        <h3><%=brand.getStorename() %></h3>
 	        <p>
 	        	<%
-					for (int j=0; j < chinaFoodDao.selectChinaFood(2).get(i).getGpa() ; j++){
+					for (int j=0; j < brand.getGpa() ; j++){
 				%>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				<%
-						if(j == chinaFoodDao.selectChinaFood(2).get(i).getGpa()-1 && j <5){
+						if(j == brand.getGpa()-1 && j <5){
 							for(int k=0; k < 4-j; k++){
 				%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
@@ -103,7 +105,7 @@
 					}
 				%>
 	        	<br>
-	        	<%=chinaFoodDao.selectChinaFood(2).get(i).getLocation()%><br>
+	        	<%=brand.getLocation()%><br>
 	        	¸®ºä : <strong>(50)</strong>   ´ñ±Û : <strong>(50)</strong>
 	        
 	        </p>

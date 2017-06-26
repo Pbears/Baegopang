@@ -25,7 +25,7 @@
 	<jsp:include page="header.jsp"/>
 		<div id="menuContainer" align="center">
 			<a href="chickenMain.jsp">
-				<img src='/Baegopang/img/chicken.jpg' class="img-circle" onmouseover="this.src='/Baegopang/img/pizza.png';" onmouseout="this.src='/Baegopang/img/chicken.jpg';" />
+				<img src='/Baegopang/img/chicken.jpg' class="img-circle" onmouseover="this.src='/Baegopang/img/chickenChar.jpg';" onmouseout="this.src='/Baegopang/img/chicken.jpg';" />
 			</a>
 			<a href="#"><img src="/Baegopang/img/pizza.png" class="img-circle"></a>
 			<a href="#"><img src="/Baegopang/img/jajang.png" class="img-circle"></a>

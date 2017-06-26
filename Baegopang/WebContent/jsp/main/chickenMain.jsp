@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ChickenDao"%>
 <%@page import="gopang.bean.BrandBean"%>
@@ -63,6 +64,7 @@
 <body>
 	<%
 		ChickenDao chickenDao = new ChickenDao();
+		List<BrandBean>brandList=chickenDao.selectChicken(1);
 
 	%>
 		
@@ -80,23 +82,23 @@
 
 	<div id="storeContiner" align="center">
 	<% 
-		for(int i=0; i<chickenDao.getChickenTotalRow(1); i++){
+		for(BrandBean brand : brandList){
 	%>
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=chickenDao.selectChicken(1).get(i).getBrandNo()%>" >
+	<a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=brand.getBrandNo()%>" >
 	    <div class="thumbnail">
- 	      <img src="/Baegopang<%=chickenDao.selectChicken(1).get(i).getPicture()%>" alt="..." width="150px" height="100px"> 
+ 	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><strong><%=chickenDao.selectChicken(1).get(i).getStorename()%></strong></h3>
+	        <h3><strong><%=brand.getStorename()%></strong></h3>
 	        <p>
 	        	<%
-					for (int j=0; j < chickenDao.selectChicken(1).get(i).getGpa() ; j++){
+					for (int j=0; j < brand.getGpa() ; j++){
 				%>
 					<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
 				<%
-						if(j == chickenDao.selectChicken(1).get(i).getGpa()-1 && j <5){
+						if(j == brand.getGpa()-1 && j <5){
 							for(int k=0; k < 4-j; k++){
 				%>
 					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
@@ -106,7 +108,7 @@
 					}
 				%>
 	        	<br>
-	        	<%=chickenDao.selectChicken(1).get(i).getLocation()%><br>
+	        	<%=brand.getLocation()%><br>
 	        	¸®ºä : <strong>(50)</strong>   ´ñ±Û : <strong>(50)</strong>
 	        
 	        </p>
