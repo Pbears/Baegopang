@@ -65,8 +65,8 @@
 	}
 	
 	.thumbnail{
-		width: 250px;
-		height : 250px;
+		width: 270px;
+		height : 270px;
 		padding : 5px;
 		margin-left: 40px;
 		margin-right : 10px;
@@ -74,12 +74,13 @@
 	}
 	
 	#selectMenuContainer{
-		left : 50px;
-		bottom : 1255px;
-	 	width: 350px;
+		top : 545px;
+		left : 1340px;
+		bottom : 870px;
+	 	width: 400px;
 	 	height : 800px;
 	 	display : inline-block;
-	 	position: relative;
+	 	position: absolute;
 	}
 </style>
 <body>
@@ -93,14 +94,14 @@
 	
 	<jsp:include page="../main/header.jsp"></jsp:include>
 	<ul>
-	  <li><a class="active" href="chickenMain.jsp">치킨</a></li>
-	  <li><a href="pizzaMain.jsp">피자</a></li>
-	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
-	  <li><a href="koreaFoodMain.jsp">한식</a></li>
-	  <li><a href="jockFoodMain.jsp">족발, 보쌈</a></li>
-	  <li><a href="japanFoodMain.jsp">일식</a></li>
-	  <li><a href="dosirakMain.jsp">도시락</a></li>
-	  <li><a href="fastFoodMain.jsp">패스트푸드</a></li>
+	  <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
+	  <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
+	  <li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
+	  <li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
+	  <li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
+	  <li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
+	  <li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
+	  <li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
 	</ul>
 	
 	<div id="storeInfoContainer">
@@ -132,6 +133,7 @@
 	</div>
 	</div>
 	
+	<span>
 	<div id="menuContiner" align="center">
 	<span>
 		<%
@@ -139,7 +141,7 @@
 		%>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	<a href="#" >
+	<a href="#" style="text-decoration: none;">
 	    <div class="thumbnail">
  	      <img src="/Baegopang<%=menu.getPicture() %>" width="150px" height="100px" style="text-decoration: none;"/> 
 	      <div class="caption">
@@ -157,9 +159,10 @@
 			}	
 	%>
 	</span>
-	<span>
 	</div> 
+	</span>
 	
+	<span>
 		<div id="selectMenuContainer">
 		<div class="panel panel-default">
 		  <div class="panel-heading">매장 정보</div>
@@ -184,7 +187,6 @@
 		  </div>
 		</div>
 		</div>
-	
 	 </span>
 	
 </body>

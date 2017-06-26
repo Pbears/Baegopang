@@ -12,6 +12,7 @@
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
 <style type="text/css">
+
 	ul {
 	    list-style-type: none;
 	    margin: auto;
