@@ -82,7 +82,8 @@
 	  <li><a class="active" href="chickenMain.jsp">치킨</a></li>
 	  <li><a href="pizzaMain.jsp">피자</a></li>
 	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
-	  <li><a href="koreaFoodMain.jsp">한식</a></li>
+	  <li><a href="koreaFoodMain.jsp">분식</a></li>
+	  <li><a href="tangFoodMain.jsp">찜,탕</a></li>
 	  <li><a href="jockFoodMain.jsp">족발, 보쌈</a></li>
 	  <li><a href="japanFoodMain.jsp">일식</a></li>
 	  <li><a href="dosirakMain.jsp">도시락</a></li>

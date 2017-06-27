@@ -1,6 +1,7 @@
-<%@page import="gopang.bean.BrandBean"%>
+<%@page import="gopang.dao.TangFoodDao"%>
 <%@page import="java.util.List"%>
-<%@page import="gopang.dao.PizzaDao"%>
+<%@page import="gopang.dao.KoreaFoodDao"%>
+<%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 
@@ -50,28 +51,28 @@
 		margin: auto;
 	}
 	.thumbnail{
-		width: 330px;
-		height : 260px;
-		padding : 5px;
+		width: 340px;
+		height : 250px;
 		margin-left: 40px;
 		margin-right : 10px;
 		margin-top: 50px;
 	}
+
 </style>
 </head>
 <body>
 	<%
-		PizzaDao pizzaDao = new PizzaDao();
-		List<BrandBean>brandList=pizzaDao.selectPizza(3);
+		TangFoodDao tangFoodDao = new TangFoodDao();
+		List<BrandBean>brandList=tangFoodDao.selectTangFood(6);
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>
 	<ul>
 	  <li><a href="chickenMain.jsp">치킨</a></li>
-	  <li><a class="active" href="pizzaMain.jsp">피자</a></li>
+	  <li><a href="pizzaMain.jsp">피자</a></li>
 	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
 	  <li><a href="koreaFoodMain.jsp">분식</a></li>
-	  <li><a href="tangFoodMain.jsp">찜,탕</a></li>
+	  <li><a class="active" href="tangFoodMain.jsp">찜,탕</a></li>
 	  <li><a href="jockFoodMain.jsp">족발, 보쌈</a></li>
 	  <li><a href="japanFoodMain.jsp">일식</a></li>
 	  <li><a href="dosirakMain.jsp">도시락</a></li>
@@ -85,11 +86,11 @@
 	<span>
 	<div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	  <a href="#">
+	<a href="#">
 	    <div class="thumbnail">
-	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px">
+ 	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
-	        <h3><%=brand.getStorename()%></h3>
+	        <h3><%=brand.getStorename() %></h3>
 	        <p>
 	        	<%
 					for (int j=0; j < brand.getGpa() ; j++){
@@ -112,7 +113,7 @@
 	        </p>
 	      </div>
 	    </div>
-	  </a>
+	</a>
 	  </div>
 	</div>
 	</span>
