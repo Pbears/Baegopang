@@ -11,7 +11,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
-</head>
+<link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
+
 <style>
 	ul {
 	    list-style-type: none;
@@ -83,6 +84,7 @@
 	 	position: absolute;
 	}
 </style>
+</head>
 <body>
 	<%
 		request.setCharacterEncoding("UTF-8");
@@ -188,6 +190,6 @@
 		</div>
 		</div>
 	 </span>
-	
+	 <jsp:include page="../replyForm/replyForm.jsp"></jsp:include>
 </body>
 </html>
