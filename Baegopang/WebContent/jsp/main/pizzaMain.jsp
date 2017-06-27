@@ -67,7 +67,7 @@
 		
 	<jsp:include page="header.jsp"></jsp:include>
 	<ul>
-	  <li><a href="chickenMain.jsp">피자</a></li>
+	  <li><a href="chickenMain.jsp">치킨</a></li>
 	  <li><a class="active" href="pizzaMain.jsp">피자</a></li>
 	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
 	  <li><a href="koreaFoodMain.jsp">한식</a></li>
