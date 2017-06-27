@@ -11,6 +11,14 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <title>Insert title here</title>
+<script type="text/javascript">
+	function onCheck(obj) {
+		obj.style.border='1.5px solid #ff8c00'
+	}
+	function outCheck(obj) {
+		obj.style.border='1px solid #ddd'
+	}
+</script>
 <style type="text/css">
 
 	ul {
@@ -87,9 +95,9 @@
 	%>
 	<span>
 	<div class="row">
-	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
+	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3" >
 	   <a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=brand.getBrandNo()%>" style="text-decoration: none;">
-	    <div class="thumbnail">
+	    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
  	      <img src="/Baegopang<%=brand.getPicture()%>" alt="..." width="150px" height="100px"> 
 	      <div class="caption">
 	        <h3><strong><%=brand.getStorename()%></strong></h3>
