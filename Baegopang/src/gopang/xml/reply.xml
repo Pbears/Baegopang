@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper 
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="gopang.xml.reply"> 
+  	<insert id="insertReply" parameterType="reply">
+  		 INSERT INTO REPLYTEST
+		 VALUES(#{no},#{storeName},#{orderNumber},#{contents},
+		 #{id},SYSDATE,#{ref},#{pnum},#{reply})
+  	</insert>
+  	<select id="selectRepSeq" resultType="java.lang.Integer">
+	   SELECT REPLYTEST_SEQ.NEXTVAL FROM DUAL
+	</select>	
+	<select id="selectReply" parameterType="java.lang.Integer" resultType="reply">
+		 SELECT * FROM REPLYTEST
+		 WHERE STORENAME=#{storeName}
+		 ORDER BY REF ,PNUM, NO
+	</select>
+</mapper>
+
+
+
+
+

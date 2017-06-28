@@ -41,9 +41,9 @@ $(document).ready(function() {
 		$(this).html('');
 		$(this).keyup(function(e){
 			$("span#sw").css("color","blue");
-			if($(this).val().length>300){
+			if($(this).val().length>100){
 				$("span#sw").css("color","red");
-				$("span#sw").html(300-($(this).val().length));
+				$("span#sw").html(100-($(this).val().length));
 			}else{
 			$("span#sw").html( ($(this).val().length));
 			}
@@ -54,7 +54,7 @@ $(document).ready(function() {
 </script>
 </head>
 <body>
-
+	<br><br><br><br>
 	<div class="container">
 		<br>
 		  <form class="navbar-form navbar-left" role="search">
@@ -67,12 +67,41 @@ $(document).ready(function() {
 			<fieldset class="fld_cmt">		
 				<p class="info_append">
 					<span class="screen_out">입력된 바이트 수 : </span>
-					<span class="txt_byte" id="sw"><strong>0</strong></span><strong> / 300자 </strong><span class="txt_bar">|</span>
+					<span class="txt_byte" id="sw"><strong>0</strong></span><strong> / 100자 </strong><span class="txt_bar">|</span>
 					<a href="#none">댓글 운영원칙</a>
 				</p>
 			</fieldset>
 	      </form>			
 		<br>
 	</div>
+	&nbsp;&nbsp;&nbsp;
+		<ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 180px; background-color: #f5f5f5;">
+		  <li class="media" style="background-color: ">
+		    <div class="media-left">
+		      <a href="#">
+		        <img class="media-object" src="/Baegopang/img/comment/img_avatar3.png" alt="..." width="50px;" height="50px;">
+		      </a>
+		    </div>
+		    <div class="media-body">
+		      <h5 class="media-heading">손님 | 2017-06-28 17:01</h5>
+		      항상 잘 이용하고 있습니다.
+
+		    </div>
+		  </li>
+		 </ul>
+		  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 220px; background-color: #f9b39c">
+		  <li class="media">
+		    <div class="media-left">
+		      <a href="#">
+		        <img class="media-object" src="/Baegopang/img/comment/img_avatar4.png" alt="..." width="50px;" height="50px;">
+		      </a>
+		    </div>
+		    <div class="media-body">
+		      <h5 class="media-heading">사장님 | 2017-06-28 17:01</h5>
+		       주문 할인 1000원 기간 입니다 많은 주문 부탁드립니다.
+		    </div>
+		  </li>
+		</ul>
 </body>
 </html>
