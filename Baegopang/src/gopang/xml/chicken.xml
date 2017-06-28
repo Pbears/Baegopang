@@ -23,7 +23,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE MBSNO LIKE #{brandNo}||'%'
   	</select>
   	<select id="selectChickenMenu" resultType="menu" parameterType="java.lang.Integer">
-		SELECT MENUNAME, PRICE, INFO, PICTURE
+		SELECT MENUNAME, PRICE, NVL(INFO,chr(9))INFO, PICTURE
 		FROM MENU
 		WHERE BRANDNO LIKE #{brandNo}||'%'
   	</select>

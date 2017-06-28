@@ -57,7 +57,7 @@
 <header>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
-				<a href="index.jsp">
+				<a href="/Baegopang/jsp/main/index.jsp">
 					<img alt="" src="/Baegopang/img/beagopangTitle.png">
 				</a>
 			</div>
