@@ -24,6 +24,7 @@
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
 	background: #ff8d00;
+	
 }
 
 .layer .content {
