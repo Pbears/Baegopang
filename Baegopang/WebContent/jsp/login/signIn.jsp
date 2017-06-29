@@ -23,7 +23,7 @@
 	display: -webkit-flex;
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
-	background: #ccc;
+	background: #ff8d00;
 }
 
 .layer .content {
@@ -69,11 +69,8 @@
 	%>
 	<form action="/Baegopang/jsp/login/signInProcess.jsp" method="post" name="log">
 		<div class="layer">
-			<span class="content"><img src="/Baegopang/img/noimg.png"></span>
+			<div class="content"><img src="/Baegopang/img/beagopangTitle.png"></div>
 			<div class="inputLog">
-				<div class="form-group">
-					<h1 class="baegopang">배고팡</h1>
-				</div>
 				<%
 					if (userId != null) {
 				%>
@@ -100,7 +97,7 @@
 					}
 				%>
 				<div class="form-group">
-					<input type="button" class="btn btn-primary" value="Password check"
+					<input type="button" class="btn btn-success" value="Password check"
 						onclick="sendPw()">
 				</div>
 				<%
@@ -122,7 +119,7 @@
 					}
 				%>
 				<div class="form-group">
-					<input type="button" class="btn btn-primary" value="ID check"
+					<input type="button" class="btn btn-success" value="ID check"
 						onclick="sendId()">
 				</div>
 				<div class="form-group">
