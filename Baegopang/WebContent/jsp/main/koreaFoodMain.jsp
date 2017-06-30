@@ -50,8 +50,8 @@
 		margin: auto;
 	}
 	.thumbnail{
-		width: 340px;
-		height : 250px;
+		width: 350px;
+		height : 260px;
 		margin-left: 40px;
 		margin-right : 10px;
 		margin-top: 50px;
