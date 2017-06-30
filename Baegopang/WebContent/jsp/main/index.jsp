@@ -17,11 +17,12 @@
 	.img-circle{
 		width: 230px;
 		height: 200px;
+		margin: 10px;
 	}
 	
 	a{
-		margin-bottom: 10px;
-		margin-right: 10px;
+		margin-bottom: 30px;
+		margin-right: 30px;
 	}
 	
 </style>
