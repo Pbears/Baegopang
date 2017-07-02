@@ -34,4 +34,20 @@ public class MemberDao {
 			session.close();
 		}
 	}
+	
+	public MemberBean selectMember(String id) throws Exception{
+		return sqlSessionFactory.openSession().selectOne("selectMember", id);
+	}
+	
+	public void updateMember(MemberBean bean){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.update("memberUpdate", bean);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
 }

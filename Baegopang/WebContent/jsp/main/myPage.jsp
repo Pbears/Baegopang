@@ -1,3 +1,5 @@
+<%@page import="java.io.PrintWriter"%>
+<%@page import="gopang.bean.MemberBean"%>
 <%@page import="gopang.dao.MemberDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
@@ -10,7 +12,7 @@
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-<title>회원가입</title>
+<title>내정보수정</title>
 <style>
 ul {
     list-style-type: none;
@@ -92,6 +94,9 @@ body {
 	margin: 0 auto;
 	color: white;
 }
+input{
+	color: black;
+}
 #datepicker{
 	margin: 0 auto;
 }
@@ -104,27 +109,52 @@ body {
 		buttonImage : "/Baegopang/img/calendar.png",
 		buttonText : "Calendar"
 	});
+	
+	function checkGender() {
+		var genderCheck = document.getElementById('genderCheck').value;
+		var gender = document.getElementById('gender');
+		var gendermale = document.getElementById('gendermale');
+		var genderfemale = document.getElementById('genderfemale');
+		if(genderCheck=='남'){
+			gendermale.checked=true;
+		}else{
+			genderfemale.checked=true;	
+		}
+		
+		var obj = document.getElementById("stateM");
+		if(obj.value=='success'){
+			alert('수정성공하셧어여헿');
+		}
+	}
+	
+	
 </script>
-
 </head>
-<body>
+<body onload="checkGender()">
+<%
+	MemberBean bean = (MemberBean)session.getAttribute("member");
+	String tel = bean.getTel();
+	String[] telArr = tel.split("-");
 
+	String state = request.getParameter("state");
+%>
+	<input type="hidden" id="stateM" value="<%=state%>"/>
 	<div class="layer">
 	<div class="mainDiv">
 		<a href="/Baegopang/jsp/login/signIn.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
 		<ul>
-		  <li><a class="active" href="">내정보</a></li>
-		  <li><a href="">주문내역</a></li>
-		  <li><a href="">포인트</a></li>
-		  <li><a href="">리뷰관리</a></li>
+		  <li><a class="active" href="#">내정보</a></li>
+		  <li><a href="#">주문내역</a></li>
+		  <li><a href="#">포인트</a></li>
+		  <li><a href="#">리뷰관리</a></li>
 		</ul>
 		<div class="inputLog" style="width: 500px;">
 			<div class="inner">
-				<form class="form-horizontal" method="post" action="/Baegopang/jsp/login/signUpProcess.jsp" name="signupFrm">
+				<form class="form-horizontal" method="post" action="/Baegopang/jsp/main/myPageProcess.jsp" name="modifyFrm">
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10" id="divId">
-							<input type="text" class="form-control" id="id" name="id" placeholder="ID">
+							<input type="text" class="form-control" id="id" name="id" placeholder="ID" value="<%=bean.getId()%>" readonly="readonly">
 							<label id="labelId"></label>
 						</div>
 					</div>
@@ -145,7 +175,7 @@ body {
 					<div class="form-group">
 						<label for="inputName" class="col-sm-2 control-label">Name</label>
 						<div class="col-sm-10" id="divName">
-							<input type="text" class="form-control" id="name" name="name" placeholder="Name">
+							<input type="text" class="form-control" id="name" name="name" placeholder="Name" value="<%=bean.getName()%>" readonly="readonly">
 							<label id="labelName"></label>
 						</div>
 					</div>
@@ -155,7 +185,7 @@ body {
 							<button type="button" class="btn btn-default" style="width: 100%" id="address" name="address">
 								<span class="glyphicon glyphicon-search" aria-hidden="true" ></span>
 							</button>
-							<input type="text" class="form-control" id="address1" name="address1" readonly>
+							<input type="text" class="form-control" id="address1" name="address1" value="<%=bean.getAddress()%>" >
 							<input type="text" class="form-control" id="address2" name="address2" placeholder="Detail Address">
 							<label id="labelAddress"></label>
 						</div>
@@ -165,8 +195,8 @@ body {
 						<div class="col-sm-10">
 							<div class="controls controls-row" id="divTel">
 								<input style="width: 30%;" type="text" id="tel1" name="tel1" value="010" readonly>
-								- <input style="width: 30%;" type="text" id="tel2" name="tel2">
-								- <input style="width: 30%;" type="text" id="tel3" name="tel3">
+								- <input style="width: 30%;" type="text" id="tel2" name="tel2" value="<%=telArr[1]%>">
+								- <input style="width: 30%;" type="text" id="tel3" name="tel3" value="<%=telArr[2]%>">
 							</div>
 						</div>
 					</div>
@@ -174,22 +204,23 @@ body {
 						<label for="inputGender" class="col-sm-2 control-label">Gender</label>
 						<div class="col-sm-10" id="divGender">
 							<label class="radio-inline"> 
-								<input type="radio" name="gender" id="gender" value="male" checked="checked"> 남
+								<input type="radio" name="gender" id="gendermale" value="male" checked="" disabled="disabled"> 남
 							</label> 
 							<label class="radio-inline"> 
-								<input type="radio" name="gender" id="gender" value="female"> 여
+								<input type="radio" name="gender" id="genderfemale" value="female" checked="" disabled="disabled" > 여
+								<input type="hidden" name="genderCheck" id="genderCheck" value="<%=bean.getGender()%>">
 							</label>
 						</div>
 					</div>
 					<div class="form-group">
 						<label for="inputBirth" class="col-sm-2 control-label">Birth</label>
 						<div class="col-sm-10" id="divBirth">
-								<input id="datepicker" class="form-control" name="birth">
+								<input id="datepicker" class="form-control" name="birth" value="<%=bean.getBirth()%>" disabled="disabled">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-success" value="Sign in">
+							<input type="submit" class="btn btn-success" value="Modify">
 						</div>
 					</div>
 				</form>
@@ -207,9 +238,9 @@ body {
 		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
 	});
 	
-	$("input#id").blur(function(){
+	/* $("input#id").blur(function(){
 		window.open("/Baegopang/jsp/login/idCheck.jsp?id="+$(this).val());
-	});
+	}); */
 	
 	$("input#pw").blur(function(){
 		if($("input#pw").val().trim().length==0 || !$("input#pw").val()){
@@ -233,7 +264,8 @@ body {
 			$("label#labelPwConfirm").text('비밀번호와 일치하지않습니다.');
 		}
 	});
-	$("input#name").blur(function(){
+	
+	/* $("input#name").blur(function(){
 		if($("input#name").val().trim().length==0 || !$("input#name").val()){
 			$("div#divName").attr('class','col-sm-10 has-error');
 			$("input#name").focus();
@@ -243,8 +275,8 @@ body {
 			$("div#divName").attr('class','col-sm-10 has-success');
 			$("label#labelName").text('');
 		}
-	});
-	$("input#address2").blur(function(){
+	}); */
+	/* $("input#address2").blur(function(){
 		if($("input#address2").val().trim().length==0 || !$("input#address2").val()){
 			$("div#divAddress").attr('class','col-sm-10 has-error');
 			$("input#address2").focus();
@@ -254,7 +286,7 @@ body {
 			$("div#divAddress").attr('class','col-sm-10 has-success');
 			$("label#labelAddress").text('');
 		}
-	});
+	});  */
 	
 </script>
 </html>

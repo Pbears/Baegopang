@@ -12,5 +12,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<insert id="memberInsert" parameterType="member">
 		INSERT INTO MEMBER VALUES(#{id},#{pw},#{name},#{address},#{tel},#{gender},TO_DATE(#{birth},'YY/MM/DD'))
 	</insert>
-
+	<select id="selectMember" parameterType="java.lang.String" resultType="member">
+		SELECT ID,PW, NAME, ADDRESS, TEL, GENDER, TO_DATE(BIRTH,'YY/MM/DD')BIRTH FROM MEMBER WHERE ID=#{id}
+	</select>
+	<update id="memberUpdate" parameterType="member">
+		UPDATE MEMBER SET PW=#{pw}, ADDRESS=#{address}, TEL=#{tel} WHERE ID=#{id}
+	</update>
 </mapper>

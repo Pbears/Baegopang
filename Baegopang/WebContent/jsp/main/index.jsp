@@ -28,6 +28,7 @@
 </style>
 </head>
 <body>
+
 	<jsp:include page="header.jsp"/>
 		<div id="menuContainer" align="center">
 			<a href="chickenMain.jsp">
