@@ -23,16 +23,21 @@
 	display: -webkit-flex;
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
-	background: #ff8d00;
 	
+}
+.maindiv{
+	width: 100%;
+	background: #ff8d00;
 }
 
 .layer .content {
 	padding: 50px;
+	float: left;
 }
 
 .layer .inputLog {
-	padding: 50px;
+	padding: 150px;
+	display: inline-block;
 }
 </style>
 <script>
@@ -70,6 +75,7 @@
 	%>
 	<form action="/Baegopang/jsp/login/signInProcess.jsp" method="post" name="log">
 		<div class="layer">
+		<div class = "maindiv">
 			<div class="content"><img src="/Baegopang/img/beagopangTitle.png"></div>
 			<div class="inputLog">
 				<%
@@ -129,6 +135,7 @@
 				<%
 					}
 				%>
+			</div>
 			</div>
 		</div>
 	</form>

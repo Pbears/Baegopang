@@ -11,6 +11,38 @@
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>회원가입</title>
+<style>
+ul {
+    list-style-type: none;
+    margin: 0 auto;
+    padding: 0;
+    overflow: hidden;
+    background-color: #ff8d00;
+    width: 350px;
+    margin-left: 150px;
+}
+
+li {
+    float: left; 
+}
+
+li a {
+    display: block;
+    color: white;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+    
+}
+
+li a:hover:not(.active) {
+    background-color: #4CAF50;
+}
+
+.active {
+    background-color: #4CAF50;
+}
+</style>
 <style type="text/css">
 body {
 	background: #ccc
@@ -76,12 +108,16 @@ body {
 
 </head>
 <body>
-<%
-	String checkId = "true";
-%>
+
 	<div class="layer">
 	<div class="mainDiv">
 		<a href="/Baegopang/jsp/login/signIn.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
+		<ul>
+		  <li><a class="active" href="">내정보</a></li>
+		  <li><a href="">주문내역</a></li>
+		  <li><a href="">포인트</a></li>
+		  <li><a href="">리뷰관리</a></li>
+		</ul>
 		<div class="inputLog" style="width: 500px;">
 			<div class="inner">
 				<form class="form-horizontal" method="post" action="/Baegopang/jsp/login/signUpProcess.jsp" name="signupFrm">

@@ -54,6 +54,12 @@
 	}
 	
 </style>
+<script>
+ function myPage() {
+	
+	document.location.href='/Baegopang/jsp/main/myPage.jsp';
+}
+</script>
 <header>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
@@ -74,7 +80,7 @@
 							<input type="button" id="searchBtn" value="Search" class="btn btn-default">
 						</td>
 						<td>
-							<button type="button" class="btn btn-default btn-lg" id="loginBtn">
+							<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
 							  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 							</button>
 						</td>
@@ -83,3 +89,4 @@
 			</div>
 		</div>
 	</header>
+	
