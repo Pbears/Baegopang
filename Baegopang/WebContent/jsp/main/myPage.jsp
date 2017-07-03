@@ -80,13 +80,15 @@ body {
     margin: 0 auto;
 }
 
-.inputLog {
+.inputLog, .orderLog, .pointLog, .reviewLog {
 	background-color: #ff8d00;
-	/* background-color: #EAEAEA; */
 	width: 30%;
 	height: 60%;
 }
-
+.orderLog, .pointLog, .reviewLog{
+	width: 500px;
+    height: 614px;
+}
 .inner{
 	width: 80%;
 	text-align: center;
@@ -99,6 +101,27 @@ input{
 }
 #datepicker{
 	margin: 0 auto;
+}
+</style>
+<style>
+table {
+    border-collapse: collapse;
+    padding: 100px;
+    margin-left: 50px;
+    margin-top: 30px;
+    width: 500px;
+}
+
+th, td {
+    text-align: left;
+    padding: 8px;
+}
+
+tr:nth-child(even){background-color: #f2f2f2}
+
+th {
+    background-color: #4CAF50;
+    color: white;
 }
 </style>
 <script type="text/javascript">
@@ -127,6 +150,57 @@ input{
 		}
 	}
 	
+	function ajaxProcess(url,ty,dataType,data){
+
+		  $.ajax({
+				 url:url,
+				 type:ty,
+				 dataType:dataType,
+				 data:data,
+				 cache:false,
+				 success:function(vv){
+					 if(data=='inputLog'){
+						 $('a#info').attr('class','active');
+						 $('#inputLog').css("display", "block");
+						 $('#orderLog, #pointLog, #reviewLog').css("display", "none");
+						 $('a#order, a#point, a#review').attr('class','');
+					 }else if(data=='orderLog'){
+						 $('a#order').attr('class','active');
+						 $('#orderLog').css("display", "block");
+						 $('a#info, a#point, a#review').attr('class','');
+						 $('#inputLog, #pointLog, #reviewLog').css("display", "none");
+					 }
+					 else if(data=='pointLog'){
+						 $('a#point').attr('class','active');
+						 $('#pointLog').css("display", "block");
+						 $('a#info, a#order, a#review').attr('class','');
+						 $('#inputLog, #orderLog, #reviewLog').css("display", "none");
+					 }else if(data=='reviewLog'){
+						 $('a#review').attr('class','active');
+						 $('#reviewLog').css("display", "block");
+						 $('a#info, a#order, a#point').attr('class','');
+						 $('#inputLog, #orderLog, #pointLog').css("display", "none");
+					 }
+				 },
+				 error:function(){
+					 alert('error');
+				 }
+			  });
+	}
+	$(function(){
+	  $("a#info").click(function(){
+		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','inputLog');
+	  });
+	  $("a#order").click(function(){
+		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','orderLog');
+	  });
+	  $("a#point").click(function(){
+		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','pointLog');
+	  });
+	  $("a#review").click(function(){
+		  ajaxProcess('/Baegopang/jsp/main/myPage.jsp','POST','html','reviewLog');
+	  }); 
+	});
 	
 </script>
 </head>
@@ -143,12 +217,13 @@ input{
 	<div class="mainDiv">
 		<a href="/Baegopang/jsp/login/signIn.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
 		<ul>
-		  <li><a class="active" href="#">내정보</a></li>
-		  <li><a href="#">주문내역</a></li>
-		  <li><a href="#">포인트</a></li>
-		  <li><a href="#">리뷰관리</a></li>
+		  <li><a href="#" id="info" class="active">내정보</a></li>
+		  <li><a href="#" id="order">주문내역</a></li>
+		  <li><a href="#" id="point">포인트</a></li>
+		  <li><a href="#" id="review">리뷰관리</a></li>
 		</ul>
-		<div class="inputLog" style="width: 500px;">
+		<!--내정보  -->
+		<div class="inputLog" id="inputLog" style="width: 500px;">
 			<div class="inner">
 				<form class="form-horizontal" method="post" action="/Baegopang/jsp/main/myPageProcess.jsp" name="modifyFrm">
 					<div class="form-group">
@@ -226,6 +301,75 @@ input{
 				</form>
 			</div>
 		</div>
+				<!--주문내역  -->
+			<div class="orderLog" id="orderLog" style="width: 500px; display: none;" >
+			 	<table>
+					  <tr>
+					    <th>주문일자</th>
+					    <th>주문번호</th>
+					    <th>음식점명</th>
+					    <th>주문금액</th>
+					    <th>진행상태</th>
+					  </tr>
+					  <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					  </tr>
+					   <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					  </tr>
+				</table>
+			</div>
+			<!--포인트  -->
+			<div class="pointLog" id="pointLog" style="width: 500px; display: none;" >
+				<table>
+					  <tr>
+					    <th>포인트적립일자</th>
+					    <th>음식점명</th>
+					    <th>적립포인트</th>
+					    <th>누적포인트</th>
+					  </tr>
+					  <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					  </tr>
+					   <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					    <td>$100</td>
+					  </tr>
+				</table>
+			</div>
+			<!--리뷰관리  -->
+			<div class="reviewLog" id="reviewLog" style="width: 500px; display: none;" >
+				<table>
+					  <tr>
+					    <th>리뷰작성일자</th>
+					    <th>음식점명</th>
+					    <th>리뷰내용</th>
+					  </tr>
+					  <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					  </tr>
+					   <tr>
+					    <td>Peter</td>
+					    <td>Griffin</td>
+					    <td>$100</td>
+					  </tr>
+				</table>
+			</div>
 		</div>
 	</div>
 </body>
@@ -237,10 +381,6 @@ input{
 	$("button[name='address']").click(function(){
 		window.open("/Baegopang/jsp/login/addressPage.jsp","address input" ,"width=500, height=500");
 	});
-	
-	/* $("input#id").blur(function(){
-		window.open("/Baegopang/jsp/login/idCheck.jsp?id="+$(this).val());
-	}); */
 	
 	$("input#pw").blur(function(){
 		if($("input#pw").val().trim().length==0 || !$("input#pw").val()){
@@ -264,29 +404,6 @@ input{
 			$("label#labelPwConfirm").text('비밀번호와 일치하지않습니다.');
 		}
 	});
-	
-	/* $("input#name").blur(function(){
-		if($("input#name").val().trim().length==0 || !$("input#name").val()){
-			$("div#divName").attr('class','col-sm-10 has-error');
-			$("input#name").focus();
-			$("input#name").val('');
-			$("label#labelName").text('이름을 기입해주세요.');
-		}else{
-			$("div#divName").attr('class','col-sm-10 has-success');
-			$("label#labelName").text('');
-		}
-	}); */
-	/* $("input#address2").blur(function(){
-		if($("input#address2").val().trim().length==0 || !$("input#address2").val()){
-			$("div#divAddress").attr('class','col-sm-10 has-error');
-			$("input#address2").focus();
-			$("input#address2").val('');
-			$("label#labelAddress").text('상세주소를 기입하세요.');
-		}else{
-			$("div#divAddress").attr('class','col-sm-10 has-success');
-			$("label#labelAddress").text('');
-		}
-	});  */
-	
+
 </script>
 </html>
