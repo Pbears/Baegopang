@@ -5,8 +5,7 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <link rel="stylesheet" href="/Baegopang/css/bootstrap.css" />
-<link rel="stylesheet"
-	href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
+<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/smoothness/jquery-ui.css">
 <script src="//code.jquery.com/jquery-1.12.4.js"></script>
 <script src="//code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 <title>Insert title here</title>
@@ -24,13 +23,10 @@
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
 	background: #ff8d00;
-	
 }
-
 .layer .content {
 	padding: 50px;
 }
-
 .layer .inputLog {
 	padding: 50px;
 }
@@ -66,7 +62,6 @@
 	<%
 		String fail = request.getParameter("fail");
 		String userId = request.getParameter("userId");
-		
 	%>
 	<form action="/Baegopang/jsp/login/signInProcess.jsp" method="post" name="log">
 		<div class="layer">
