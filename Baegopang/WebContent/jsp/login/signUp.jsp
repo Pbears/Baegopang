@@ -28,7 +28,13 @@ body {
 	display: -webkit-flex;
 	-webkit-align-items: center;
 	-webkit-justify-content: center;
-	background: #ccc;
+	background: white;
+	/* background: #ccc; */
+}
+.mainDiv{
+	background-color: #ff8d00;
+	margin: 0 auto;
+	width:600px;
 }
 
 .layer .content {
@@ -37,10 +43,12 @@ body {
 
 .layer .inputLog {
 	padding: 50px;
+    margin: 0 auto;
 }
 
 .inputLog {
-	background-color: #EAEAEA;
+	background-color: #ff8d00;
+	/* background-color: #EAEAEA; */
 	width: 30%;
 	height: 60%;
 }
@@ -50,6 +58,7 @@ body {
 	text-align: center;
 	vertical-align: middle;
 	margin: 0 auto;
+	color: white;
 }
 #datepicker{
 	margin: 0 auto;
@@ -71,7 +80,9 @@ body {
 	String checkId = "true";
 %>
 	<div class="layer">
-		<div class="inputLog">
+	<div class="mainDiv">
+		<a href="/Baegopang/jsp/login/signIn.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
+		<div class="inputLog" style="width: 500px;">
 			<div class="inner">
 				<form class="form-horizontal" method="post" action="/Baegopang/jsp/login/signUpProcess.jsp" name="signupFrm">
 					<div class="form-group">
@@ -137,16 +148,17 @@ body {
 					<div class="form-group">
 						<label for="inputBirth" class="col-sm-2 control-label">Birth</label>
 						<div class="col-sm-10" id="divBirth">
-								<input id="datepicker" class="form-control" name="birth" >
+								<input id="datepicker" class="form-control" name="birth">
 						</div>
 					</div>
 					<div class="form-group">
 						<div class="col-sm-offset-2 col-sm-10">
-							<input type="submit" class="btn btn-primary" value="Sign in">
+							<input type="submit" class="btn btn-success" value="Sign in">
 						</div>
 					</div>
 				</form>
 			</div>
+		</div>
 		</div>
 	</div>
 </body>

@@ -1,3 +1,4 @@
+<%@page import="gopang.bean.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
@@ -30,7 +31,7 @@
 	#loginBtn{
 		width: 50px;
 		height: 50px;
-		margin-left: 200px;
+		margin-left: 0px;
 	}
 	
 	#headerContainer{
@@ -48,13 +49,25 @@
 		width: 500px;
 		
 	}
+	.buttonDiv{
+		padding-left: 100px;
+	}
 	button#loginBtn.btn btn-default btn-lg{
 		width: 35px;
 		height: 35px;
 	}
 	
 </style>
+<script>
+ function myPage() {
+	
+	document.location.href='myPage.jsp';
+}
+</script>
 <header>
+<%
+	MemberBean bean = (MemberBean)session.getAttribute("member");
+%>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
 				<a href="/Baegopang/jsp/main/index.jsp">
@@ -74,12 +87,16 @@
 							<input type="button" id="searchBtn" value="Search" class="btn btn-default">
 						</td>
 						<td>
-							<button type="button" class="btn btn-default btn-lg" id="loginBtn">
-							  <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+							<div class="buttonDiv">
+							<label><%=bean.getName() %>님 안녕하세여헿</label>
+							<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
+							 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 							</button>
+							</div>
 						</td>
 					</tr>
 				</table>
 			</div>
 		</div>
 	</header>
+	

@@ -26,7 +26,6 @@ $(document).ready(function () {
 		$(opener.document).find("#divId").attr('class','col-sm-10 has-error');
 		$(opener.document).find("#id").val('');
 		$(opener.document).find("#id").focus();
-		$(opener.document).find("#labelId").text('비밀번호를 정확히 입력하세요.');
 		alert('존재하는 아이디입니다.');
 	}else if($("input#idc").val()=='false'){
 		$(opener.document).find("#divId").attr('class','col-sm-10 has-success');
