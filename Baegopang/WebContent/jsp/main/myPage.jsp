@@ -87,7 +87,7 @@ body {
 }
 .orderLog, .pointLog, .reviewLog{
 	width: 500px;
-    height: 614px;
+    height: 623px; 
 }
 .inner{
 	width: 80%;
