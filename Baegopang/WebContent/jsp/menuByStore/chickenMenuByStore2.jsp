@@ -29,26 +29,67 @@
 		
 		var totalprice=0;
 		$("div#panel-body-ordertotalPrice").hide();
+		
 		$("a#innerA").click(function(){
 			if(extraCnt<=9){
 				var div = $("div.extra");
 				var menuName = $(this).find("input#menuName").val();
 				var price = $(this).find("input#menuPrice").val();
 				
-				$("div#extraDiv"+extraCnt).show(100);
-				$("label#extraMenu"+extraCnt).text(menuName);
-				$("label#extraPrice"+extraCnt).text(price);
-				extraCnt++;
+				if(extraCnt==0){
+					$("div#extraDiv"+extraCnt).show(100);
+					$("label#extraMenu"+extraCnt).text(menuName);
+					$("label#extraPrice"+extraCnt).text(price);
+					extraCnt++; 
+				}else{
+					for (var i = 0; i <= 9; i++) {
+						if($("label#extraMenu"+i).text()=="1"){
+							//$("div#extraDiv"+i).show(100);
+							$("label#extraMenu"+i).text(menuName);
+							$("label#extraPrice"+i).text(price);
+							extraCnt++;
+							break;
+						}else{
+						    $("div#extraDiv"+extraCnt).show(100);
+							$("label#extraMenu"+extraCnt).text(menuName);
+							$("label#extraPrice"+extraCnt).text(price);
+							extraCnt++;
+							break;
+						} 
+					} 
+				}
+				  /* for (var i = 0; i < extraCnt; i++) {
+					if($("div#extraDiv"+i).find("label").text()=="1"){
+						$("div#extraDiv"+i).show(100);
+						$("label#extraMenu"+i).text(menuName);
+						$("label#extraPrice"+i).text(price);
+					}else{
+						$("div#extraDiv"+extraCnt).show(100);
+						$("label#extraMenu"+extraCnt).text(menuName);
+						$("label#extraPrice"+extraCnt).text(price);
+						extraCnt++;
+					}
+				}  */
+				
+				 
+				   /*  $("div#extraDiv"+extraCnt).show(100);
+					$("label#extraMenu"+extraCnt).text(menuName);
+					$("label#extraPrice"+extraCnt).text(price);
+					extraCnt++;	 	 */	
 			}
 		});
 		
+		
 		$("input.deleteMenu").click(function(){
 			if(extraCnt>=0){
-				$("div#"+$(this).attr("id")).find("label").text("");
+				/* $("div#"+$(this).attr("id")).find("label").text("");
 				$("div#"+$(this).attr("id")).find("input.numberMenu").attr("value","1");
-				/* $("div#"+$(this).attr("id")).hide(); */
-				extraCnt--;				
-			}
+				$("div#"+$(this).attr("id")).hide(); */ 
+				
+				$("div#"+$(this).attr("id")).find("label").text("1");
+				//$("div#"+$(this).attr("id")).hide();
+				extraCnt--;
+				}
 		});
 
 		
