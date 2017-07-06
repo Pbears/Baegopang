@@ -35,57 +35,23 @@ li a {
 	font-weight: bold;
 }
 
-li
-
- 
-
-a
-
-
-:hover
-
-
-:not
-
- 
-
-(
-.active
-
- 
-
-)
-{
-background-color
-
-
-:
-
- 
-
-gray
-
-
-;
-}
-.leftDiv {
-	background-color: gray;
+li a :hover :not(.active){
+	background-color : gray ;
 }
 
-.rightDiv {
-	background-color: olive;
+hr{
+	border: solid 1px gray;
 }
-
-.leftLeftDiv {
-	background-color: buttonshadow;
+label{
+	vertical-align: middle;
+	padding-top: 7px;
 }
-
-.leftRightDiv {
-	background-color: teal;
+textarea{
+	resize: none;
 }
 
 .mainDiv {
-	width: 90%;
+	width: 84%;
 	margin: 0 auto;
 }
 .sendInfoDiv{
@@ -107,7 +73,7 @@ gray
 }
 .dashedHr{
 	border: dashed 1px gray;
-	width: 80%;
+	width: 100%;
 }
 .finalDiv{
 	width: 80%;
@@ -116,16 +82,18 @@ gray
 .finalButton{
 	width: 100%;
 }
-hr{
-	border: solid 1px gray;
+.majorDiv{
+	margin: 20px;
 }
-label{
-	vertical-align: middle;
-	padding-top: 7px;
+.leftDivs, .rightDivs{
+	margin: 10px;
+	padding: 10px;
 }
-textarea{
-	resize: none;
+.rightDivs{
+	margin: 0 auto;
+	width: 80%;
 }
+
 </style>
 </head>
 <body>
@@ -153,10 +121,10 @@ textarea{
 		<hr>
 
 		<!-- 왼쪽 div 태그 -->
-		<div class="col-md-8 leftDiv">
+		<div class="col-md-8">
 
 			<!-- 01. 배달정보 div -->
-			<div class="panel panel-default">
+			<div class="panel panel-default majorDiv">
 			
 				<!-- panel head -->
 				<div class="panel-heading">
@@ -167,35 +135,38 @@ textarea{
 				<div class="panel-body">
 				
 					<!-- 휴대전화 form -->
-					<div class="form-group sendInfoDiv">
+					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputEmail3" class="col-sm-2 control-label">휴대전화</label>
 						<div class="col-sm-10">
 							<input type="tel" class="form-control" placeholder="전화번호">
 						</div>
+						<br>
 					</div>
 					
 					<!-- 주소 form -->
-					<div class="form-group sendInfoDiv">
+					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
 							<input type="text" class="form-control" placeholder="주소">
 						</div>
+						<br>
 					</div>
 					
 					<!-- 요청사항 form -->
-					<div class="form-group sendInfoDiv">
+					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">요청사항</label>
 						<div class="col-sm-10">
 							<textarea class="form-control" rows="5"  placeholder="요청사항"></textarea>
 						</div>
+						<br>
 					</div>
-					
 				</div>
-				
 			</div>
 
+			<br>
+
 			<!-- 02. 할인적용 div -->
-			<div class="panel panel-default">
+			<div class="panel panel-default majorDiv">
 			
 				<!-- panel head -->
 				<div class="panel-heading">
@@ -206,7 +177,7 @@ textarea{
 				<div class="panel-body">
 				
 					<!-- 주문금액 form -->
-					<div class="form-group sendInfoDiv">
+					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주문금액</label>
 						<div class="col-sm-10 orderPrice">
 							<label id="orderPrice">100</label><label>원</label>
@@ -217,7 +188,7 @@ textarea{
 					<hr>
 					
 					<!-- 팡 결제 form -->
-					<div class="jumbotron">
+					<div class="jumbotron leftDivs">
 						<div class="row">
 							<div class="form-group">
 								<div class="col-md-6">
@@ -229,7 +200,6 @@ textarea{
 									</div>
 									<div class="centerDiv"><label><h6>1000팡 이상 , 100팡 단위로 사용가능</h6></label></div>
 								</div>
-								
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-8">
@@ -249,24 +219,26 @@ textarea{
 		</div>
 
 		<!-- 오른쪽 div 태그 -->
-		<div class="col-md-4 rightDiv">
+		<div class="col-md-4">
 
 			<!-- 03. 결제 방법 선택 div -->
-			<div class="panel panel-default ">
+			<div class="panel panel-default majorDiv">
 				<div class="panel-heading">
 					<h4>03. 결제 방법 선택</h4>
 				</div>
 				<div class="panel-body">
 				
-					<!-- 메뉴 추가 div -->
-					<div class="form-group centerDiv">
-						<label for="inputPassword3" class="col-md-4 control-label">메뉴이름</label>
-						<label class="col-md-4">금액</label>
-						<label class="col-md-4">수량</label>
+					<!-- 메뉴 추가 header div -->
+					<div class="form-group centerDiv rightDivs">
+						<h4><label for="inputPassword3" class="col-md-4 control-label">메뉴이름</label></h4>
+						<h4><label class="col-md-4">금액</label></h4>
+						<h4><label class="col-md-4">수량</label></h4>
+						<br>
 						<hr>
 					</div>
 					
-					<div class="form-group centerDiv">
+					<!-- 메뉴 추가 body div -->
+					<div class="form-group centerDiv rightDivs">
 						<label for="inputPassword3" class="col-md-4 control-label">메뉴이름</label>
 						<div class="col-md-4">
 							<label id="eachPrice">1000</label><label>원</label>
@@ -274,12 +246,16 @@ textarea{
 						<div class="col-md-4">
 							<label id="eachAmount">2</label><label>개</label>
 						</div>
+						<div>
+							<br><br>
+							<hr class="dashedHr">
+						</div>
 					</div>
 					
-					<hr class="dashedHr">
+					
 					
 					<!-- 최종결제정보 -->
-					<div class="form-group centerDiv">
+					<div class="form-group centerDiv rightDivs">
 						<hr>
 						<label for="inputPassword3" class="col-sm-4 control-label">수량</label>
 						<div class="col-sm-6 orderPrice">
@@ -302,17 +278,12 @@ textarea{
 									<h1><label id="realTotalPrice">1000</label><label>원</label></h1>
 								</div>
 						</div>
-						
 					</div>
-					<div class="finalDiv">
+					<div class="finalDiv rightDivs">
 						<hr>
 						<button type="button" class="btn btn-success finalButton">결제하기</button>
 					</div>
-					
 				</div>
-				
-				
-				
 			</div>
 		</div>
 	</div>
