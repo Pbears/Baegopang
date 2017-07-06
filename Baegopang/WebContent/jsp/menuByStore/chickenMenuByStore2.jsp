@@ -24,28 +24,39 @@
 </script>
 <script>
 	$(function(){
+		var extraCnt=0;
+		$("div.extra").hide();
+		
 		var totalprice=0;
 		$("div#panel-body-ordertotalPrice").hide();
 		$("a#innerA").click(function(){
-			$("div#panel-body-ordertotalPrice").show();
-			var menu = $(this).find("input#menuName").val();
-			var price = $(this).find("input#menuPrice").val();
-			var tag = "<div class='order-div'><label class='menu'>"+menu+"</label><input type='number' id='cnt' value='1' step='1' min='1' max='10'><label class='price'>"+price+"</label><div><button class='cancelBtn'>취소</button><div> <input type='hidden' class='totalPrice'>";
-			$(tag).appendTo("label#menuLabel");
-			totalprice=eval(totalprice)+eval(price);
-   		    $("label.ordertotalPrice").text(totalprice);
+			if(extraCnt<=9){
+				var div = $("div.extra");
+				var menuName = $(this).find("input#menuName").val();
+				var price = $(this).find("input#menuPrice").val();
+				
+				$("div#extraDiv"+extraCnt).show(100);
+				$("label#extraMenu"+extraCnt).text(menuName);
+				$("label#extraPrice"+extraCnt).text(price);
+				extraCnt++;
+			}
 		});
 		
-		$(".cnt").click(function(){
-			alert('ok');			
+		$("input.deleteMenu").click(function(){
+			if(extraCnt>=0){
+				$("div#"+$(this).attr("id")).find("label").text("");
+				$("div#"+$(this).attr("id")).find("input.numberMenu").attr("value","1");
+				/* $("div#"+$(this).attr("id")).hide(); */
+				extraCnt--;				
+			}
 		});
+
 		
-		 $('.disabled').click(function(e){
-		     e.preventDefault();
-		  })
-		  $('#cancelBtn').click(function() {
-				alert('test');
-		});
+		$('.disabled').click(function(e){
+		    e.preventDefault();
+		})
+
+		
 	});
 	
 	/* $(function () {
@@ -139,13 +150,13 @@
 
 	<%
 		request.setCharacterEncoding("UTF-8");
-		int brandNo = Integer.parseInt(request.getParameter("brandno"));
+		int brandNo = 101;
 		ChickenDao chickenDao = new ChickenDao();
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
 		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
 	%>
 	
-	<jsp:include page="../main/header.jsp"></jsp:include>
+	<%-- <jsp:include page="../main/header.jsp"></jsp:include> --%>
 	<ul>
 	  <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
 	  <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
@@ -239,20 +250,67 @@
 		  <div class="panel-heading">
 		    <h3 class="panel-title">주문 목록</h3>
 		  </div>
-		  <div class="panel-body" id="panel-body-order">
-		     <label for="addMenu" id="menuLabel" ></label> 
-
-
-		  <!--   <div class="order-div">
-				< <label class="menu"></label>
-		    	<input type='number' class='cnt' value='1' step='1' min='1' max='10'>
-		    	<label class="price"></label>
-		    	<button class='cancelBtn'>취소</button> 
-		    </div>
- -->
-
-
-
+		  <div class="panel-body" id="addMenuDiv">
+			<div id="extraDiv0" class="extra">
+				<label id="extraMenu0" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt0' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice0" class='price'></label>
+				<input type="button" id="extraDiv0" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv1" class="extra">
+				<label id="extraMenu1" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt1' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice1" class='price'></label>
+				<input type="button" id="extraDiv1" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv2" class="extra">
+				<label id="extraMenu2" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt2' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice2" class='price'></label>
+				<input type="button" id="extraDiv2" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv3" class="extra">
+			<label id="extraMenu3" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt3' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice3" class='price'></label>
+				<input type="button" id="extraDiv3" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv4" class="extra">
+			<label id="extraMenu4" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt4' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice4" class='price'></label>
+				<input type="button" id="extraDiv4" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv5" class="extra">
+			<label id="extraMenu5" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt5' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice5" class='price'></label>
+				<input type="button" id="extraDiv5" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv6" class="extra">
+			<label id="extraMenu6" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt6' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice6" class='price'></label>
+				<input type="button" id="extraDiv6" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv7" class="extra">
+			<label id="extraMenu7" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt7' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice7" class='price'></label>
+				<input type="button" id="extraDiv7" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv8" class="extra">
+			<label id="extraMenu8" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt8' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice8" class='price'></label>
+				<input type="button" id="extraDiv8" class="deleteMenu" value="취소">
+			</div>
+			<div id="extraDiv9" class="extra">
+			<label id="extraMenu9" class='menu'></label>
+				<input type='number' class="numberMenu" id='cnt9' value='1' step='1' min='1' max='10'>
+				<label id="extraPrice9" class='price'></label>
+				<input type="button" id="extraDiv9" class="deleteMenu" value="취소">
+			</div>
 		  </div>
 		</div>
 		

@@ -215,7 +215,7 @@ th {
 	<input type="hidden" id="stateM" value="<%=state%>"/>
 	<div class="layer">
 	<div class="mainDiv">
-		<a href="/Baegopang/jsp/login/signIn.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
+		<a href="/Baegopang/jsp/main/index.jsp"><img src="/Baegopang/img/beagopangTitle.png" style=" margin-left: 50px; width: 500px;"></a>
 		<ul>
 		  <li><a href="#" id="info" class="active">내정보</a></li>
 		  <li><a href="#" id="order">주문내역</a></li>
