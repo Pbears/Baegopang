@@ -1,3 +1,5 @@
+<%@page import="java.util.List"%>
+<%@page import="gopang.bean.FoodOrderBean"%>
 <%@page import="java.io.PrintWriter"%>
 <%@page import="gopang.bean.MemberBean"%>
 <%@page import="gopang.dao.MemberDao"%>
@@ -144,10 +146,10 @@ th {
 			genderfemale.checked=true;	
 		}
 		
-		var obj = document.getElementById("stateM");
+		/*  var obj = document.getElementById("stateM");
 		if(obj.value=='success'){
 			alert('수정성공하셧어여헿');
-		}
+		}  */
 	}
 	
 	function ajaxProcess(url,ty,dataType,data){
@@ -207,10 +209,11 @@ th {
 <body onload="checkGender()">
 <%
 	MemberBean bean = (MemberBean)session.getAttribute("member");
+ 	List<FoodOrderBean> list = (List<FoodOrderBean>)session.getAttribute("foodOrderList"); 
 	String tel = bean.getTel();
 	String[] telArr = tel.split("-");
-
 	String state = request.getParameter("state");
+	
 %>
 	<input type="hidden" id="stateM" value="<%=state%>"/>
 	<div class="layer">
@@ -225,7 +228,7 @@ th {
 		<!--내정보  -->
 		<div class="inputLog" id="inputLog" style="width: 500px;">
 			<div class="inner">
-				<form class="form-horizontal" method="post" action="/Baegopang/jsp/main/myPageProcess.jsp" name="modifyFrm">
+				<form class="form-horizontal" method="post" action="/Baegopang/jsp/main/myPageModProcess.jsp" name="modifyFrm">
 					<div class="form-group">
 						<label for="inputId" class="col-sm-2 control-label">ID</label>
 						<div class="col-sm-10" id="divId">
@@ -304,6 +307,7 @@ th {
 				<!--주문내역  -->
 			<div class="orderLog" id="orderLog" style="width: 500px; display: none;" >
 			 	<table>
+				
 					  <tr>
 					    <th>주문일자</th>
 					    <th>주문번호</th>
@@ -311,20 +315,21 @@ th {
 					    <th>주문금액</th>
 					    <th>진행상태</th>
 					  </tr>
+					 <%
+						for(int i =0;i<list.size();i++){
+							FoodOrderBean foodOrderBean = list.get(i);
+							
+					%>
 					  <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					    <td>$100</td>
-					    <td>$100</td>
+					    <td><%=foodOrderBean.getOrdertime()%></td>
+					    <td><%=foodOrderBean.getOrdernumber() %></td>
+					    <td><%=foodOrderBean.getStorename() %></td>
+					    <td><%=foodOrderBean.getPrice()%></td>
+					    <td><%=foodOrderBean.getState() %></td>
 					  </tr>
-					   <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					    <td>$100</td>
-					    <td>$100</td>
-					  </tr>
+				<%
+					}
+				%>
 				</table>
 			</div>
 			<!--포인트  -->
@@ -337,16 +342,10 @@ th {
 					    <th>누적포인트</th>
 					  </tr>
 					  <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					    <td>$100</td>
-					  </tr>
-					   <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					    <td>$100</td>
+					    <td>20170707</td>
+					    <td>미소야-구로점</td>
+					    <td>10</td>
+					    <td>10</td>
 					  </tr>
 				</table>
 			</div>
@@ -358,16 +357,11 @@ th {
 					    <th>음식점명</th>
 					    <th>리뷰내용</th>
 					  </tr>
-					  <tr>
+					  <!-- <tr>
 					    <td>Peter</td>
 					    <td>Griffin</td>
 					    <td>$100</td>
-					  </tr>
-					   <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					  </tr>
+					  </tr> -->
 				</table>
 			</div>
 		</div>

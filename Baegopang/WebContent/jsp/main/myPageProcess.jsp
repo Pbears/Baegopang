@@ -1,3 +1,6 @@
+<%@page import="gopang.bean.FoodOrderBean"%>
+<%@page import="java.util.List"%>
+<%@page import="gopang.dao.MyPageDao"%>
 <%@page import="gopang.dao.MemberDao"%>
 <%@page import="gopang.bean.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
@@ -12,24 +15,33 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	MemberBean bean = (MemberBean)session.getAttribute("member");
-	MemberBean modbean = new MemberBean();
-	MemberDao dao = new MemberDao();
+	//MemberBean modbean = new MemberBean();
+	//MemberDao dao = new MemberDao();
+	MyPageDao myDao = new MyPageDao();
 	
-	String pw = request.getParameter("pw");
-	String address = request.getParameter("address1")+" "+request.getParameter("address2");
-	String tel = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
 	
-	modbean.setAddress(address);
-	modbean.setBirth(bean.getBirth());
-	modbean.setGender(bean.getGender());
-	modbean.setId(bean.getId());
-	modbean.setName(bean.getName());
-	modbean.setPw(pw);
-	modbean.setTel(tel);
+	//내정보
 	
-	dao.updateMember(modbean);
+		/* String pw = request.getParameter("pw");
+		String address = request.getParameter("address1")+" "+request.getParameter("address2");
+		String tel = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
+		modbean.setAddress(address);
+		modbean.setBirth(bean.getBirth());
+		modbean.setGender(bean.getGender());
+		modbean.setId(bean.getId());
+		modbean.setName(bean.getName());
+		modbean.setPw(pw);
+		modbean.setTel(tel);
+	
+	
+	dao.updateMember(modbean); */
+	
+	//주문내역
+	String id = bean.getId();
+	session.setAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
+	
 	response.sendRedirect("/Baegopang/jsp/main/myPage.jsp?state=success");
-	session.setAttribute("member", modbean);
+	//session.setAttribute("member", modbean);
 	
 %>
 

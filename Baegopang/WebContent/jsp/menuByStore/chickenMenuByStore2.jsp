@@ -42,9 +42,9 @@
 					$("label#extraPrice"+extraCnt).text(price);
 					extraCnt++; 
 				}else{
-					for (var i = 0; i <= 9; i++) {
+					for (var i = 0; i < 10; i++) {
 						if($("label#extraMenu"+i).text()=="1"){
-							//$("div#extraDiv"+i).show(100);
+							$("div#extraDiv"+i).show(100);
 							$("label#extraMenu"+i).text(menuName);
 							$("label#extraPrice"+i).text(price);
 							extraCnt++;

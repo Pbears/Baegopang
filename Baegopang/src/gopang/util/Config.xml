@@ -24,6 +24,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
     	<typeAlias type="gopang.bean.MemberBean" alias="member"/>
     	<typeAlias type="gopang.bean.ZipcodeBean" alias="zipcode"/>
     	<typeAlias type="gopang.bean.ReplyBean" alias="reply"/>
+    	<typeAlias type="gopang.bean.FoodOrderBean" alias="foodOrder"/>
     </typeAliases>
     <environments default="development">
       <environment id="development">
@@ -74,6 +75,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="gopang/xml/dosirak.xml"/>
       <mapper resource="gopang/xml/fastFood.xml"/>
       <mapper resource="gopang/xml/reply.xml"/>
+      <mapper resource="gopang/xml/foodOrder.xml"/>
     </mappers>
 </configuration>
 

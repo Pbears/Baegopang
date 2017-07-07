@@ -61,7 +61,7 @@
 <script>
  function myPage() {
 	
-	document.location.href='myPage.jsp';
+	document.location.href='myPageProcess.jsp';
 }
 </script>
 <header>
