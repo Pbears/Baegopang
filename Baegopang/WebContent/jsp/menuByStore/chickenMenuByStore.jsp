@@ -1,3 +1,6 @@
+<%@page import="gopang.bean.MemberBean"%>
+<%@page import="gopang.dao.ReplyDao"%>
+<%@page import="gopang.bean.ReplyBean"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="gopang.bean.MenuBean"%>
 <%@page import="gopang.bean.StoreBean"%>
@@ -46,6 +49,30 @@
 		  $('#cancelBtn').click(function() {
 				alert('test');
 		});
+		 
+		 $("a[href='#none']").click(function(){
+				$("form#"+this.id).toggle();
+				
+			});
+			
+			$("button").click(function(){
+				//alert(this.type);
+				$("form[id='frm"+$(this).attr("id")+"']").submit();
+				//alert($(this).attr("id"));
+			});
+			$("textarea").click(function(){
+				$(this).html('');
+				$(this).keyup(function(e){
+					$("span#sw").css("color","blue");
+					if($(this).val().length>100){
+						$("span#sw").css("color","red");
+						$("span#sw").html(100-($(this).val().length));
+					}else{
+					$("span#sw").html( ($(this).val().length));
+					}
+				});
+			});
+
 	});
 	
 	/* $(function () {
@@ -133,6 +160,21 @@
 	label{
 		padding: 5px;
 	}
+	
+	  div.container{
+  	 width: 980px;
+  	 margin-left: 150px;
+  	 margin-right: 500px;
+  }
+  
+  button.btn.btn-default {
+	height: 74px;
+	width: 76px;
+  }
+  .fld_cmt{
+  	text-align: right;
+  }
+  
 </style>
 </head>
 <body>
@@ -140,9 +182,16 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		int brandNo = Integer.parseInt(request.getParameter("brandno"));
+		
 		ChickenDao chickenDao = new ChickenDao();
+		
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
 		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
+		
+		String storeName = storeList.get(0).getStoreName();
+		MemberBean memberBean = (MemberBean)session.getAttribute("member");
+		String id = memberBean.getId();
+		
 	%>
 	
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -267,6 +316,11 @@
 		
 		</div>
 	 </span>
-	 <jsp:include page="../replyForm/replyForm.jsp"></jsp:include>
+	 <jsp:include page="../replyForm/replyForm.jsp">
+	 	<jsp:param value="<%=brandNo %>" name="brandNo"/>
+	 	<jsp:param value="<%=storeName %>" name="storeName"/>
+	 	<jsp:param value="orderNumber" name="orderNumber"/>
+	 	<jsp:param value="<%=id %>" name="id"/>
+	 </jsp:include>
 </body>
 </html>

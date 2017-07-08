@@ -3,7 +3,7 @@ package gopang.bean;
 public class ReplyBean {
 	private int no;
 	private String storeName;
-	private int orderNumber;
+	private String orderNumber;
 	private String id;
 	private String contents;
 	private String regDate;
@@ -27,11 +27,11 @@ public class ReplyBean {
 		this.storeName = storeName;
 	}
 
-	public int getOrderNumber() {
+	public String getOrderNumber() {
 		return orderNumber;
 	}
 
-	public void setOrderNumber(int orderNumber) {
+	public void setOrderNumber(String orderNumber) {
 		this.orderNumber = orderNumber;
 	}
 
