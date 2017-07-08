@@ -3,19 +3,16 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.reply"> 
-   	<select id="selectRepSeq" resultType="integer">
+
+   	<select id="selectRepSeq" resultType="java.lang.Integer">
 	  	SELECT REPLY_SEQ.NEXTVAL FROM DUAL
-	</select>	 
+	</select>
+		 
   	<insert id="insertReply" parameterType="reply">
   		 INSERT INTO REPLY
-		 VALUES(#{no},#{storeName},#{orderNumber},#{id}
+		 VALUES(#{no},#{storeName},#{orderNumber},#{id},
 		 #{contents},SYSDATE,#{ref},#{pnum},#{reply})
   	</insert>
-<!-- 	<select id="selectReply" parameterType="java.lang.Integer" resultType="reply">
-		 SELECT * FROM REPLY
-		 WHERE STORENAME=#{storeName}
-		 ORDER BY REF ,PNUM, NO
-	</select> -->
 </mapper>
 
 

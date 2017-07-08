@@ -72,11 +72,11 @@ $(document).ready(function() {
 		
 		if(reply != null){
 		try{
-			//replyBean.setNo(replyDao.selectRepSeq());
+			replyBean.setNo(replyDao.selectRepSeq());
 			replyBean.setStoreName(storeName);
 			replyBean.setOrderNumber(orderNumber);
 			replyBean.setId(id);
-			replyBean.setNo(1);
+			//replyBean.setNo(1);
 			replyBean.setContents(contents);
 			
 			if(reply.equals("new")){

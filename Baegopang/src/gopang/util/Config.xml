@@ -63,18 +63,18 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       </environment>
     </environments>
     <mappers>
-      <mapper resource="gopang/xml/zipcode.xml"/>
+      <mapper resource="gopang/xml/reply.xml"/>
+      <mapper resource="gopang/xml/zipcode.xml"></mapper>
       <mapper resource="gopang/xml/member.xml"/>
       <mapper resource="gopang/xml/chicken.xml"/>
       <mapper resource="gopang/xml/pizza.xml"/>
       <mapper resource="gopang/xml/chinaFood.xml"/>
       <mapper resource="gopang/xml/koreaFood.xml"/>
       <mapper resource="gopang/xml/tangFood.xml"/>
-      <mapper resource="gopang/xml/jockFood.xml"/>
+      <mapper resource="gopang/xml/jockFood.xml"></mapper>
       <mapper resource="gopang/xml/japanFood.xml"/>
       <mapper resource="gopang/xml/dosirak.xml"/>
       <mapper resource="gopang/xml/fastFood.xml"/>
-      <mapper resource="gopang/xml/reply.xml"/>
       <mapper resource="gopang/xml/foodOrder.xml"/>
     </mappers>
 </configuration>
