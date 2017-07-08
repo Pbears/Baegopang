@@ -42,21 +42,43 @@ var chart = AmCharts.makeChart( "monthlySales",  {
 		"color": "#ffffff"
 	},
 	"dataProvider": 
-			$.getJSON({
-				type:"get",
-				url:"data.json",
-				dataType:"json",
-				success:function(result){
-					return result;
-				}
-			}),
+		[
+			{
+				"month": "2월",
+				"sales": 500000
+			},
+			{
+				"month": "3월",
+				"sales": 800000
+			},
+			{
+				"month": "4월",
+				"sales": 900000
+			},
+			{
+				"month": "5월",
+				"sales": 950000
+			},
+			{
+				"month": "6월",
+				"sales": 1200000,
+				"dashLengthLine": 5
+			},
+			{
+				"month": "7월",
+				"sales": 1700000,
+				"dashLengthColumn": 5,
+				"alpha": 0.2,
+				"additional": "(projection)"
+			}
+		],
 	"valueAxes": [ {
 			"axisAlpha": 0,
 			"position": "left"
 	} ],
 	"startDuration": 1, "graphs": [ {
 							"alphaField": "alpha",
-							"balloonText": "|<span style='font-size:12px;'>[[category]][[title]]| <br><span style='font-size:20px;'>[[value]]</span> [[additional]] 원</span>",
+							"balloonText": "|<span style='font-size:12px;'>[[title]] in [[category]]| <br><span style='font-size:20px;'>[[value]]</span> [[additional]] 원</span>",
 							"fillAlphas": 1,
 							"title": "sales",
 							"type": "column",
