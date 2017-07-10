@@ -13,6 +13,13 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		 VALUES(#{no},#{storeName},#{orderNumber},#{id},
 		 #{contents},SYSDATE,#{ref},#{pnum},#{reply})
   	</insert>
+  	
+  	<select id="selectReply" parameterType="java.lang.String" resultType="reply">
+  		SELECT NO, STORENAME, ORDERNUMBER, ID,
+  		CONTENTS, REGDATE, REF, PNUM, REPLY
+  		FROM REPLY
+  		WHERE STORENAME = #{storeName}
+  	</select>
 </mapper>
 
 

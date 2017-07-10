@@ -1,3 +1,4 @@
+<%@page import="java.util.List"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="java.net.URLEncoder"%>
 <%@page import="gopang.dao.ReplyDao"%>
@@ -26,6 +27,16 @@
   }
   .fld_cmt{
   	text-align: right;
+  }
+  
+  #replyContainer{
+  	overflow: auto;
+  	height: 450px;
+  	width: 1100px;
+  }
+  
+  ul.media-list{
+  	width: 610px;
   }
   
 </style>
@@ -69,6 +80,8 @@ $(document).ready(function() {
 		String contents = request.getParameter("contents");
 		String reply = request.getParameter("reply");
 		
+		List<ReplyBean>replyList = replyDao.selectReply(storeName);
+		
 		
 		if(reply != null){
 		try{
@@ -76,7 +89,6 @@ $(document).ready(function() {
 			replyBean.setStoreName(storeName);
 			replyBean.setOrderNumber(orderNumber);
 			replyBean.setId(id);
-			//replyBean.setNo(1);
 			replyBean.setContents(contents);
 			
 			if(reply.equals("new")){
@@ -119,7 +131,33 @@ $(document).ready(function() {
 	      </form>			
 		<br>
 	</div>
+	
+	<div id="replyContainer" >
 	<%
+		for(ReplyBean bean : replyList){
+	%>
+	&nbsp;&nbsp;&nbsp;
+		<ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 180px; background-color: #f5f5f5;">
+		  <li class="media" style="background-color: ">
+		    <div class="media-left">
+		      <a href="#">
+		        <img class="media-object" src="/Baegopang/img/comment/img_avatar3.png" alt="..." width="50px;" height="50px;">
+		      </a>
+		    </div>
+		    <div class="media-body">
+		      <h5 class="media-heading"><strong>ID : <%=bean.getId() %></strong> <small>님</small> | <%=bean.getRegDate() %></h5>
+				<%=bean.getContents()%>
+		    </div>
+		  </li>
+		 </ul>
+	<%
+		} 
+	 %>
+	 </div>
+	
+	
+	
+	<%-- <%
 		if(contents != null){
 	%>
 	&nbsp;&nbsp;&nbsp;
@@ -138,7 +176,7 @@ $(document).ready(function() {
 		 </ul>
 	<%
 		}
-	%>
+	%> --%>
 	<!-- 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 220px; background-color: #f9b39c">
 		  <li class="media">

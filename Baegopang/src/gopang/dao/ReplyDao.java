@@ -6,15 +6,20 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import gopang.bean.ReplyBean;
+import gopang.util.SqlSessionFactoryManager;
 
 public class ReplyDao {
 	private SqlSessionFactory sqlSessionFactory;
+	
+	public ReplyDao() {
+		sqlSessionFactory=SqlSessionFactoryManager.getSqlSessionFactory();
+	}
 	
 	public void insertReply(ReplyBean bean){
 		SqlSession sqlSession=null;
 		try {
 			sqlSession=sqlSessionFactory.openSession();
-			sqlSession.insert("gopang.xml.reply.insertReply", bean);
+			sqlSession.insert("insertReply", bean);
 			sqlSession.commit();			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -26,10 +31,10 @@ public class ReplyDao {
 	}
 	
 	public Integer selectRepSeq()throws Exception{
-		return sqlSessionFactory.openSession().selectOne("gopang.xml.reply.selectRepSeq");
+		return sqlSessionFactory.openSession().selectOne("selectRepSeq");
 	}
 	
-	public List<ReplyBean>selectReply(String storeName)throws Exception{
-		return sqlSessionFactory.openSession().selectList("gopang.xml.reply.selectReply",storeName);
+	public List<ReplyBean> selectReply(String storeName){
+		return sqlSessionFactory.openSession().selectList("selectReply", storeName);
 	}
 }
