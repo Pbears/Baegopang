@@ -363,8 +363,16 @@
 		    <label class="ordertotalPrice" style="font-size: 30px;"></label>원
 		  </div>
 		</div>
-		
 		</div>
+		
+
+		<div class="btn-group">
+			<div class="panel-body" id="panel-body-ordertotalPrice">
+		    	<input type="button" class="btn btn-default" value="결제하기">
+		  	</div>
+		</div>
+		
+		
 	 </span>
 	 <jsp:include page="../replyForm/replyForm.jsp"></jsp:include>
 </body>
