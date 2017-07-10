@@ -23,7 +23,7 @@
 		}else if(userId!=null&userPw!=null){
 			if(memberDao.pwCheck(userId ,userPw)){
 				session.setAttribute("member", memberDao.selectMember(userId));
-				session.setMaxInactiveInterval(60);
+				session.setMaxInactiveInterval(600);
 				response.sendRedirect("/Baegopang/jsp/main/index.jsp");
 			}else{
 				response.sendRedirect("/Baegopang/jsp/login/signIn.jsp?userId="+userId+"&fail=pw");

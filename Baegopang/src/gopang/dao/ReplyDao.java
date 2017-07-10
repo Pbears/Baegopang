@@ -14,7 +14,7 @@ public class ReplyDao {
 		SqlSession sqlSession=null;
 		try {
 			sqlSession=sqlSessionFactory.openSession();
-			sqlSession.insert("insertReply", bean);
+			sqlSession.insert("gopang.xml.reply.insertReply", bean);
 			sqlSession.commit();			
 		} catch (Exception e) {
 			// TODO: handle exception
@@ -26,10 +26,10 @@ public class ReplyDao {
 	}
 	
 	public Integer selectRepSeq()throws Exception{
-		return sqlSessionFactory.openSession().selectOne("selectRepSeq");
+		return sqlSessionFactory.openSession().selectOne("gopang.xml.reply.selectRepSeq");
 	}
 	
 	public List<ReplyBean>selectReply(String storeName)throws Exception{
-		return sqlSessionFactory.openSession().selectList("selectReply",storeName);
+		return sqlSessionFactory.openSession().selectList("gopang.xml.reply.selectReply",storeName);
 	}
 }

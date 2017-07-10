@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.ReplyDao"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="gopang.bean.MenuBean"%>
 <%@page import="gopang.bean.StoreBean"%>
@@ -195,6 +196,7 @@
 		ChickenDao chickenDao = new ChickenDao();
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
 		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
+		String storeName = storeList.get(0).getStoreName();
 	%>
 	
 	<%-- <jsp:include page="../main/header.jsp"></jsp:include> --%>
@@ -213,7 +215,7 @@
 	<div class="panel panel-default">
 	  <div class="panel-body">
 	  	
-	   <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
+	   <strong>매장명 : <%=storeName%></strong>  &nbsp;|&nbsp;
 	   <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
 	   별점 : 
 	   <%
@@ -374,6 +376,6 @@
 		
 		
 	 </span>
-	 <jsp:include page="../replyForm/replyForm.jsp"></jsp:include>
+	 <jsp:include page="../replyForm/replyForm.jsp?storeName=<%=storeName%>&orderNumber=orderNumber&id=comet"></jsp:include>
 </body>
 </html>
