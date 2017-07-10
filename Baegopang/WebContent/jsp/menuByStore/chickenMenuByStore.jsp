@@ -28,27 +28,36 @@
 <script>
 	$(function(){
 		var totalprice=0;
-		$("div#panel-body-ordertotalPrice").hide();
-		$("a#innerA").click(function(){
-			$("div#panel-body-ordertotalPrice").show();
+		
+		$("a#innerA").click(function(e){
+			 e.preventDefault();
 			var menu = $(this).find("input#menuName").val();
 			var price = $(this).find("input#menuPrice").val();
-			var tag = "<div class='order-div'><label class='menu'>"+menu+"</label><input type='number' id='cnt' value='1' step='1' min='1' max='10'><label class='price'>"+price+"</label><div><button class='cancelBtn'>취소</button><div> <input type='hidden' class='totalPrice'>";
+			var tag = "<div class='order-div'>" + 
+						"<label class='menu'>"+
+							menu+
+						"</label>"+
+						"<input type='number' id='cnt' value='1' step='1' min='1' max='10'>"+
+						"<label class='price'>"+price+"</label>"+
+					  "</div>"+
+					  "<button class='cancelBtn'>취소</button>"+
+					  "<input type='hidden' class='totalPrice'>";
+					  
 			$(tag).appendTo("label#menuLabel");
 			totalprice=eval(totalprice)+eval(price);
    		    $("label.ordertotalPrice").text(totalprice);
 		});
 		
-		$(".cnt").click(function(){
-			alert('ok');			
+		$(document).on("click","#cnt", function () {
+			var calPrice = $(this).val()*$("a#innerA").find("input#menuPrice").val();
+			$("label.price").text(calPrice)
 		});
 		
-		 $('.disabled').click(function(e){
-		     e.preventDefault();
-		  })
-		  $('#cancelBtn').click(function() {
-				alert('test');
-		});
+		 
+		 $(document).on("click","button.cancelBtn", function () {
+			 alert('delete');
+			 $("label#menuLabel").text('');
+		 });
 		 
 		 $("a[href='#none']").click(function(){
 				$("form#"+this.id).toggle();
@@ -72,14 +81,15 @@
 					}
 				});
 			});
+			
+		 $("button#myButton").on('click', function () {
+			    var $btn = $(this).button('loading');
+			    $btn.button('toggle');
+			    $("form#paymentInfomation").submit();
+		});
 
 	});
 	
-	/* $(function () {
-		$(".cnt").on('keyup keydown change', function (event) {
-			alert(event);
-		});		
-	}) */
 </script>
 <style>
 	ul {
@@ -112,6 +122,17 @@
 	
 	.active {
 	    background-color: #ff5722;
+	}
+	
+	a#innerA{
+		pointer-events: none;
+		text-decoration: none;
+	}
+	
+	a#innerA img{
+		width : 150px;
+		height: 100px;
+		text-decoration: none;
 	}
 	
 	#storeInfoContainer {
@@ -173,6 +194,12 @@
   }
   .fld_cmt{
   	text-align: right;
+  }
+  
+  button#myButton{
+  	text-align: center;
+  	width: 400px;
+  	height: 50px;
   }
   
 </style>
@@ -245,18 +272,18 @@
 	<div class="row" >
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
 	    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-	<a href="#" id="innerA" style="text-decoration: none;" class="disabled">
- 	      <img src="/Baegopang<%=menuList.get(i).getPicture() %>" width="150px" height="100px" style="text-decoration: none;"/> 
-	      <div class="caption">
-	        <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
-	        <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
-	        <p>
-	        	<%=menuList.get(i).getInfo() %>
-	        </p>
-	        <h5><%=menuList.get(i).getPrice() %></h5>
-	        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
-	      </div>
-	</a>
+			<a href="#" id="innerA">
+	 	      <img src="/Baegopang<%=menuList.get(i).getPicture() %>"/> 
+		      <div class="caption">
+		        <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
+		        <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
+		        <p>
+		        	<%=menuList.get(i).getInfo() %>
+		        </p>
+		        <h5><%=menuList.get(i).getPrice() %></h5>
+		        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
+		      </div>
+			</a>
 	    </div>
 	  </div>
 	</div>
@@ -269,7 +296,7 @@
 	
 	<span>
 		<div id="selectMenuContainer">
-		
+		<form id="paymentInfomation" action="/Baegopang/jsp/payment/payment.jsp" method="post">
 		<div class="panel panel-default">
 		  <div class="panel-heading">매장 정보</div>
 		  <div class="panel-body">
@@ -290,18 +317,6 @@
 		  </div>
 		  <div class="panel-body" id="panel-body-order">
 		     <label for="addMenu" id="menuLabel" ></label> 
-
-
-		  <!--   <div class="order-div">
-				< <label class="menu"></label>
-		    	<input type='number' class='cnt' value='1' step='1' min='1' max='10'>
-		    	<label class="price"></label>
-		    	<button class='cancelBtn'>취소</button> 
-		    </div>
- -->
-
-
-
 		  </div>
 		</div>
 		
@@ -313,9 +328,13 @@
 		    <label class="ordertotalPrice" style="font-size: 30px;"></label>원
 		  </div>
 		</div>
-		
+		</form>
+		<button type="button" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">
+		  결제하기
+		</button>
 		</div>
 	 </span>
+	 
 	 <jsp:include page="../replyForm/replyForm.jsp">
 	 	<jsp:param value="<%=brandNo %>" name="brandNo"/>
 	 	<jsp:param value="<%=storeName %>" name="storeName"/>
