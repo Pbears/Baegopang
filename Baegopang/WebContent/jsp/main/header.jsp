@@ -1,3 +1,8 @@
+<%@page import="gopang.bean.BrandBean"%>
+<%@page import="java.util.HashMap"%>
+<%@page import="java.util.List"%>
+<%@page import="gopang.bean.StoreBean"%>
+<%@page import="gopang.dao.StoreDao"%>
 <%@page import="gopang.bean.MemberBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -63,10 +68,34 @@
 	
 	document.location.href='myPageProcess.jsp';
 }
+ 
+ function searchMenu(){
+	 var obj = document.searchFrm;
+	 if(!obj.data.value){
+		 alert('검색어를 입력하세요!');
+	 }else{
+		obj.submit();
+	 }
+	 
+ }
 </script>
 <header>
 <%
+	request.setCharacterEncoding("UTF-8");
 	MemberBean bean = (MemberBean)session.getAttribute("member");
+	String MemberAddr = bean.getAddress();
+	String address = MemberAddr.substring(MemberAddr.indexOf("시")+2,MemberAddr.indexOf("구")+1);
+	
+	//회원주소와 동일한 구의 음식점list 가져오기
+	String data = request.getParameter("data");
+	out.println(address);
+	//out.println(data);
+	HashMap<String, String> map = new HashMap<String,String>();
+	map.put("address",address);
+	map.put("data",data);
+	StoreDao dao = new StoreDao();
+	List<BrandBean> storeList = dao.selectSearchStore(map);
+	session.setAttribute("searchStoreList",storeList);
 %>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">
@@ -74,29 +103,31 @@
 					<img alt="" src="/Baegopang/img/beagopangTitle.png">
 				</a>
 			</div>
-			<div id="searchContainer">
-				<table align="center">
-					<tr>
-						<td>
-							<input type="button" id="locationBtn" value="location" class="btn btn-default">
-						</td>
-						<td>
-							<input type="text" id="searchWindow" class="form-control" placeholder="Search">
-						</td>
-						<td>
-							<input type="button" id="searchBtn" value="Search" class="btn btn-default">
-						</td>
-						<td>
-							<div class="buttonDiv">
-							<label><%=bean.getName() %>님 안녕하세여헿</label>
-							<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
-							 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-							</button>
-							</div>
-						</td>
-					</tr>
-				</table>
-			</div>
+			<form action="searchMain.jsp" name="searchFrm" method="post">
+				<div id="searchContainer">
+					<table align="center">
+						<tr>
+							<td>
+								<input type="button" id="locationBtn" value="location" class="btn btn-default">
+							</td>
+							<td>
+								<input type="text" name="data" id="searchWindow" class="form-control" placeholder="Search">
+							</td>
+							<td>
+								<input type="button" id="searchBtn" value="Search" class="btn btn-default" onclick="searchMenu()">
+							</td>
+							<td>
+								<div class="buttonDiv">
+								<label><%=bean.getName() %>님 안녕하세여헿</label>
+								<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
+								 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
+								</button>
+								</div>
+							</td>
+						</tr>
+					</table>
+				</div>
+			</form>
 		</div>
 	</header>
 	

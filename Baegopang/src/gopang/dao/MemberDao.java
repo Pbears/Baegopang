@@ -50,4 +50,5 @@ public class MemberDao {
 			session.close();
 		}
 	}
+	
 }

@@ -1,7 +1,7 @@
+<%@page import="gopang.bean.BrandBean"%>
+<%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="gopang.dao.ChickenDao"%>
-<%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%request.setCharacterEncoding("UTF-8"); %>
@@ -71,15 +71,12 @@
 </style>
 </head>
 <body>
+	<jsp:include page="header.jsp" flush="false"></jsp:include>
+	
 	<%
-		ChickenDao chickenDao = new ChickenDao();
-		List<BrandBean>brandList=chickenDao.selectChicken(1);
-		
-		
-
+	 List<BrandBean> list = (List<BrandBean>)session.getAttribute("searchStoreList");
 	%>
 		
-	<jsp:include page="header.jsp"></jsp:include>
 	<ul>
 	  <li><a class="active" href="chickenMain.jsp">치킨</a></li>
 	  <li><a href="pizzaMain.jsp">피자</a></li>
@@ -94,10 +91,11 @@
 
 	<div id="storeContiner" align="center">
 	<% 
-		for(BrandBean brand : brandList){
+		for(BrandBean brand : list){
+			
 	%>
 	<span>
-	<div class="row">
+	 <div class="row">
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3" >
 	   <a href="/Baegopang/jsp/menuByStore/chickenMenuByStore.jsp?brandno=<%=brand.getBrandNo()%>" style="text-decoration: none;">
 	    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
@@ -132,8 +130,8 @@
 	</span>
 	<%
 		} 
-	%>
-	</div>
+	%> 
+	</div>  
 	<div id="moreView" align="center">
 		<a href="#">더보기▼</a>
 	</div>
