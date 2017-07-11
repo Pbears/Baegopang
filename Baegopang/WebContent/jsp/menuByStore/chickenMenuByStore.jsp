@@ -236,7 +236,6 @@
       });
 
    });
->>>>>>> branch 'master' of https://github.com/Pbears/Baegopang.git
    
 </script>
 <style>
