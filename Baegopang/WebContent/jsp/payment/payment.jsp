@@ -100,9 +100,7 @@ textarea{
 </style>
 </head>
 <body>
-	<%
-		List<AddToCartBean>cartList = 
-	%>
+
 	<%=request.getParameter("menuName") %>
 	<!-- 주석풀기 -->
 	<%-- <jsp:include page="../main/header.jsp"/> --%>
