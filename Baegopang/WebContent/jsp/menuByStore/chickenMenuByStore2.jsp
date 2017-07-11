@@ -1,4 +1,6 @@
+<%@page import="gopang.bean.MemberBean"%>
 <%@page import="gopang.dao.ReplyDao"%>
+<%@page import="gopang.bean.ReplyBean"%>
 <%@page import="java.net.URLDecoder"%>
 <%@page import="gopang.bean.MenuBean"%>
 <%@page import="gopang.bean.StoreBean"%>
@@ -25,87 +27,74 @@
 </script>
 <script>
 	$(function(){
-		var extraCnt=0;
-		$("div.extra").hide();
-		
 		var totalprice=0;
-		$("div#panel-body-ordertotalPrice").hide();
 		
-		$("a#innerA").click(function(){
-			if(extraCnt<=9){
-				var div = $("div.extra");
-				var menuName = $(this).find("input#menuName").val();
-				var price = $(this).find("input#menuPrice").val();
+		$("a#innerA").click(function(e){
+			 e.preventDefault();
+			var menu = $(this).find("input#menuName").val();
+			var price = $(this).find("input#menuPrice").val();
+			
+			var tag = "<div class='order-div'>" + 
+						"<label class='menu'>"+
+							menu+
+						"</label>"+
+						"<input type='number' id='cnt' value='1' step='1' min='1' max='10'>"+
+						"<label class='price'>"+price+"</label>"+
+					  "</div>"+
+					  "<button class='cancelBtn'>취소</button>"+
+					  "<input type='hidden' class='totalPrice'>";
+					  
+					  
+			$(tag).appendTo("label#menuLabel");
+			
+			$(tag).each(function() {
 				
-				if(extraCnt==0){
-					$("div#extraDiv"+extraCnt).show(100);
-					$("label#extraMenu"+extraCnt).text(menuName);
-					$("label#extraPrice"+extraCnt).text(price);
-					extraCnt++; 
-				}else{
-					for (var i = 0; i < 10; i++) {
-						if($("label#extraMenu"+i).text()=="1"){
-							$("div#extraDiv"+i).show(100);
-							$("label#extraMenu"+i).text(menuName);
-							$("label#extraPrice"+i).text(price);
-							extraCnt++;
-							break;
-						}else{
-						    $("div#extraDiv"+extraCnt).show(100);
-							$("label#extraMenu"+extraCnt).text(menuName);
-							$("label#extraPrice"+extraCnt).text(price);
-							extraCnt++;
-							break;
-						} 
-					} 
-				}
-				  /* for (var i = 0; i < extraCnt; i++) {
-					if($("div#extraDiv"+i).find("label").text()=="1"){
-						$("div#extraDiv"+i).show(100);
-						$("label#extraMenu"+i).text(menuName);
-						$("label#extraPrice"+i).text(price);
+				totalprice += eval(price)
+	   		    $("label.ordertotalPrice").text(totalprice);
+				
+			});		  
+			
+			
+   		    
+		});
+		
+				$(document).on("click","#cnt", function () {
+					var calPrice = $(this).val()*$("a#innerA").find("input#menuPrice").val();
+					$("label.price").text(calPrice)
+					totalprice = eval(calPrice);
+					$("label.ordertotalPrice").text(totalprice);
+				});
+
+	
+		 $(document).on("click","button.cancelBtn", function () {
+			 $("label#menuLabel").text('');
+		 });
+		 
+			/* 댓글 처리 기능 부 */
+			$("button").click(function(){
+				$("form[id='frm"+$(this).attr("id")+"']").submit();
+			});
+			$("textarea").click(function(){
+				$(this).html('');
+				$(this).keyup(function(e){
+					$("span#sw").css("color","blue");
+					if($(this).val().length>100){
+						$("span#sw").css("color","red");
+						$("span#sw").html(100-($(this).val().length));
 					}else{
-						$("div#extraDiv"+extraCnt).show(100);
-						$("label#extraMenu"+extraCnt).text(menuName);
-						$("label#extraPrice"+extraCnt).text(price);
-						extraCnt++;
+					$("span#sw").html( ($(this).val().length));
 					}
-				}  */
-				
-				 
-				   /*  $("div#extraDiv"+extraCnt).show(100);
-					$("label#extraMenu"+extraCnt).text(menuName);
-					$("label#extraPrice"+extraCnt).text(price);
-					extraCnt++;	 	 */	
-			}
-		});
-		
-		
-		$("input.deleteMenu").click(function(){
-			if(extraCnt>=0){
-				/* $("div#"+$(this).attr("id")).find("label").text("");
-				$("div#"+$(this).attr("id")).find("input.numberMenu").attr("value","1");
-				$("div#"+$(this).attr("id")).hide(); */ 
-				
-				$("div#"+$(this).attr("id")).find("label").text("1");
-				//$("div#"+$(this).attr("id")).hide();
-				extraCnt--;
-				}
+				});
+			});
+			
+		 $("button#myButton").on('click', function () {
+			    var $btn = $(this).button('loading');
+			    $btn.button('toggle');
+			    $("form#paymentInfomation").submit();
 		});
 
-		
-		$('.disabled').click(function(e){
-		    e.preventDefault();
-		})
-
-		
 	});
 	
-	/* $(function () {
-		$(".cnt").on('keyup keydown change', function (event) {
-			alert(event);
-		});		
-	}) */
 </script>
 <style>
 	ul {
@@ -138,6 +127,17 @@
 	
 	.active {
 	    background-color: #ff5722;
+	}
+	
+	a#innerA{
+		pointer-events: none;
+		text-decoration: none;
+	}
+	
+	a#innerA img{
+		width : 150px;
+		height: 100px;
+		text-decoration: none;
 	}
 	
 	#storeInfoContainer {
@@ -186,6 +186,27 @@
 	label{
 		padding: 5px;
 	}
+	
+	  div.container{
+  	 width: 980px;
+  	 margin-left: 150px;
+  	 margin-right: 500px;
+  }
+  
+  button.btn.btn-default {
+	height: 74px;
+	width: 76px;
+  }
+  .fld_cmt{
+  	text-align: right;
+  }
+  
+  button#myButton{
+  	text-align: center;
+  	width: 400px;
+  	height: 50px;
+  }
+  
 </style>
 </head>
 <body>
@@ -193,13 +214,18 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 		int brandNo = 101;
+		
 		ChickenDao chickenDao = new ChickenDao();
+		
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
 		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
+		
 		String storeName = storeList.get(0).getStoreName();
+		MemberBean memberBean = (MemberBean)session.getAttribute("member");
+		String id = memberBean.getId();
+		
 	%>
 	
-	<%-- <jsp:include page="../main/header.jsp"></jsp:include> --%>
 	<ul>
 	  <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
 	  <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
@@ -215,7 +241,7 @@
 	<div class="panel panel-default">
 	  <div class="panel-body">
 	  	
-	   <strong>매장명 : <%=storeName%></strong>  &nbsp;|&nbsp;
+	   <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
 	   <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
 	   별점 : 
 	   <%
@@ -250,18 +276,18 @@
 	<div class="row" >
 	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
 	    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-	<a href="#" id="innerA" style="text-decoration: none;" class="disabled">
- 	      <img src="/Baegopang<%=menuList.get(i).getPicture() %>" width="150px" height="100px" style="text-decoration: none;"/> 
-	      <div class="caption">
-	        <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
-	        <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
-	        <p>
-	        	<%=menuList.get(i).getInfo() %>
-	        </p>
-	        <h5><%=menuList.get(i).getPrice() %></h5>
-	        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
-	      </div>
-	</a>
+			<a href="#" id="innerA">
+	 	      <img src="/Baegopang<%=menuList.get(i).getPicture() %>"/> 
+		      <div class="caption">
+		        <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
+		        <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
+		        <p>
+		        	<%=menuList.get(i).getInfo() %>
+		        </p>
+		        <h5><%=menuList.get(i).getPrice() %></h5>
+		        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
+		      </div>
+			</a>
 	    </div>
 	  </div>
 	</div>
@@ -274,7 +300,7 @@
 	
 	<span>
 		<div id="selectMenuContainer">
-		
+		<form id="paymentInfomation" action="/Baegopang/jsp/payment/payment.jsp" method="post">
 		<div class="panel panel-default">
 		  <div class="panel-heading">매장 정보</div>
 		  <div class="panel-body">
@@ -293,67 +319,8 @@
 		  <div class="panel-heading">
 		    <h3 class="panel-title">주문 목록</h3>
 		  </div>
-		  <div class="panel-body" id="addMenuDiv">
-			<div id="extraDiv0" class="extra">
-				<label id="extraMenu0" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt0' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice0" class='price'></label>
-				<input type="button" id="extraDiv0" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv1" class="extra">
-				<label id="extraMenu1" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt1' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice1" class='price'></label>
-				<input type="button" id="extraDiv1" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv2" class="extra">
-				<label id="extraMenu2" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt2' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice2" class='price'></label>
-				<input type="button" id="extraDiv2" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv3" class="extra">
-			<label id="extraMenu3" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt3' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice3" class='price'></label>
-				<input type="button" id="extraDiv3" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv4" class="extra">
-			<label id="extraMenu4" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt4' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice4" class='price'></label>
-				<input type="button" id="extraDiv4" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv5" class="extra">
-			<label id="extraMenu5" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt5' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice5" class='price'></label>
-				<input type="button" id="extraDiv5" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv6" class="extra">
-			<label id="extraMenu6" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt6' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice6" class='price'></label>
-				<input type="button" id="extraDiv6" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv7" class="extra">
-			<label id="extraMenu7" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt7' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice7" class='price'></label>
-				<input type="button" id="extraDiv7" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv8" class="extra">
-			<label id="extraMenu8" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt8' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice8" class='price'></label>
-				<input type="button" id="extraDiv8" class="deleteMenu" value="취소">
-			</div>
-			<div id="extraDiv9" class="extra">
-			<label id="extraMenu9" class='menu'></label>
-				<input type='number' class="numberMenu" id='cnt9' value='1' step='1' min='1' max='10'>
-				<label id="extraPrice9" class='price'></label>
-				<input type="button" id="extraDiv9" class="deleteMenu" value="취소">
-			</div>
+		  <div class="panel-body" id="panel-body-order">
+		     <label for="addMenu" id="menuLabel" ></label> 
 		  </div>
 		</div>
 		
@@ -365,17 +332,18 @@
 		    <label class="ordertotalPrice" style="font-size: 30px;"></label>원
 		  </div>
 		</div>
+		</form>
+		<button type="button" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">
+		  결제하기
+		</button>
 		</div>
-		
-
-		<div class="btn-group">
-			<div class="panel-body" id="panel-body-ordertotalPrice">
-		    	<input type="button" class="btn btn-default" value="결제하기">
-		  	</div>
-		</div>
-		
-		
 	 </span>
-	 <jsp:include page="../replyForm/replyForm.jsp?storeName=<%=storeName%>&orderNumber=orderNumber&id=comet"></jsp:include>
+	 
+	 <jsp:include page="../replyForm/replyForm.jsp">
+	 	<jsp:param value="<%=brandNo %>" name="brandNo"/>
+	 	<jsp:param value="<%=storeName %>" name="storeName"/>
+	 	<jsp:param value="orderNumber" name="orderNumber"/>
+	 	<jsp:param value="<%=id %>" name="id"/>
+	 </jsp:include>
 </body>
 </html>
