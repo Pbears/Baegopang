@@ -1,3 +1,6 @@
+<%@page import="gopang.bean.AddToCartBean"%>
+<%@page import="java.util.List"%>
+<%@page import="java.util.Map"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -97,6 +100,10 @@ textarea{
 </style>
 </head>
 <body>
+	<%
+		List<AddToCartBean>cartList = 
+	%>
+	<%=request.getParameter("menuName") %>
 	<!-- 주석풀기 -->
 	<%-- <jsp:include page="../main/header.jsp"/> --%>
 
@@ -239,12 +246,12 @@ textarea{
 					
 					<!-- 메뉴 추가 body div -->
 					<div class="form-group centerDiv rightDivs">
-						<label for="inputPassword3" class="col-md-4 control-label">메뉴이름</label>
+						<label for="inputPassword3" class="col-md-4 control-label">${menuName}</label>
 						<div class="col-md-4">
-							<label id="eachPrice">1000</label><label>원</label>
+							<label id="eachPrice">${price}</label><label>원</label>
 						</div>
 						<div class="col-md-4">
-							<label id="eachAmount">2</label><label>개</label>
+							<label id="eachAmount">${cnt}</label><label>개</label>
 						</div>
 						<div>
 							<br><br>
