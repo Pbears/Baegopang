@@ -33,6 +33,7 @@
 			 e.preventDefault();
 			var menu = $(this).find("input#menuName").val();
 			var price = $(this).find("input#menuPrice").val();
+			
 			var tag = "<div class='order-div'>" + 
 						"<label class='menu'>"+
 							menu+
@@ -44,18 +45,21 @@
 					  "<input type='hidden' class='totalPrice'>";
 					  
 			$(tag).appendTo("label#menuLabel");
-			totalprice=eval(totalprice)+eval(price);
+			$("input#menuPrice").each(function() {
+				totalprice=eval(totalprice)+eval(price);				
+			});
    		    $("label.ordertotalPrice").text(totalprice);
 		});
 		
 		$(document).on("click","#cnt", function () {
 			var calPrice = $(this).val()*$("a#innerA").find("input#menuPrice").val();
 			$("label.price").text(calPrice)
+			totalprice = eval(calPrice);
+			$("label.ordertotalPrice").text(totalprice);
 		});
 		
 		 
 		 $(document).on("click","button.cancelBtn", function () {
-			 alert('delete');
 			 $("label#menuLabel").text('');
 		 });
 		 
