@@ -175,7 +175,6 @@
     	         totalprice+=eval($("input.totalPrice").val());
                  $("label.ordertotalPrice").text(totalprice);
          }  
-      });
       
       $(document).on("click","#cnt", function () {
     	  count=$(this).val();
