@@ -75,7 +75,7 @@ PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
       <mapper resource="gopang/xml/japanFood.xml"/>
       <mapper resource="gopang/xml/dosirak.xml"/>
       <mapper resource="gopang/xml/fastFood.xml"/>
-      <mapper resource="gopang/xml/foodOrder.xml"/>
+      <mapper resource="gopang/xml/myPage.xml"/>
       <mapper resource="gopang/xml/store.xml"/>
     </mappers>
 </configuration>

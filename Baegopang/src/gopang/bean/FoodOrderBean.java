@@ -17,6 +17,14 @@ public class FoodOrderBean {
 	private String ordertime;
 	private String state;
 	private String hit;
+	private String pang;
+	
+	public String getPang() {
+		return pang;
+	}
+	public void setPang(String pang) {
+		this.pang = pang;
+	}
 	public String getOrdernumber() {
 		return ordernumber;
 	}
@@ -107,9 +115,13 @@ public class FoodOrderBean {
 	public void setHit(String hit) {
 		this.hit = hit;
 	}
+	
+	public FoodOrderBean() {
+		super();
+	}
 	public FoodOrderBean(String ordernumber, String memberid, String membername, String membertel, String memberaddress,
 			String price, String orderinfo, String menuname, String amount, String storename, String storeaddress,
-			String storetel, String ordertime, String state, String hit) {
+			String storetel, String ordertime, String state, String hit, String pang) {
 		super();
 		this.ordernumber = ordernumber;
 		this.memberid = memberid;
@@ -126,9 +138,7 @@ public class FoodOrderBean {
 		this.ordertime = ordertime;
 		this.state = state;
 		this.hit = hit;
-	}
-	public FoodOrderBean() {
-		super();
+		this.pang = pang;
 	}
 	@Override
 	public String toString() {
@@ -136,6 +146,6 @@ public class FoodOrderBean {
 				+ ", membertel=" + membertel + ", memberaddress=" + memberaddress + ", price=" + price + ", orderinfo="
 				+ orderinfo + ", menuname=" + menuname + ", amount=" + amount + ", storename=" + storename
 				+ ", storeaddress=" + storeaddress + ", storetel=" + storetel + ", ordertime=" + ordertime + ", state="
-				+ state + ", hit=" + hit + "]";
+				+ state + ", hit=" + hit + ", pang=" + pang + "]";
 	}
 }

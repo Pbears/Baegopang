@@ -15,33 +15,19 @@
 <%
 	request.setCharacterEncoding("UTF-8");
 	MemberBean bean = (MemberBean)session.getAttribute("member");
-	//MemberBean modbean = new MemberBean();
-	//MemberDao dao = new MemberDao();
 	MyPageDao myDao = new MyPageDao();
-	
-	
-	//내정보
-	
-		/* String pw = request.getParameter("pw");
-		String address = request.getParameter("address1")+" "+request.getParameter("address2");
-		String tel = request.getParameter("tel1")+"-"+request.getParameter("tel2")+"-"+request.getParameter("tel3");
-		modbean.setAddress(address);
-		modbean.setBirth(bean.getBirth());
-		modbean.setGender(bean.getGender());
-		modbean.setId(bean.getId());
-		modbean.setName(bean.getName());
-		modbean.setPw(pw);
-		modbean.setTel(tel);
-	
-	
-	dao.updateMember(modbean); */
-	
-	//주문내역
 	String id = bean.getId();
+
+	//주문내역
 	session.setAttribute("foodOrderList",myDao.selectMemberFoodOrder(id));
 	
+	//포인트
+	session.setAttribute("pangList", myDao.selectMemberPoint(id));
+	
+	//리뷰관리
+	session.setAttribute("replyList", myDao.selectMemberReply(id));
+	
 	response.sendRedirect("/Baegopang/jsp/main/myPage.jsp?state=success");
-	//session.setAttribute("member", modbean);
 	
 %>
 

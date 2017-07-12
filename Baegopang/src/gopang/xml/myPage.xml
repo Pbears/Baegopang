@@ -6,6 +6,15 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	<select id="selectMemberFoodOrder" parameterType="java.lang.String" resultType="foodOrder">
   		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , ORDERNUMBER, STORENAME, PRICE, STATE FROM FOODORDER WHERE MEMBERID=#{id}
   	</select>
+  	
+  	<select id="selectMemberPoint" parameterType="java.lang.String" resultType="foodOrder">
+  		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , STORENAME, PANG FROM FOODORDER F, MEMBER M WHERE F.MEMBERID = M.ID AND MEMBERID=#{id}
+  	</select>
+  	
+  	<select id="selectMemberReply" parameterType="java.lang.String" resultType="reply">
+  		SELECT REGDATE, STORENAME,CONTENTS FROM REPLY WHERE ID=#{id}
+  	</select>
+  	
 </mapper>
 
 

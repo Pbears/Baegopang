@@ -1,3 +1,4 @@
+<%@page import="gopang.bean.ReplyBean"%>
 <%@page import="java.util.List"%>
 <%@page import="gopang.bean.FoodOrderBean"%>
 <%@page import="java.io.PrintWriter"%>
@@ -210,6 +211,8 @@ th {
 <%
 	MemberBean bean = (MemberBean)session.getAttribute("member");
  	List<FoodOrderBean> list = (List<FoodOrderBean>)session.getAttribute("foodOrderList"); 
+ 	List<FoodOrderBean> panglist = (List<FoodOrderBean>)session.getAttribute("pangList");
+ 	List<ReplyBean> replylist = (List<ReplyBean>)session.getAttribute("replyList");
 	String tel = bean.getTel();
 	String[] telArr = tel.split("-");
 	String state = request.getParameter("state");
@@ -341,12 +344,29 @@ th {
 					    <th>적립포인트</th>
 					    <th>누적포인트</th>
 					  </tr>
+					  <%
+					  for(int i=0;i<panglist.size();i++){
+						  FoodOrderBean pang = panglist.get(i);
+					  %>
 					  <tr>
-					    <td>20170707</td>
-					    <td>미소야-구로점</td>
+					    <td><%=pang.getOrdertime() %></td>
+					    <td><%=pang.getStorename()%></td>
 					    <td>10</td>
-					    <td>10</td>
+					    <% 
+					    	if(i==panglist.size()-1){
+					    %>
+						    <td>10</td>
+					    <%
+					    	}else{
+					    %>
+					    	<td><%=(panglist.size()-i)*10%></td>
+					    <%
+					    	}
+					    %>
 					  </tr>
+					  <%
+					  }
+					  %>
 				</table>
 			</div>
 			<!--리뷰관리  -->
@@ -357,11 +377,18 @@ th {
 					    <th>음식점명</th>
 					    <th>리뷰내용</th>
 					  </tr>
-					  <!-- <tr>
-					    <td>Peter</td>
-					    <td>Griffin</td>
-					    <td>$100</td>
-					  </tr> -->
+					  <%
+					   for(int i = 0;i<replylist.size();i++){
+						   ReplyBean replybean = replylist.get(i);
+					  %>
+					  <tr>
+					    <td><%=replybean.getRegDate() %></td>
+					    <td><%=replybean.getStoreName() %></td>
+					    <td><%=replybean.getContents() %></td>
+					  </tr>
+					  <%
+					  }					  
+					  %> 
 				</table>
 			</div>
 		</div>

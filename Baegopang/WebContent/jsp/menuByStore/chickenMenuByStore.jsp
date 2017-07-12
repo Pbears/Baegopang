@@ -35,7 +35,6 @@
          var menu = $(this).find("input#menuName").val();
          var price = $(this).find("input#menuPrice").val();
          var tag = "<div class='order-div'>" + 
-<<<<<<< HEAD
          			"<form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp'>"+
                      "<label class='menu'>"+
                         menu+

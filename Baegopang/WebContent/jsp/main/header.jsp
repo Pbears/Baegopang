@@ -44,15 +44,19 @@
 	}
 	
 	#locationBtn{
-		margin-left: 250px;	
+		margin-left: 0px;	
 	}
 	
 	.searchContainer{
 		margin: o auto;
 	}
 	#searchWindow{
-		width: 500px;
+		width: 300px;
 		
+	}
+	#addressWindow{
+		margin-left: 200px;
+		width: 150px;
 	}
 	.buttonDiv{
 		padding-left: 100px;
@@ -66,7 +70,7 @@
 <script>
  function myPage() {
 	
-	document.location.href='myPageProcess.jsp';
+	document.location.href='/Baegopang/jsp/main/myPageProcess.jsp';
 }
  
  function searchMenu(){
@@ -88,7 +92,9 @@
 	
 	//회원주소와 동일한 구의 음식점list 가져오기
 	String data = request.getParameter("data");
-	out.println(address);
+	String searchAddress =request.getParameter("searchAddress");
+	//out.println(searchAddress);
+	//out.println(address);
 	//out.println(data);
 	HashMap<String, String> map = new HashMap<String,String>();
 	map.put("address",address);
@@ -108,8 +114,11 @@
 					<table align="center">
 						<tr>
 							<td>
-								<input type="button" id="locationBtn" value="location" class="btn btn-default">
+								<input type="text" name="searchAddress" id="addressWindow" class="form-control" placeholder="<%=MemberAddr.substring(0,MemberAddr.indexOf("구")+1)%>">
 							</td>
+							<td>
+								<input type="button" id="locationBtn" value="location" class="btn btn-default">
+							</td> 
 							<td>
 								<input type="text" name="data" id="searchWindow" class="form-control" placeholder="Search">
 							</td>

@@ -8,20 +8,10 @@ public class MemberBean {
 	private String tel;
 	private String gender;
 	private String birth;
+	private String pang;
 
 	public MemberBean() {
 		super();
-	}
-
-	public MemberBean(String id, String pw, String name, String address, String tel, String gender, String birth) {
-		super();
-		this.id = id;
-		this.pw = pw;
-		this.name = name;
-		this.address = address;
-		this.tel = tel;
-		this.gender = gender;
-		this.birth = birth;
 	}
 
 	public String getId() {
@@ -80,10 +70,31 @@ public class MemberBean {
 		this.birth = birth;
 	}
 
+	public String getPang() {
+		return pang;
+	}
+
+	public void setPang(String pang) {
+		this.pang = pang;
+	}
+
+	public MemberBean(String id, String pw, String name, String address, String tel, String gender, String birth,
+			String pang) {
+		super();
+		this.id = id;
+		this.pw = pw;
+		this.name = name;
+		this.address = address;
+		this.tel = tel;
+		this.gender = gender;
+		this.birth = birth;
+		this.pang = pang;
+	}
+
 	@Override
 	public String toString() {
 		return "MemberBean [id=" + id + ", pw=" + pw + ", name=" + name + ", address=" + address + ", tel=" + tel
-				+ ", gender=" + gender + ", birth=" + birth + "]";
+				+ ", gender=" + gender + ", birth=" + birth + ", pang=" + pang + "]";
 	}
 
 }
