@@ -35,7 +35,6 @@
          var menu = $(this).find("input#menuName").val();
          var price = $(this).find("input#menuPrice").val();
          var tag = "<div class='order-div'>" + 
-<<<<<<< HEAD
          			"<form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp'>"+
                      "<label class='menu'>"+
                         menu+
@@ -99,9 +98,9 @@
          });
          
          $("button").click(function(){
-            //alert(this.type);
+
             $("form[id='frm"+$(this).attr("id")+"']").submit();
-            //alert($(this).attr("id"));
+
          });
          $("textarea").click(function(){
             $(this).html('');
@@ -116,126 +115,14 @@
             });
          });
          
-       var form = $("form#paymentInfomation");
        $("button#myButton").on('click', function () {
-            /*  var $btn = $(this).button('loading');
-             $btn.button('toggle'); */
     	 
-	        var params = form.serializeArray();
-             params.push({name : $("#menuName").name, value : $("menuName").value});
-             params.push({name : $("#cnt").name, value : $("#cnt").value});
-             params.push({name : $("#price").name, value : $("#price").value});
+	        var params = $("form#paymentInfomation").serializeArray();
+           
 			console.log(params);			
-		$(form).submit(function() {
-			console.log(params);
-		});
-             
-/*              $("form#paymentInfomation").submit();  */
-           /*  param.push({name:"menuName", value:$("")});
-            
-            
-     		len = params.length;
-     		dataObj = {};
-     		
-		      jQuery.ajax({
-		    	  type : "POST",
-		    	  data : params,
-		    	  contentType: 'application/x-www-form-urlencoded; charset=UTF-8',
-		    	  url : "/Baegopang/jsp/payment/payment.jsp",
-		    	  dataType: 'html',
-		    	  success : function(data) {
-					$.each(params, function(i, field) {
-						console.log(field.name +':'+field.value);						
-					});
-				  }
-			  }); */
 		});
     });   
 
-                     "<label class='menu'>"+
-                        menu+
-                     "</label>"+
-                     "<input type='number' id='cnt' value='1' step='1' min='1' max='10'>"+
-                     "<label class='price'>"+price+"</label>"+
-                      "<input type='hidden' class='totalPrice' value='"+price+"'>"+
-                      "<input type='hidden' class='originPrice' value='"+price+"'>"+
-                      "<button class='cancelBtn'>취소</button>"+
-                 "</div>";
-         
- 
-         if($('label.menu').text().indexOf(menu) == -1){
-	         $(tag).appendTo("label#menuLabel");        	 
-	         	totalprice+=eval($("input.totalPrice").val());
-             $("label.ordertotalPrice").text(totalprice);
-         }else{
-        	
-    	         count+=1;
-    	         $("input#cnt").val(count);
-    	         var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
-    	         $(this).siblings("label.price").text(calPrice);
-    	         totalprice+=eval($("input.totalPrice").val());
-                 $("label.ordertotalPrice").text(totalprice);
-         }  
-      });
-      
-      $(document).on("click","#cnt", function () {
-    	  count=$(this).val();
-    	  var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
-          var beforePrice = eval($(this).siblings("label.price").text());
-          $(this).siblings("label.price").text(calPrice);
-          $(this).siblings("input.totalPrice").val(calPrice);
-          totalprice=0;
-          $("label.price").each(function(){
-             totalprice+=eval($(this).text());
-          });
-          
-          $("label.ordertotalPrice").text(totalprice);
-
-      });
-      
-       
-      //취소
-      $(document).on("click","button.cancelBtn", function () {
-          $(this).parent().remove();
-          totalprice=0;
-          $("label.price").each(function(){
-               totalprice+=eval($(this).text());
-            });
-         $("label.ordertotalPrice").text(totalprice);
-       });
-       
-       
-       
-       $("a[href='#none']").click(function(){
-            $("form#"+this.id).toggle();
-            
-         });
-         
-         $("button").click(function(){
-            //alert(this.type);
-            $("form[id='frm"+$(this).attr("id")+"']").submit();
-            //alert($(this).attr("id"));
-         });
-         $("textarea").click(function(){
-            $(this).html('');
-            $(this).keyup(function(e){
-               $("span#sw").css("color","blue");
-               if($(this).val().length>100){
-                  $("span#sw").css("color","red");
-                  $("span#sw").html(100-($(this).val().length));
-               }else{
-               $("span#sw").html( ($(this).val().length));
-               }
-            });
-         });
-         
-       $("button#myButton").on('click', function () {
-             var $btn = $(this).button('loading');
-             $btn.button('toggle');
-             $("form#paymentInfomation").submit();
-      });
-
-   });
    
 </script>
 <style>
