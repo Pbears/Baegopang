@@ -36,12 +36,14 @@
          var price = $(this).find("input#menuPrice").val();
 
          var tag = "<div class='order-div'>" + 
-                     "<label class='menu'>"+
+                     "<label class='menu' style='width:200px;'>"+
                         menu+
                      "</label>"+
-                     "<input type='number' id='cnt' value='1' step='1' min='1' max='10'>"+
-                     "<label class='price'>"+price+"</label>"+
-                      "<input type='hidden' class='totalPrice' value='"+price+"'>"+
+                     "<input type='hidden' id='menuName' name='menuName' value='"+menu+"'>"+
+                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='margin : auto;'>"+
+                     "<input type='hidden' id='count' name='count' value='1'>"+
+                     "<label class='price'>"+price+"원</label>"+
+                      "<input type='hidden' class='totalPrice' id='price' name='price' value='"+price+"'>"+
                       "<input type='hidden' class='originPrice' value='"+price+"'>"+
                       "<button class='cancelBtn'>취소</button>"+
                  "</div>";
@@ -60,9 +62,13 @@
     	         totalprice+=eval($("input.totalPrice").val());
                  $("label.ordertotalPrice").text(totalprice);
          }  
+         
+      });
       
       $(document).on("click","#cnt", function () {
-    	  count=$(this).val();
+    	  
+    	  count=eval($(this).val());
+    	  $(this).siblings("input#count").val(count);
     	  var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
           var beforePrice = eval($(this).siblings("label.price").text());
           $(this).siblings("label.price").text(calPrice);
@@ -73,7 +79,6 @@
           });
           
           $("label.ordertotalPrice").text(totalprice);
-
       });
       
        
@@ -95,9 +100,9 @@
          });
          
          $("button").click(function(){
-            //alert(this.type);
+
             $("form[id='frm"+$(this).attr("id")+"']").submit();
-            //alert($(this).attr("id"));
+
          });
          $("textarea").click(function(){
             $(this).html('');
@@ -112,13 +117,11 @@
             });
          });
          
-       $("button#myButton").on('click', function () {
-             var $btn = $(this).button('loading');
-             $btn.button('toggle');
-             $("form#paymentInfomation").submit();
-      });
-
-   });
+	       $("#myButton").click(function () {
+				$('#paymentInfomation').submit();
+		 
+	    	});   
+	   });
 
    
 </script>
