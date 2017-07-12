@@ -1,3 +1,5 @@
+<%@page import="java.util.Stack"%>
+<%@page import="java.util.ArrayList"%>
 <%@page import="gopang.bean.AddToCartBean"%>
 <%@page import="java.util.List"%>
 <%@page import="java.util.Map"%>
@@ -100,8 +102,44 @@ textarea{
 </style>
 </head>
 <body>
-
-	<%=request.getParameter("menuName") %>
+	<%
+		ArrayList<AddToCartBean>cartList = new ArrayList<>();
+		
+		
+		String [] menuName = request.getParameterValues("menuName");
+		String [] cnt = request.getParameterValues("count");
+		String [] price = request.getParameterValues("price");
+		
+		for(int i=0 ; i < menuName.length ; i++){
+			System.out.println(menuName[i]);
+		}
+		
+		int [] cntArr = new int [cnt.length];
+		
+		if(cnt != null){
+			for(int i=0; i<cnt.length; i++){
+				cntArr[i] = Integer.parseInt(cnt[i]);
+			}			
+		}
+		
+		int [] priceArr = new int [price.length];
+		
+		if(price != null){
+			for(int i=0; i<price.length; i++){
+				priceArr[i] = Integer.parseInt(price[i]);
+			}
+			
+		}
+		
+		for(int i=0; i < 3 ; i++){
+			AddToCartBean addToCartBean = new AddToCartBean();
+			addToCartBean.setMenuName(menuName[i]);
+			addToCartBean.setCnt(cntArr[i]);
+			addToCartBean.setPrice(priceArr[i]);
+			cartList.add(addToCartBean);
+	
+		}
+	%>
 	<!-- 주석풀기 -->
 	<%-- <jsp:include page="../main/header.jsp"/> --%>
 
@@ -244,13 +282,19 @@ textarea{
 					
 					<!-- 메뉴 추가 body div -->
 					<div class="form-group centerDiv rightDivs">
-						<label for="inputPassword3" class="col-md-4 control-label">${menuName}</label>
+					<%
+						for(AddToCartBean bean : cartList){
+					%>
+						<label for="inputPassword3" class="col-md-4 control-label"><%=bean.getMenuName() %></label>
 						<div class="col-md-4">
-							<label id="eachPrice">${price}</label><label>원</label>
+							<label id="eachPrice"><%=bean.getPrice() %></label><label>원</label>
 						</div>
 						<div class="col-md-4">
-							<label id="eachAmount">${cnt}</label><label>개</label>
+							<label id="eachAmount"><%=bean.getCnt() %></label><label>개</label>
 						</div>
+						<%
+						}
+						%>
 						<div>
 							<br><br>
 							<hr class="dashedHr">
