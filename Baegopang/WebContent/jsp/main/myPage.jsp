@@ -83,6 +83,12 @@ body {
     margin: 0 auto;
 }
 
+.overflowDiv{
+    width: 600px;
+    height: 623px;
+    overflow: auto;
+}
+
 .inputLog, .orderLog, .pointLog, .reviewLog {
 	background-color: #ff8d00;
 	width: 30%;
@@ -370,26 +376,28 @@ th {
 				</table>
 			</div>
 			<!--리뷰관리  -->
-			<div class="reviewLog" id="reviewLog" style="width: 500px; display: none;" >
-				<table>
-					  <tr>
-					    <th>리뷰작성일자</th>
-					    <th>음식점명</th>
-					    <th>리뷰내용</th>
-					  </tr>
-					  <%
-					   for(int i = 0;i<replylist.size();i++){
-						   ReplyBean replybean = replylist.get(i);
-					  %>
-					  <tr>
-					    <td><%=replybean.getRegDate() %></td>
-					    <td><%=replybean.getStoreName() %></td>
-					    <td><%=replybean.getContents() %></td>
-					  </tr>
-					  <%
-					  }					  
-					  %> 
-				</table>
+			<div class="reviewLog" id="reviewLog" style="width: 500px;  height: 653px; display: none;" >
+				<div class="overflowDiv">
+					<table>
+						  <tr>
+						    <th>리뷰작성일자</th>
+						    <th>음식점명</th>
+						    <th>리뷰내용</th>
+						  </tr>
+						  <%
+						   for(int i = 0;i<replylist.size();i++){
+							   ReplyBean replybean = replylist.get(i);
+						  %>
+						  <tr>
+						    <td><%=replybean.getRegDate() %></td>
+						    <td><%=replybean.getStoreName() %></td>
+						    <td><%=replybean.getContents() %></td>
+						  </tr>
+						  <%
+						  }					  
+						  %> 
+					</table>
+				</div>
 			</div>
 		</div>
 	</div>
