@@ -34,18 +34,18 @@
           e.preventDefault();
          var menu = $(this).find("input#menuName").val();
          var price = $(this).find("input#menuPrice").val();
+
          var tag = "<div class='order-div'>" + 
-         			"<form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp'>"+
                      "<label class='menu'>"+
                         menu+
                      "</label>"+
                      "<input type='hidden' id='menuName' name='menuName' value='"+menu+"'>"+
                      "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10'>"+
+                     "<input type='text' id='count' name='count' >"+
                      "<label class='price'>"+price+"</label>"+
                       "<input type='hidden' class='totalPrice' id='price' name='price' value='"+price+"'>"+
                       "<input type='hidden' class='originPrice' value='"+price+"'>"+
                       "<button class='cancelBtn'>취소</button>"+
-                      "</form>"+
                  "</div>";
          
  
@@ -66,7 +66,9 @@
       });
       
       $(document).on("click","#cnt", function () {
-    	  count=$(this).val();
+    	  
+    	  count=eval($(this).val());
+    	  $(this).siblings("input#count").val(count);
     	  var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
           var beforePrice = eval($(this).siblings("label.price").text());
           $(this).siblings("label.price").text(calPrice);
@@ -115,13 +117,11 @@
             });
          });
          
-       $("button#myButton").on('click', function () {
-    	 
-	        var params = $("form#paymentInfomation").serializeArray();
-           
-			console.log(params);			
-		});
-    });   
+	       $("#myButton").click(function () {
+				$('#paymentInfomation').submit();
+		 
+	    	});   
+	   });
 
    
 </script>
@@ -361,7 +361,11 @@
 		    <h3 class="panel-title">주문 목록</h3>
 		  </div>
 		  <div class="panel-body" id="panel-body-order">
+		  
+		  <form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp' method='get'>
 		     <label for="addMenu" id="menuLabel" ></label> 
+		   </form>
+		     
 		  </div>
 		</div>
 		
@@ -373,7 +377,7 @@
 		    <label class="ordertotalPrice" style="font-size: 30px;"></label>원
 		  </div>
 		</div>
-		<button type="button" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">
+		<button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">
 		  결제하기
 		</button>
 		</div>
