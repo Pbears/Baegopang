@@ -36,13 +36,13 @@
          var price = $(this).find("input#menuPrice").val();
 
          var tag = "<div class='order-div'>" + 
-                     "<label class='menu'>"+
+                     "<label class='menu' style='width:200px;'>"+
                         menu+
                      "</label>"+
                      "<input type='hidden' id='menuName' name='menuName' value='"+menu+"'>"+
-                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10'>"+
-                     "<input type='text' id='count' name='count' >"+
-                     "<label class='price'>"+price+"</label>"+
+                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='margin : auto;'>"+
+                     "<input type='hidden' id='count' name='count' value='1'>"+
+                     "<label class='price'>"+price+"원</label>"+
                       "<input type='hidden' class='totalPrice' id='price' name='price' value='"+price+"'>"+
                       "<input type='hidden' class='originPrice' value='"+price+"'>"+
                       "<button class='cancelBtn'>취소</button>"+
@@ -309,7 +309,7 @@
 	</div>
 	
 	<span>
-	<div id="menuContiner" align="center">
+	<div id="menuContiner" align="center" >
 	<span>
 		<%
 			/* for(MenuBean menu : menuList){ */
@@ -339,7 +339,6 @@
 	</span>
 	</div> 
 	</span>
-	
 	<span>
 		<div id="selectMenuContainer">
 		<div class="panel panel-default">
@@ -373,8 +372,8 @@
 		  <div class="panel-heading">
 		    <h3 class="panel-title">주문 금액 합계</h3>
 		  </div>
-		  <div class="panel-body" id="panel-body-ordertotalPrice">
-		    <label class="ordertotalPrice" style="font-size: 30px;"></label>원
+		  <div class="panel-body" id="panel-body-ordertotalPrice" style="text-align: right; margin-right: 20px;">
+		    <label class="ordertotalPrice" style="font-size: 30px; text-align: right;"></label>원
 		  </div>
 		</div>
 		<button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">

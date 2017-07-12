@@ -77,7 +77,7 @@
 					if (userId != null) {
 				%>
 				<div class="form-group">
-					<label>' <%=userId%> '님 안녕하세요 헿
+					<label>' <%=userId%> '님 안녕하세요
 					</label>
 				</div>
 				<input type="hidden" name="userId" value="<%=userId%>">
