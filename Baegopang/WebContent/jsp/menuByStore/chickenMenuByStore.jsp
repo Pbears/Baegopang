@@ -36,11 +36,11 @@
          var price = $(this).find("input#menuPrice").val();
 
          var tag = "<div class='order-div'>" + 
-                     "<label class='menu' style='width:210px;'>"+
+                     "<label class='menu' style='width:205px;'>"+
                         menu+
                      "</label>"+
-                     "<input type='hidden' id='menuName' name='menuName' value='"+menu+"' style='width:210px;'>"+
-                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='width:35px; margin-left:0px; margin-right:5px;'>"+
+                     "<input type='hidden' id='menuName' name='menuName' value='"+menu+"'>"+
+                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='width:35px; margin-left:0px; margin-right:0px;'>"+
                      "<input type='hidden' id='count' name='count' value='1'>"+
                      "<label class='price'>"+price+"원</label>"+
                       "<input type='hidden' class='totalPrice' id='price' name='price' value='"+price+"'>"+
@@ -92,7 +92,7 @@
           $(this).parent().remove();
           totalprice=0;
           $("label.price").each(function(){
-               totalprice+=eval($(this).text());
+               totalprice+=eval($(this).siblings('.totalPrice').val());
             });
          $("label.ordertotalPrice").text(totalprice);
        });
@@ -369,8 +369,8 @@
 		    <label class="ordertotalPrice" style="font-size: 30px; text-align: right;"></label>원
 		  </div>
 		</div>
-		<button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-primary" autocomplete="off">
-		  결제하기
+		<button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-success" autocomplete="off">
+		  주문하기
 		</button>
 		</div>
 	 </span>

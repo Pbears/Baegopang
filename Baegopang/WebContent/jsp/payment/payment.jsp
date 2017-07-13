@@ -14,17 +14,26 @@
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script>
-	function checkPang(){
-		var pangText = parseInt(document.getElementById("pangText").value);
-		var pang = parseInt(document.getElementById("pangAble").innerText);
-		
-		if(pangText>pang || pangText<1000 || pangText%100!=0){
-			alert('팡은 1000팡 이상 ,100팡 단위로 내 팡범위 안에서 사용가능합니다!');
-			document.getElementById("pangText").value='';
-		}else{
-			//팡포인트 사용가능할 때  구현!!!!!!!!!!!!!!!!!!!!!!!
-		}
-	}
+	$(document).ready(function() {
+		$('#checkPang').click(function() {
+			var pangText = eval($('#pangText').val());
+			var pang = eval($('#myPang').val());
+
+			if(pangText>pang || pangText<1000 || pangText%100!=0){
+				alert('팡은 1000팡 이상 ,100팡 단위로 내 팡범위 안에서 사용가능합니다!');
+				$("#pangText").val('');
+			}else{
+				var price = eval($('label#orderPrice').text()) - pangText;
+				var calPang = pang-pangText;
+				
+				$('#pangPrice').text("-"+pangText);
+				$('#realTotalPrice').text(price);
+				$('#pangAble').text(calPang);
+				$('#finalPrice').val(price);
+			}			
+		});
+	});
+	
 </script>
 <style>
 ul {
@@ -112,6 +121,8 @@ textarea{
 </head>
 <body>
 	<%
+	
+		request.setCharacterEncoding("UTF-8");
 		MemberBean memberBean = (MemberBean)session.getAttribute("member");
 		ArrayList<AddToCartBean>cartList = new ArrayList<>();
 		
@@ -119,6 +130,8 @@ textarea{
 		String [] menuName = request.getParameterValues("menuName");
 		String [] cnt = request.getParameterValues("count");
 		String [] price = request.getParameterValues("price");
+		
+		int count = 0;
 		int totalPrice = 0;
 		
 		for(int i=0 ; i < menuName.length ; i++){
@@ -130,6 +143,7 @@ textarea{
 		if(cnt != null){
 			for(int i=0; i<cnt.length; i++){
 				cntArr[i] = Integer.parseInt(cnt[i]);
+				count+=cntArr[i];
 			}			
 		}
 		
@@ -138,22 +152,37 @@ textarea{
 		if(price != null){
 			for(int i=0; i<price.length; i++){
 				priceArr[i] = Integer.parseInt(price[i]);
-				totalPrice+=priceArr[i];
+				totalPrice+=priceArr[i] ;
 			}
 			
 		}
 		
-		for(int i=0; i < cartList.size() ; i++){
+		for(int i=0; i < menuName.length ; i++){
 			AddToCartBean addToCartBean = new AddToCartBean();
 			addToCartBean.setMenuName(menuName[i]);
 			addToCartBean.setCnt(cntArr[i]);
 			addToCartBean.setPrice(priceArr[i]);
 			cartList.add(addToCartBean);
-			System.out.println(cartList);
+	
 		}
+		
+		session.setAttribute("cartList", cartList);
 	%>
+	<!-- 주석풀기 -->
 	<jsp:include page="../main/header.jsp"/>
 
+	<ul>
+		<li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
+		<li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
+		<li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
+		<li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
+		<li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
+		<li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
+		<li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
+		<li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
+	</ul>
+
+		<form action="final.jsp" method="post">
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
 
@@ -162,7 +191,6 @@ textarea{
 
 		<!-- 수평선 -->
 		<hr>
-
 		<!-- 왼쪽 div 태그 -->
 		<div class="col-md-8">
 
@@ -181,7 +209,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputEmail3" class="col-sm-2 control-label">휴대전화</label>
 						<div class="col-sm-10">
-							<input type="tel" class="form-control" value="<%=memberBean.getTel()%>" >
+							<input type="tel" class="form-control" placeholder="전화번호" name="tel" value="<%=memberBean.getTel()%>">
 						</div>
 						<br>
 					</div>
@@ -190,7 +218,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" value="<%=memberBean.getAddress()%>">
+							<input type="text" class="form-control" placeholder="주소" name="address" value="<%=memberBean.getAddress()%>">
 						</div>
 						<br>
 					</div>
@@ -199,7 +227,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">요청사항</label>
 						<div class="col-sm-10">
-							<textarea class="form-control" rows="5"  placeholder="요청사항"></textarea>
+							<textarea class="form-control" name="comment" rows="5"  placeholder="요청사항"></textarea>
 						</div>
 						<br>
 					</div>
@@ -223,7 +251,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주문금액</label>
 						<div class="col-sm-10 orderPrice">
-							<label id="orderPrice">100</label><label>원</label>
+							<label id="orderPrice"><%=totalPrice %></label><label>원</label>
 						</div>
 					</div>
 					
@@ -239,7 +267,8 @@ textarea{
 										<label>내 팡</label>
 									</div>
 									<div class="col-md-6">
-										<label id="pangAble" value="<%=memberBean.getPang()%>"><%=memberBean.getPang() %></label><label>팡</label>
+										<label id="pangAble"><%=memberBean.getPang() %></label><label>팡</label>
+										<input type="hidden" id="myPang" value="<%=memberBean.getPang()%>">
 									</div>
 									<div class="centerDiv"><label><h6>1000팡 이상 , 100팡 단위로 사용가능</h6></label></div>
 								</div>
@@ -249,7 +278,7 @@ textarea{
 											<input type="text" id="pangText" class="form-control" placeholder="0">
 										</div>
 										<div class="col-md-4">
-											<button type="button" class="btn btn-success" onclick="checkPang()">사용하기</button>
+											<button type="button" class="btn btn-success" id="checkPang" >사용하기</button>
 										</div>
 									</div>
 								</div>
@@ -312,15 +341,15 @@ textarea{
 						<hr>
 						<label class="col-sm-4">수량</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalAmount"><%=cartList.size() %></label><label>개</label>
+							<label id="totalAmount"><%=count %></label><label>개</label>
 						</div>
 						<label class="col-sm-4">상품금액</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalPrice"><%=totalPrice%></label><label>원</label>
+							<label id="totalPrice"><%=totalPrice %></label><label>원</label>
 						</div>
 						<label class="col-sm-4">팡 결제</label>
 						<div class="col-sm-6 orderPrice redText">
-							<label>-</label><label id="pangPrice">1000</label><label>팡</label>
+							<label></label><label id="pangPrice">0</label><label>팡</label>
 						</div>
 						<br><br><br><br><br>
 						<hr>
@@ -328,18 +357,22 @@ textarea{
 						<div class="rightText">
 								<h6><label>최종결제금액</label></h6>
 								<div>
-									<h1><label id="realTotalPrice">1000</label><label>원</label></h1>
+									<h1><label id="realTotalPrice"><%=totalPrice %></label><label>원</label></h1>
+									<input type="hidden" id="finalPrice" name="realTotalPrice">
 								</div>
 						</div>
 					</div>
 					<div class="finalDiv rightDivs">
 						<hr>
-						<button type="button" class="btn btn-success finalButton">결제하기</button>
+						<button type="submit" class="btn btn-success finalButton" >결제하기</button>
 					</div>
 				</div>
 			</div>
 		</div>
 	</div>
+	</form>
+	
+		
 
 
 	<!-- footer -->
