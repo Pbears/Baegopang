@@ -36,11 +36,9 @@ ul {
 	width: 1600px;
 	border-radius: 10px;
 }
-
 li {
 	float: left;
 }
-
 li a {
 	display: block;
 	color: white;
@@ -49,13 +47,10 @@ li a {
 	text-decoration: none;
 	border-radius: 10px;
 	font-weight: bold;
-	
 }
-
 li a :hover :not(.active){
 	background-color : gray ;
 }
-
 hr{
 	border: solid 1px gray;
 }
@@ -66,16 +61,14 @@ label{
 textarea{
 	resize: none;
 }
-
 .mainDiv {
-	width: 80%;
+	width: 84%;
 	margin: 0 auto;
 }
 .rowmainDiv{
-	width: 89%;	
+	width: 1580px;	
 	margin: 0 auto;
 }
-
 .sendInfoDiv{
 	padding: 10px;
 }
@@ -115,7 +108,6 @@ textarea{
 	margin: 0 auto;
 	width: 80%;
 }
-
 </style>
 </head>
 <body>
@@ -123,10 +115,10 @@ textarea{
 		MemberBean memberBean = (MemberBean)session.getAttribute("member");
 		ArrayList<AddToCartBean>cartList = new ArrayList<>();
 		
+		
 		String [] menuName = request.getParameterValues("menuName");
 		String [] cnt = request.getParameterValues("count");
 		String [] price = request.getParameterValues("price");
-		int totalPrice=0;
 		
 		for(int i=0 ; i < menuName.length ; i++){
 			System.out.println(menuName[i]);
@@ -145,12 +137,11 @@ textarea{
 		if(price != null){
 			for(int i=0; i<price.length; i++){
 				priceArr[i] = Integer.parseInt(price[i]);
-				totalPrice+=priceArr[i];
 			}
 			
 		}
 		
-		for(int i=0; i < menuName.length ; i++){
+		for(int i=0; i < 3 ; i++){
 			AddToCartBean addToCartBean = new AddToCartBean();
 			addToCartBean.setMenuName(menuName[i]);
 			addToCartBean.setCnt(cntArr[i]);
@@ -159,10 +150,10 @@ textarea{
 	
 		}
 	%>
-<%=memberBean %>
-	 <jsp:include page="../main/header.jsp"/>
+	<!-- 주석풀기 -->
+	<jsp:include page="../main/header.jsp"/>
 
-	<!-- <ul>
+	<ul>
 		<li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
 		<li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
 		<li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
@@ -171,7 +162,7 @@ textarea{
 		<li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
 		<li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
 		<li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
-	</ul> -->
+	</ul>
 
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
@@ -242,7 +233,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주문금액</label>
 						<div class="col-sm-10 orderPrice">
-							<label id="orderPrice"><%=totalPrice %></label><label>원</label>
+							<label id="orderPrice">100</label><label>원</label>
 						</div>
 					</div>
 					
@@ -293,51 +284,53 @@ textarea{
 				<div class="panel-body">
 				
 					<!-- 메뉴 추가 header div -->
-					<div class="form-group centerDiv rightDivs" style=" margin-bottom: 0px; padding-bottom: 0px; width:100%;">
-						<h4><label for="inputPassword3" class="col-md-4 control-label" style="margin-left:20px;">메뉴이름</label></h4>
-						<h4><label class="col-md-4" style="margin-left:114px; width: 70px; padding-right: 0px;">금액</label></h4>
-						<h4><label class="col-md-4" style=" width: 70px; padding-left: 7px;" >수량</label></h4>
+					<div class="form-group centerDiv rightDivs">
+						<h4><label class="col-xs-4 col-md-4">메뉴이름</label></h4>
+						<h4><label class="col-xs-4 col-md-4" style="margin-left: 60px; width: 70px;">금액</label></h4>
+						<h4><label class="col-xs-4 col-md-4" style="width: 70px; margin-left: 10px;">수량</label></h4>
 						<br>
 						<hr>
 					</div>
 					
 					<!-- 메뉴 추가 body div -->
-					<div class="form-group centerDiv rightDivs" style=" width:400px; margin:o auto; margin-bottom: 0px; padding-bottom: 0px;">
+					<div class="form-group centerDiv rightDivs">
 					<%
 						for(AddToCartBean bean : cartList){
 					%>
-						<div style="width: 100%; height: 75px;">
-							<label for="inputPassword3" class="col-md-4 control-label" style="width: 80%;"><%=bean.getMenuName() %></label>
-							<div class="col-md-4" style="margin-left: 250px;">
-								<label id="eachPrice"><%=bean.getPrice() %></label><label>원</label> &emsp;
-								<label id="eachAmount"><%=bean.getCnt() %></label><label>개</label>
+						<div class="row">
+							<label class="col-xs-4 col-md-4" style="width: 180px;"><%=bean.getMenuName() %></label>
+							<div class="col-xs-4 col-md-4" style="width: 95px;">
+								<label id="eachPrice"><%=bean.getPrice() %>원</label>
+							</div>
+							<div class="col-xs-4 col-md-4" style="width: 60px;">
+								<label id="eachAmount"><%=bean.getCnt() %>개</label>
 							</div>
 						</div>
 						<%
 						}
 						%>
-							<br>
+						<div>
+							<br><br>
 							<hr class="dashedHr">
+						</div>
 					</div>
 					
 					
 					
 					<!-- 최종결제정보 -->
-					<div class="form-group centerDiv rightDivs" style=" margin-bottom: 0px; padding-bottom: 0px; width:100%;">
+					<div class="form-group centerDiv rightDivs">
 						<hr>
-						<div align="center" >
-							<label for="inputPassword3" class="col-sm-4 control-label">수량</label>
-							<div class="col-sm-6 orderPrice">
-								<label id="totalAmount"><%=cartList.size() %></label><label>개</label>
-							</div>
-							<label for="inputPassword3" class="col-sm-4 control-label">상품금액</label>
-							<div class="col-sm-6 orderPrice">
-								<label id="totalPrice"><%=totalPrice %></label><label>원</label>
-							</div>
-							<label for="inputPassword3" class="col-sm-4 control-label">팡 결제</label>
-							<div class="col-sm-6 orderPrice redText">
-								<label>-</label><label id="pangPrice">1000</label><label>팡</label>
-							</div>
+						<label class="col-sm-4">수량</label>
+						<div class="col-sm-6 orderPrice">
+							<label id="totalAmount">2</label><label>개</label>
+						</div>
+						<label class="col-sm-4">상품금액</label>
+						<div class="col-sm-6 orderPrice">
+							<label id="totalPrice">2000</label><label>원</label>
+						</div>
+						<label class="col-sm-4">팡 결제</label>
+						<div class="col-sm-6 orderPrice redText">
+							<label>-</label><label id="pangPrice">1000</label><label>팡</label>
 						</div>
 						<br><br><br><br><br>
 						<hr>
@@ -349,11 +342,10 @@ textarea{
 								</div>
 						</div>
 					</div>
-					<div class="finalDiv rightDivs" style=" margin-bottom: 0px; padding-bottom: 0px; width:100%;">
+					<div class="finalDiv rightDivs">
 						<hr>
 						<button type="button" class="btn btn-success finalButton">결제하기</button>
 					</div>
-					<br>
 				</div>
 			</div>
 		</div>

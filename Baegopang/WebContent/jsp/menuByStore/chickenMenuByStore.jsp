@@ -36,11 +36,11 @@
          var price = $(this).find("input#menuPrice").val();
 
          var tag = "<div class='order-div'>" + 
-                     "<label class='menu' style='width:200px;'>"+
+                     "<label class='menu' style='width:210px;'>"+
                         menu+
                      "</label>"+
-                     "<input type='hidden' id='menuName' name='menuName' value='"+menu+"'>"+
-                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='margin : auto;'>"+
+                     "<input type='hidden' id='menuName' name='menuName' value='"+menu+"' style='width:210px;'>"+
+                     "<input type='number' id='cnt' name='cnt' value='1' step='1' min='1' max='10' style='width:35px; margin-left:0px; margin-right:5px;'>"+
                      "<input type='hidden' id='count' name='count' value='1'>"+
                      "<label class='price'>"+price+"원</label>"+
                       "<input type='hidden' class='totalPrice' id='price' name='price' value='"+price+"'>"+
