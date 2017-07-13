@@ -364,7 +364,7 @@ textarea{
 					</div>
 					<div class="finalDiv rightDivs">
 						<hr>
-						<button type="submit" class="btn btn-success finalButton" >결제하기</button>
+						<button type="submit" class="btn btn-success" id = "finalButton" >결제하기</button>
 					</div>
 				</div>
 			</div>

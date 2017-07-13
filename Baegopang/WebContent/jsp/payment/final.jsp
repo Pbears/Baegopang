@@ -48,7 +48,7 @@
 		
 		long time = System.currentTimeMillis(); 
 
-		SimpleDateFormat dayTime = new SimpleDateFormat("yyyymmddhhmmss");
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyyMMddhhmmss");
 
 		String currentTime = dayTime.format(new Date(time));
 		
