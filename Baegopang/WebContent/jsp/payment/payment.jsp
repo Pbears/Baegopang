@@ -119,6 +119,7 @@ textarea{
 		String [] menuName = request.getParameterValues("menuName");
 		String [] cnt = request.getParameterValues("count");
 		String [] price = request.getParameterValues("price");
+		int totalPrice = 0;
 		
 		for(int i=0 ; i < menuName.length ; i++){
 			System.out.println(menuName[i]);
@@ -137,32 +138,21 @@ textarea{
 		if(price != null){
 			for(int i=0; i<price.length; i++){
 				priceArr[i] = Integer.parseInt(price[i]);
+				totalPrice+=priceArr[i];
 			}
 			
 		}
 		
-		for(int i=0; i < 3 ; i++){
+		for(int i=0; i < cartList.size() ; i++){
 			AddToCartBean addToCartBean = new AddToCartBean();
 			addToCartBean.setMenuName(menuName[i]);
 			addToCartBean.setCnt(cntArr[i]);
 			addToCartBean.setPrice(priceArr[i]);
 			cartList.add(addToCartBean);
-	
+			System.out.println(cartList);
 		}
 	%>
-	<!-- 주석풀기 -->
 	<jsp:include page="../main/header.jsp"/>
-
-	<ul>
-		<li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
-		<li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
-		<li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
-		<li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
-		<li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
-		<li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
-		<li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
-		<li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
-	</ul>
 
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
@@ -191,7 +181,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputEmail3" class="col-sm-2 control-label">휴대전화</label>
 						<div class="col-sm-10">
-							<input type="tel" class="form-control" placeholder="전화번호">
+							<input type="tel" class="form-control" value="<%=memberBean.getTel()%>" >
 						</div>
 						<br>
 					</div>
@@ -200,7 +190,7 @@ textarea{
 					<div class="form-group sendInfoDiv leftDivs">
 						<label for="inputPassword3" class="col-sm-2 control-label">주소</label>
 						<div class="col-sm-10">
-							<input type="text" class="form-control" placeholder="주소">
+							<input type="text" class="form-control" value="<%=memberBean.getAddress()%>">
 						</div>
 						<br>
 					</div>
@@ -322,11 +312,11 @@ textarea{
 						<hr>
 						<label class="col-sm-4">수량</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalAmount">2</label><label>개</label>
+							<label id="totalAmount"><%=cartList.size() %></label><label>개</label>
 						</div>
 						<label class="col-sm-4">상품금액</label>
 						<div class="col-sm-6 orderPrice">
-							<label id="totalPrice">2000</label><label>원</label>
+							<label id="totalPrice"><%=totalPrice%></label><label>원</label>
 						</div>
 						<label class="col-sm-4">팡 결제</label>
 						<div class="col-sm-6 orderPrice redText">
