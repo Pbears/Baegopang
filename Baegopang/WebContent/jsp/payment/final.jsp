@@ -1,3 +1,9 @@
+<%@page import="gopang.dao.OrderDao"%>
+<%@page import="gopang.bean.StoreBean"%>
+<%@page import="java.text.SimpleDateFormat"%>
+<%@page import="java.util.Date"%>
+<%@page import="gopang.bean.MemberBean"%>
+<%@page import="gopang.bean.FoodOrderBean"%>
 <%@page import="gopang.bean.AddToCartBean"%>
 <%@page import="gopang.bean.MenuBean"%>
 <%@page import="java.util.List"%>
@@ -34,34 +40,82 @@
 	<%
 		request.setCharacterEncoding("UTF-8");
 	
+		MemberBean memberBean =  (MemberBean)session.getAttribute("member");
+		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
+		FoodOrderBean foodOrderBean = new FoodOrderBean();
+		OrderDao dao = new OrderDao();
+		
+		long time = System.currentTimeMillis(); 
+
+		SimpleDateFormat dayTime = new SimpleDateFormat("yyyymmddhhmmss");
+
+		String currentTime = dayTime.format(new Date(time));
+		
+		if(menuList.size() != 1){
+			for(int i = 0; i < menuList.size(); i++){
+				foodOrderBean.setOrdernumber(currentTime+memberBean.getId()+"-"+(i+1));
+				foodOrderBean.setMemberid(memberBean.getId());
+				foodOrderBean.setMembername(memberBean.getName());
+				foodOrderBean.setMembertel(request.getParameter("tel"));
+				foodOrderBean.setMemberaddress(request.getParameter("address"));
+				foodOrderBean.setPrice(menuList.get(i).getPrice());
+				foodOrderBean.setOrderinfo(request.getParameter("comment"));
+				foodOrderBean.setMenuname(menuList.get(i).getMenuName());
+				foodOrderBean.setAmount(menuList.get(i).getCnt());
+				foodOrderBean.setStorename(storeList.get(0).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
+				foodOrderBean.setStoretel(storeList.get(0).getTel());
+				foodOrderBean.setOrdertime(currentTime);
+				foodOrderBean.setState("승인대기");
+				dao.orderInsert(foodOrderBean);
+				
+			}			
+		}else{
+				foodOrderBean.setOrdernumber(currentTime+memberBean.getId());
+				foodOrderBean.setMemberid(memberBean.getId());
+				foodOrderBean.setMembername(memberBean.getName());
+				foodOrderBean.setMembertel(request.getParameter("tel"));
+				foodOrderBean.setMemberaddress(request.getParameter("address"));
+				foodOrderBean.setPrice(menuList.get(0).getPrice());
+				foodOrderBean.setOrderinfo(request.getParameter("comment"));
+				foodOrderBean.setMenuname(menuList.get(0).getMenuName());
+				foodOrderBean.setAmount(menuList.get(0).getCnt());
+				foodOrderBean.setStorename(storeList.get(0).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
+				foodOrderBean.setStoretel(storeList.get(0).getTel());
+				foodOrderBean.setOrdertime(currentTime);
+				foodOrderBean.setState("승인대기");
+				dao.orderInsert(foodOrderBean);
+		}
+						
 		
 	%>
+	
+
 	<jsp:include page="../main/header.jsp"/>
 	<div class="panel panel-default" id="mainPanel">
 	  <div class="panel-body">
 	  	<img id="mainImage" src="/Baegopang/img//Baegopang.jpg">
-	    <h3><strong>주문이 완료 되었습니다</strong></h3>
-	    <table class="table">
-	    <%
-	    	for(AddToCartBean bean : menuList){
-	    %>
-  			<tr>
-  				<td><%=bean.getMenuName() %><%=bean.getPrice() %></td>
-  			</tr>
-	    <%
-	    	}
-	    %>
-	    	<tr>
-	    		<td>총 결제 금액 <strong><%=request.getParameter("realTotalPrice") %></strong> 입니다.</td>
-	    	</tr>
-	    	<tr>
-	    		<td> <고객 요청 사항> </td>
-	    	</tr>
-	    	<tr>
-	    		<td><strong><%=request.getParameter("comment") %></strong></td>
-	    	</tr>
-		</table>
+	    <br><h3><strong>주문이 완료 되었습니다</strong></h3><br>
+	    <div class="panel panel-default" style="margin: auto; width: 650px;">
+		  <div class="panel-heading">주문 내역</div>
+		  <div class="panel-body">
+			    <%
+			    	for(AddToCartBean bean : menuList){
+			    %>
+		  			<h5><%=bean.getMenuName() %> x <%=bean.getCnt()%> - <%=bean.getPrice() %>원</h5><br>
+		  			
+			    <%
+			    	}
+			    %>
+	    	<br><h4><<총 결제 금액 <strong><%=request.getParameter("realTotalPrice") %>원</strong> 입니다.>></h4><br><br>
+	    	
+	    		<h4><고객 요청 사항></h4><br>
+	    	<h5><strong><%=request.getParameter("comment") %></strong></h5>
+	    	
+		  </div>
+		</div>
 	  </div>
 	</div>
 	<jsp:include page="../main/footer.jsp" />

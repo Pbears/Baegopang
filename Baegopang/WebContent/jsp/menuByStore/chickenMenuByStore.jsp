@@ -252,6 +252,8 @@
 		ChickenDao chickenDao = new ChickenDao();
 		
 		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
+		session.setAttribute("storeList", storeList);
+		
 		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
 		
 		String storeName = storeList.get(0).getStoreName();

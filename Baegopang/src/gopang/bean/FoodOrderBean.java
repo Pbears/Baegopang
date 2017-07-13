@@ -7,10 +7,10 @@ public class FoodOrderBean {
 	private String membername;
 	private String membertel;
 	private String memberaddress;
-	private String price;
+	private int price;
 	private String orderinfo;
 	private String menuname;
-	private String amount;
+	private int amount;
 	private String storename;
 	private String storeaddress;
 	private String storetel;
@@ -55,10 +55,10 @@ public class FoodOrderBean {
 	public void setMemberaddress(String memberaddress) {
 		this.memberaddress = memberaddress;
 	}
-	public String getPrice() {
+	public int getPrice() {
 		return price;
 	}
-	public void setPrice(String price) {
+	public void setPrice(int price) {
 		this.price = price;
 	}
 	public String getOrderinfo() {
@@ -73,10 +73,10 @@ public class FoodOrderBean {
 	public void setMenuname(String menuname) {
 		this.menuname = menuname;
 	}
-	public String getAmount() {
+	public int getAmount() {
 		return amount;
 	}
-	public void setAmount(String amount) {
+	public void setAmount(int amount) {
 		this.amount = amount;
 	}
 	public String getStorename() {
@@ -120,7 +120,7 @@ public class FoodOrderBean {
 		super();
 	}
 	public FoodOrderBean(String ordernumber, String memberid, String membername, String membertel, String memberaddress,
-			String price, String orderinfo, String menuname, String amount, String storename, String storeaddress,
+			int price, String orderinfo, String menuname, int amount, String storename, String storeaddress,
 			String storetel, String ordertime, String state, String hit, String pang) {
 		super();
 		this.ordernumber = ordernumber;
