@@ -9,7 +9,7 @@ STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT -->
 	<insert id="orderInsert" parameterType="foodOrder">
 		INSERT INTO FOODORDER VALUES(#{ordernumber},#{memberid},#{membername},#{membertel},#{memberaddress},
 														#{price},#{orderinfo},#{menuname},#{amount},#{storename},
-														#{storeaddress},#{storetel},#{ordertime},0,0)
+														#{storeaddress},#{storetel},#{ordertime},'승인대기',0)
 	</insert>
   	
 </mapper>

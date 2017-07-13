@@ -67,7 +67,6 @@
 				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
 				foodOrderBean.setStoretel(storeList.get(0).getTel());
 				foodOrderBean.setOrdertime(currentTime);
-				foodOrderBean.setState("½ÂÀÎ´ë±â");
 				dao.orderInsert(foodOrderBean);
 				
 			}			
@@ -85,7 +84,6 @@
 				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
 				foodOrderBean.setStoretel(storeList.get(0).getTel());
 				foodOrderBean.setOrdertime(currentTime);
-				foodOrderBean.setState("½ÂÀÎ´ë±â");
 				dao.orderInsert(foodOrderBean);
 		}
 						
