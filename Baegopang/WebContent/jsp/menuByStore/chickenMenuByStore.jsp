@@ -54,19 +54,22 @@
 	         	totalprice+=eval($("input.totalPrice").val());
              $("label.ordertotalPrice").text(totalprice);
          }else{
-        	
-    	         count+=1;
-    	         $("input#count").val(count);
-    	         $("input#cnt").val(count);
+        	 
+        	 alert('이미 추가된 메뉴 입니다');
+        	 
+        	 /* 추후 진행 사항 */
+    	       /*   count+=1; 
+     	         $(this).parent().siblings("input#count").val(count);
+    	         $(this).parent().siblings("input#cnt").val(count); 
     	         var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
     	         $(this).siblings("label.price").text(calPrice);
     	         totalprice+=eval($("input.totalPrice").val());
-                 $("label.ordertotalPrice").text(totalprice);
+                 $("label.ordertotalPrice").text(totalprice);   */
          }  
          
       });
       
-      $(document).on("click","#cnt", function () {
+     $(document).on("click","#cnt", function () {
     	  
     	  count=eval($(this).val());
     	  $(this).siblings("input#count").val(count); //hidden에 값 설정
@@ -254,19 +257,7 @@
 		String storeName = storeList.get(0).getStoreName();
 		MemberBean memberBean = (MemberBean)session.getAttribute("member");
 		String id = memberBean.getId();
-		
-/* 		List<AddToCartBean>cartList=null;
-
-		AddToCartBean addToCartBean = new AddToCartBean();
-		
-		addToCartBean.setMenuName(request.getParameter("menuName"));
-		addToCartBean.setCnt(Integer.parseInt(request.getParameter("cnt")));
-		addToCartBean.setPrice(Integer.parseInt(request.getParameter("price"))); */
-		
-		
-
-
-		
+	
 	%>
 	
 	<jsp:include page="../main/header.jsp"></jsp:include>
@@ -328,7 +319,7 @@
 		        <p>
 		        	<%=menuList.get(i).getInfo() %>
 		        </p>
-		        <h5><%=menuList.get(i).getPrice() %>원</h5>
+		        <h5 style="margin-top: 20px;"><strong><%=menuList.get(i).getPrice() %>원</strong></h5>
 		        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
 		      </div>
 			</a>
