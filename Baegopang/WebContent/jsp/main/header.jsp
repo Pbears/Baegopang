@@ -127,7 +127,7 @@
 							</td>
 							<td>
 								<div class="buttonDiv">
-								<label><%=bean.getName() %>님 안녕하세여헿</label>
+								<label><%=bean.getName() %>님 반갑습니다.</label>
 								<button type="button" class="btn btn-default btn-lg" id="loginBtn" onclick="myPage()">
 								 <span class="glyphicon glyphicon-user" aria-hidden="true"></span>
 								</button>
