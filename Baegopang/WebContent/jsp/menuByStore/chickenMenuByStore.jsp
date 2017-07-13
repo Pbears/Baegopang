@@ -56,6 +56,7 @@
          }else{
         	
     	         count+=1;
+    	         $("input#count").val(count);
     	         $("input#cnt").val(count);
     	         var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
     	         $(this).siblings("label.price").text(calPrice);
@@ -68,14 +69,15 @@
       $(document).on("click","#cnt", function () {
     	  
     	  count=eval($(this).val());
-    	  $(this).siblings("input#count").val(count);
-    	  var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
-          var beforePrice = eval($(this).siblings("label.price").text());
-          $(this).siblings("label.price").text(calPrice);
+    	  $(this).siblings("input#count").val(count); //hidden에 값 설정
+    	  
+    	  var calPrice = eval($(this).val())*eval($(this).siblings('input.originPrice').val());
+          
+          $(this).siblings("label.price").text(calPrice+"원");
           $(this).siblings("input.totalPrice").val(calPrice);
           totalprice=0;
           $("label.price").each(function(){
-             totalprice+=eval($(this).text());
+             totalprice+=eval($(this).siblings("input.totalPrice").val());
           });
           
           $("label.ordertotalPrice").text(totalprice);
@@ -326,7 +328,7 @@
 		        <p>
 		        	<%=menuList.get(i).getInfo() %>
 		        </p>
-		        <h5><%=menuList.get(i).getPrice() %></h5>
+		        <h5><%=menuList.get(i).getPrice() %>원</h5>
 		        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
 		      </div>
 			</a>
