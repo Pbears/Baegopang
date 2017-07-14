@@ -358,7 +358,7 @@ textarea{
 								<h6><label>최종결제금액</label></h6>
 								<div>
 									<h1><label id="realTotalPrice"><%=totalPrice %></label><label>원</label></h1>
-									<input type="hidden" id="finalPrice" name="realTotalPrice">
+									<input type="text" id="finalPrice" name="realTotalPrice" value="<%=totalPrice%>">
 								</div>
 						</div>
 					</div>

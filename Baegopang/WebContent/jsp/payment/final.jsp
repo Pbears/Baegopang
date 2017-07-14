@@ -89,7 +89,6 @@
 						
 		
 	%>
-	
 
 	<jsp:include page="../main/header.jsp"/>
 	<div class="panel panel-default" id="mainPanel">
