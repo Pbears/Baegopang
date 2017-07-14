@@ -18,17 +18,17 @@
 <link href="/Baegopang/css/bootstrap.min.css" rel="stylesheet">
 <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 <script type="text/javascript">
-	function onCheck(obj) {
-		obj.style.border='1.5px solid #ff8c00'
-	}
-	
-	function outCheck(obj) {
-		obj.style.border='1px solid #ddd'
-	}
+   function onCheck(obj) {
+      obj.style.border='1.5px solid #ff8c00'
+   }
+   
+   function outCheck(obj) {
+      obj.style.border='1px solid #ddd'
+   }
 </script>
 <script>
    $(function(){
-      var totalprice=0;
+      var totalPrice=0;
       var count=1;
       $("a#innerA").click(function(e){
           e.preventDefault();
@@ -50,51 +50,51 @@
          
  
          if($('label.menu').text().indexOf(menu) == -1){
-	         $(tag).appendTo("label#menuLabel");        	 
-	         	totalprice+=eval($("input.totalPrice").val());
-             $("label.ordertotalPrice").text(totalprice);
+            totalPrice+=eval($(this).find("#menuPrice").val());
+            $(tag).appendTo("label#menuLabel");            
+             $("label.ordertotalPrice").text(totalPrice);
          }else{
-        	 
-        	 alert('이미 추가된 메뉴 입니다');
-        	 
-        	 /* 추후 진행 사항 */
-    	       /*   count+=1; 
-     	         $(this).parent().siblings("input#count").val(count);
-    	         $(this).parent().siblings("input#cnt").val(count); 
-    	         var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
-    	         $(this).siblings("label.price").text(calPrice);
-    	         totalprice+=eval($("input.totalPrice").val());
-                 $("label.ordertotalPrice").text(totalprice);   */
+            
+            alert('이미 추가된 메뉴 입니다');
+            
+            /* 추후 진행 사항 */
+               /*   count+=1; 
+                alert($(this).find("input#cnt").val());
+                 $(this).parent().siblings("input#cnt").val(count); 
+                var calPrice = eval($(this).val())*eval($(this).siblings("input.originPrice").val());
+                $(this).siblings("label.price").text(calPrice);
+                totalprice+=eval($("input.totalPrice").val());
+                 $("label.ordertotalPrice").text(totalprice);    */
          }  
          
       });
       
      $(document).on("click","#cnt", function () {
-    	  
-    	  count=eval($(this).val());
-    	  $(this).siblings("input#count").val(count); //hidden에 값 설정
-    	  
-    	  var calPrice = eval($(this).val())*eval($(this).siblings('input.originPrice').val());
+         
+         count=eval($(this).val());
+         $(this).siblings("input#count").val(count); //hidden에 값 설정
+         
+         var calPrice = eval($(this).val())*eval($(this).siblings('input.originPrice').val());
           
           $(this).siblings("label.price").text(calPrice+"원");
           $(this).siblings("input.totalPrice").val(calPrice);
-          totalprice=0;
+          totalPrice=0;
           $("label.price").each(function(){
-             totalprice+=eval($(this).siblings("input.totalPrice").val());
+             totalPrice+=eval($(this).siblings("input.totalPrice").val());
           });
           
-          $("label.ordertotalPrice").text(totalprice);
+          $("label.ordertotalPrice").text(totalPrice);
       });
       
        
       //취소
       $(document).on("click","button.cancelBtn", function () {
           $(this).parent().remove();
-          totalprice=0;
+          totalPrice=0;
           $("label.price").each(function(){
-               totalprice+=eval($(this).siblings('.totalPrice').val());
+               totalPrice+=eval($(this).siblings('.totalPrice').val());
             });
-         $("label.ordertotalPrice").text(totalprice);
+         $("label.ordertotalPrice").text(totalPrice);
        });
        
        
@@ -122,266 +122,266 @@
             });
          });
          
-	       $("#myButton").click(function () {
-				$('#paymentInfomation').submit();
-		 
-	    	});   
-	   });
+          $("#myButton").click(function () {
+            $('#paymentInfomation').submit();
+       
+          });   
+      });
 
    
 </script>
 <style>
-	ul {
-	    list-style-type: none;
-	    margin: auto;
-	    padding: 0;
-	    overflow: hidden;
-	    background-color: #ff8c00;
-	    width: 1600px;
-	    border-radius: 10px;
-	}
-	
-	li {
-	    float: left;    
-	}
-	
-	li a {
-	    display: block;
-	    color: white;
-	    text-align: center;
-	    padding: 14px 16px;
-	    text-decoration: none;
-	    border-radius: 10px;
-	    font-weight: bold;
-	}
-	
-	li a:hover:not(.active) {
-	    background-color: gray;
-	}
-	
-	.active {
-	    background-color: #ff5722;
-	}
-	
-	a#innerA{
-		pointer-events: none;
-		text-decoration: none;
-	}
-	
-	a#innerA img{
-		width : 150px;
-		height: 100px;
-		text-decoration: none;
-	}
-	
-	#storeInfoContainer {
-		width: 1600px;
-		margin: auto;
-		margin-top: 50px;
-	}
-	
-	#menuContiner{
-		margin: auto;
-		margin-left: 0px;
-		width: 1250px;
-		height : auto;
-		display: inline-block;
-	}
-	
-	.row{
-		display: inline-block;
-		margin: auto;
-	}
-	
-	.thumbnail{
-		width: 270px;
-		height : 270px;
-		padding : 5px;
-		margin-left: 40px;
-		margin-right : 10px;
-		margin-top: 50px;
-	}
-	
-	#selectMenuContainer{
-		top : 545px;
-		left : 1340px;
-		bottom : 870px;
-	 	width: 400px;
-	 	height : 800px;
-	 	display : inline-block;
-	 	position: absolute;
-	}
-	#cnt{
-		width: 40px;
-		text-align: right;
-		margin-left: 5px;
-		margin-right: 20px;
-	}
-	label{
-		padding: 5px;
-	}
-	
-	  div.container{
-  	 width: 980px;
-  	 margin-left: 150px;
-  	 margin-right: 500px;
+   ul {
+       list-style-type: none;
+       margin: auto;
+       padding: 0;
+       overflow: hidden;
+       background-color: #ff8c00;
+       width: 1600px;
+       border-radius: 10px;
+   }
+   
+   li {
+       float: left;    
+   }
+   
+   li a {
+       display: block;
+       color: white;
+       text-align: center;
+       padding: 14px 16px;
+       text-decoration: none;
+       border-radius: 10px;
+       font-weight: bold;
+   }
+   
+   li a:hover:not(.active) {
+       background-color: gray;
+   }
+   
+   .active {
+       background-color: #ff5722;
+   }
+   
+   a#innerA{
+      pointer-events: none;
+      text-decoration: none;
+   }
+   
+   a#innerA img{
+      width : 150px;
+      height: 100px;
+      text-decoration: none;
+   }
+   
+   #storeInfoContainer {
+      width: 1600px;
+      margin: auto;
+      margin-top: 50px;
+   }
+   
+   #menuContiner{
+      margin: auto;
+      margin-left: 0px;
+      width: 1250px;
+      height : auto;
+      display: inline-block;
+   }
+   
+   .row{
+      display: inline-block;
+      margin: auto;
+   }
+   
+   .thumbnail{
+      width: 270px;
+      height : 270px;
+      padding : 5px;
+      margin-left: 40px;
+      margin-right : 10px;
+      margin-top: 50px;
+   }
+   
+   #selectMenuContainer{
+      top : 545px;
+      left : 1340px;
+      bottom : 870px;
+       width: 400px;
+       height : 800px;
+       display : inline-block;
+       position: absolute;
+   }
+   #cnt{
+      width: 40px;
+      text-align: right;
+      margin-left: 5px;
+      margin-right: 20px;
+   }
+   label{
+      padding: 5px;
+   }
+   
+     div.container{
+      width: 980px;
+      margin-left: 150px;
+      margin-right: 500px;
   }
   
   button.btn.btn-default {
-	height: 74px;
-	width: 76px;
+   height: 74px;
+   width: 76px;
   }
   .fld_cmt{
-  	text-align: right;
+     text-align: right;
   }
   
   button#myButton{
-  	text-align: center;
-  	width: 400px;
-  	height: 50px;
+     text-align: center;
+     width: 400px;
+     height: 50px;
   }
   
 </style>
 </head>
 <body>
 
-	<%
-		request.setCharacterEncoding("UTF-8");
-		int brandNo = Integer.parseInt(request.getParameter("brandno"));
-		
-		ChickenDao chickenDao = new ChickenDao();
-		
-		List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
-		session.setAttribute("storeList", storeList);
-		
-		List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
-		
-		String storeName = storeList.get(0).getStoreName();
-		MemberBean memberBean = (MemberBean)session.getAttribute("member");
-		String id = memberBean.getId();
-	
-	%>
-	
-	<jsp:include page="../main/header.jsp"></jsp:include>
-	<ul>
-	  <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
-	  <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
-	  <li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
-	  <li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
-	  <li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
-	  <li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
-	  <li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
-	  <li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
-	</ul>
-	
-	<div id="storeInfoContainer">
-	<div class="panel panel-default">
-	  <div class="panel-body">
-	  	
-	   <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
-	   <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
-	   별점 : 
-	   <%
-			for (int j=0; j < storeList.get(0).getGpa() ; j++){
-		%>
-				<span class="glyphicon glyphicon-star" aria-hidden="true"></span>
-		<%
-				if(j == storeList.get(0).getGpa() -1 && j <5){
-						for(int k=0; k < 4-j; k++){
-		%>
-					<span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>					
-		<% 
-					}
-				}
-			}
-		%>  &nbsp;|&nbsp;
-		좋아요
-		<span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
-		<span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
-		<strong>(50)</strong></span>
-	  </div>
-	</div>
-	</div>
-	
-	<span>
-	<div id="menuContiner" align="center" >
-	<span>
-		<%
-			/* for(MenuBean menu : menuList){ */
-				for(int i=0; i<menuList.size(); i++){
-		%>
-	<div class="row" >
-	  <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
-	    <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
-			<a href="#" id="innerA">
-	 	      <img src="/Baegopang<%=menuList.get(i).getPicture() %>"/> 
-		      <div class="caption">
-		        <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
-		        <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
-		        <p>
-		        	<%=menuList.get(i).getInfo() %>
-		        </p>
-		        <h5 style="margin-top: 20px;"><strong><%=menuList.get(i).getPrice() %>원</strong></h5>
-		        <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
-		      </div>
-			</a>
-	    </div>
-	  </div>
-	</div>
-	<%
-			}	
-	%>
-	</span>
-	</div> 
-	</span>
-	<span>
-		<div id="selectMenuContainer">
-		<div class="panel panel-default">
-		  <div class="panel-heading">매장 정보</div>
-		  <div class="panel-body">
-		    <%=storeList.get(0).getInfo()%>
-		  </div>
-		</div>
-		
-		<div class="panel panel-default">
-		  <div class="panel-heading">최소 주문 금액</div>
-		  <div class="panel-body">
-		    <%=storeList.get(0).getMinprice()%>
-		  </div>
-		</div>
-		
-		<div class="panel panel-default">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">주문 목록</h3>
-		  </div>
-		  <div class="panel-body" id="panel-body-order">
-		  
-		  <form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp' method='get'>
-		     <label for="addMenu" id="menuLabel" ></label> 
-		   </form>
-		     
-		  </div>
-		</div>
-		
-		<div class="panel panel-default">
-		  <div class="panel-heading">
-		    <h3 class="panel-title">주문 금액 합계</h3>
-		  </div>
-		  <div class="panel-body" id="panel-body-ordertotalPrice" style="text-align: right; margin-right: 20px;">
-		    <label class="ordertotalPrice" style="font-size: 30px; text-align: right;"></label>원
-		  </div>
-		</div>
-		<button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-success" autocomplete="off">
-		  주문하기
-		</button>
-		</div>
-	 </span>
-	 
-	 <jsp:include page="../replyForm/replyForm.jsp">
-	 	<jsp:param value="<%=brandNo %>" name="brandNo"/>
-	 	<jsp:param value="<%=storeName %>" name="storeName"/>
-	 	<jsp:param value="orderNumber" name="orderNumber"/>
-	 	<jsp:param value="<%=id %>" name="id"/>
-	 </jsp:include>
+   <%
+      request.setCharacterEncoding("UTF-8");
+      int brandNo = Integer.parseInt(request.getParameter("brandno"));
+      
+      ChickenDao chickenDao = new ChickenDao();
+      
+      List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
+      session.setAttribute("storeList", storeList);
+      
+      List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
+      
+      String storeName = storeList.get(0).getStoreName();
+      MemberBean memberBean = (MemberBean)session.getAttribute("member");
+      String id = memberBean.getId();
+   
+   %>
+   
+   <jsp:include page="../main/header.jsp"></jsp:include>
+   <ul>
+     <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
+     <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
+     <li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
+     <li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
+     <li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
+     <li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
+     <li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
+     <li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
+   </ul>
+   
+   <div id="storeInfoContainer">
+   <div class="panel panel-default">
+     <div class="panel-body">
+        
+      <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
+      <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
+      별점 : 
+      <%
+         for (int j=0; j < storeList.get(0).getGpa() ; j++){
+      %>
+            <span class="glyphicon glyphicon-star" aria-hidden="true"></span>
+      <%
+            if(j == storeList.get(0).getGpa() -1 && j <5){
+                  for(int k=0; k < 4-j; k++){
+      %>
+               <span class="glyphicon glyphicon-star-empty" aria-hidden="true"></span>               
+      <% 
+               }
+            }
+         }
+      %>  &nbsp;|&nbsp;
+      좋아요
+      <span class="glyphicon glyphicon-heart" aria-hidden="true"></span>
+      <span class="glyphicon glyphicon-heart-empty" aria-hidden="true"></span>
+      <strong>(50)</strong></span>
+     </div>
+   </div>
+   </div>
+   
+   <span>
+   <div id="menuContiner" align="center" >
+   <span>
+      <%
+         /* for(MenuBean menu : menuList){ */
+            for(int i=0; i<menuList.size(); i++){
+      %>
+   <div class="row" >
+     <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
+       <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
+         <a href="#" id="innerA">
+             <img src="/Baegopang<%=menuList.get(i).getPicture() %>"/> 
+            <div class="caption">
+              <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
+              <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
+              <p>
+                 <%=menuList.get(i).getInfo() %>
+              </p>
+              <h5 style="margin-top: 20px;"><strong><%=menuList.get(i).getPrice() %>원</strong></h5>
+              <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
+            </div>
+         </a>
+       </div>
+     </div>
+   </div>
+   <%
+         }   
+   %>
+   </span>
+   </div> 
+   </span>
+   <span>
+      <div id="selectMenuContainer">
+      <div class="panel panel-default">
+        <div class="panel-heading">매장 정보</div>
+        <div class="panel-body">
+          <%=storeList.get(0).getInfo()%>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">최소 주문 금액</div>
+        <div class="panel-body">
+          <strong><%=storeList.get(0).getMinprice()%>원</strong>
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">주문 목록</h3>
+        </div>
+        <div class="panel-body" id="panel-body-order">
+        
+        <form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp' method='get'>
+           <label for="addMenu" id="menuLabel" ></label> 
+         </form>
+           
+        </div>
+      </div>
+      
+      <div class="panel panel-default">
+        <div class="panel-heading">
+          <h3 class="panel-title">주문 금액 합계</h3>
+        </div>
+        <div class="panel-body" id="panel-body-ordertotalPrice" style="text-align: right; margin-right: 20px;">
+          <label class="ordertotalPrice" style="font-size: 30px; text-align: right;"></label>원
+        </div>
+      </div>
+      <button type="submit" id="myButton" data-loading-text="결제 페이지로 이동합니다.." class="btn btn-success" autocomplete="off">
+        주문하기
+      </button>
+      </div>
+    </span>
+    
+    <jsp:include page="../replyForm/replyForm.jsp">
+       <jsp:param value="<%=brandNo %>" name="brandNo"/>
+       <jsp:param value="<%=storeName %>" name="storeName"/>
+       <jsp:param value="orderNumber" name="orderNumber"/>
+       <jsp:param value="<%=id %>" name="id"/>
+    </jsp:include>
 </body>
 </html>
