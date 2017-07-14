@@ -114,7 +114,7 @@
 					<table align="center">
 						<tr>
 							<td>
-								<input type="text" name="searchAddress" id="addressWindow" class="form-control" placeholder="<%=MemberAddr.substring(0,MemberAddr.indexOf("구")+1)%>">
+								<input type="text" name="searchAddress" id="addressWindow" class="form-control" readonly="readonly" placeholder="<%=MemberAddr.substring(0,MemberAddr.indexOf("구")+1)%>">
 							</td>
 							<td>
 								<input type="button" id="locationBtn" value="location" class="btn btn-default">
