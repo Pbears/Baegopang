@@ -9,7 +9,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	</select>
 		 
   	<insert id="insertReply" parameterType="reply">
-  		 INSERT INTO REPLY
+  		 INSERT INTO REPLY (NO, STORENAME, ORDERNUMBER, ID, CONTENTS, REGDATE, REF, PNUM, REPLY)
 		 VALUES(#{no},#{storeName},#{orderNumber},#{id},
 		 #{contents},SYSDATE,#{ref},#{pnum},#{reply})
   	</insert>

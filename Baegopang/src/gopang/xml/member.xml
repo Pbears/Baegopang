@@ -10,7 +10,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT PW FROM MEMBER WHERE ID=#{id}
 	</select>
 	<insert id="memberInsert" parameterType="member">
-		INSERT INTO MEMBER VALUES(#{id},#{pw},#{name},#{address},#{tel},#{gender},TO_DATE(#{birth},'YY/MM/DD'))
+		INSERT INTO MEMBER(ID, PW, NAME, ADDRESS, TEL, GENDER, BIRTH) 
+		VALUES(#{id},#{pw},#{name},#{address},#{tel},#{gender},TO_DATE(#{birth},'YY/MM/DD'))
 	</insert>
 	<select id="selectMember" parameterType="java.lang.String" resultType="member">
 		SELECT ID,PW, NAME, ADDRESS, TEL, GENDER, TO_DATE(BIRTH,'YY/MM/DD')BIRTH,PANG FROM MEMBER WHERE ID=#{id}

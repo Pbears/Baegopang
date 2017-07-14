@@ -7,7 +7,9 @@ STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT -->
 
 <mapper namespace="gopang.xml.order"> 
 	<insert id="orderInsert" parameterType="foodOrder">
-		INSERT INTO FOODORDER VALUES(#{ordernumber},#{memberid},#{membername},#{membertel},#{memberaddress},
+		INSERT INTO FOODORDER(ORDERNUMBER, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, PRICE, ORDERINFO, MENUNAME, AMOUNT,
+								STORENAME, STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT) 
+		VALUES(#{ordernumber},#{memberid},#{membername},#{membertel},#{memberaddress},
 														#{price},#{orderinfo},#{menuname},#{amount},#{storename},
 														#{storeaddress},#{storetel},#{ordertime},'승인대기',0)
 	</insert>
