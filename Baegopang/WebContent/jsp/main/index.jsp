@@ -31,32 +31,32 @@
 
 	<jsp:include page="header.jsp"/>
 		<div id="menuContainer" align="center">
-			<a href="chickenMain.jsp">
+			<a href="chickenMain.jsp?brandno=100">
 				<img src='/Baegopang/img/chicken.jpg' class="img-circle" onmouseover="this.src='/Baegopang/img/chickenChar.jpg'" onmouseout="this.src='/Baegopang/img/chicken.jpg'"/>
-			</a>&nbsp;
-			<a href="pizzaMain.jsp">
-				<img src="/Baegopang/img/pizza.png" class="img-circle" onmouseover="this.src='/Baegopang/img/pizzaChar.jpg'" onmouseout="this.src='/Baegopang/img/pizza.png'"/>
-			</a>&nbsp;
-			<a href="chinaFoodMain.jsp">
+			</a> &nbsp;
+			<a href="chinaFoodMain.jsp?brandno=200">
 				<img src="/Baegopang/img/jajang.png" class="img-circle" onmouseover="this.src='/Baegopang/img/jajangChar.jpg'" onmouseout="this.src='/Baegopang/img/jajang.png'">
+			</a> &nbsp;
+			<a href="pizzaMain.jsp?brandno=300">
+				<img src="/Baegopang/img/pizza.png" class="img-circle" onmouseover="this.src='/Baegopang/img/pizzaChar.jpg'" onmouseout="this.src='/Baegopang/img/pizza.png'"/>
 			</a><br>
-			<a href="jockFoodMain.jsp">
-				<img src="/Baegopang/img/jock.jpg" class="img-circle" onmouseover="this.src='/Baegopang/img/jockChar.jpg'" onmouseout="this.src='/Baegopang/img/jock.jpg'">
-			</a>&nbsp;&nbsp;&nbsp;
-			<a href="koreaFoodMain.jsp">
+			<a href="koreaFoodMain.jsp?brandno=400">
 				<img src="/Baegopang/img/bibeam.png" class="img-circle" onmouseover="this.src='/Baegopang/img/bibeamChar.jpg'" onmouseout="this.src='/Baegopang/img/bibeam.png'">
 			</a>
-			<a href="tangFoodMain.jsp">
+			<a href="jockFoodMain.jsp?brandno=500">
+				<img src="/Baegopang/img/jock.jpg" class="img-circle" onmouseover="this.src='/Baegopang/img/jockChar.jpg'" onmouseout="this.src='/Baegopang/img/jock.jpg'">
+			</a> &nbsp;&nbsp;&nbsp;
+			<a href="tangFoodMain.jsp?brandno=600">
 				<img src="/Baegopang/img/tang.jpg" class="img-circle" onmouseover="this.src='/Baegopang/img/tangChar.jpg'" onmouseout="this.src='/Baegopang/img/tang.jpg'">
 			</a><br>
-			<a href="japanFoodMain.jsp">
+			<a href="japanFoodMain.jsp?brandno=700">
 				<img src="/Baegopang/img/don.png" class="img-circle" onmouseover="this.src='/Baegopang/img/donChar.jpg'" onmouseout="this.src='/Baegopang/img/don.png'">
-			</a>&nbsp;
-			<a href="fastFoodMain.jsp">
-				<img src="/Baegopang/img/ham.png" class="img-circle" onmouseover="this.src='/Baegopang/img/hamChar.jpg'" onmouseout="this.src='/Baegopang/img/ham.png'">
-			</a>&nbsp;
-			<a href="dosirakMain.jsp">
+			</a >&nbsp;
+			<a href="dosirakMain.jsp?brandno=800">
 				<img src="/Baegopang/img/dosirak.jpg" class="img-circle" onmouseover="this.src='/Baegopang/img/dosirakChar.jpg'" onmouseout="this.src='/Baegopang/img/dosirak.jpg'">
+			</a> &nbsp;
+			<a href="fastFoodMain.jsp?brandno=900">
+				<img src="/Baegopang/img/ham.png" class="img-circle" onmouseover="this.src='/Baegopang/img/hamChar.jpg'" onmouseout="this.src='/Baegopang/img/ham.png'">
 			</a>
 		</div>
 	<jsp:include page="footer.jsp"/>

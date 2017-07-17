@@ -8,6 +8,7 @@ import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
 import gopang.bean.BrandBean;
+import gopang.bean.MenuBean;
 import gopang.util.SqlSessionFactoryManager;
 
 public class StoreDao {
@@ -38,5 +39,17 @@ private SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
-	
+	public List<MenuBean> selectChickenMenuByStore(String storeName){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSessionFactory.openSession().selectList("selectChickenMenuByStore",storeName);			
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
 }

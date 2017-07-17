@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.StoreDao"%>
 <%@page import="gopang.bean.AddToCartBean"%>
 <%@page import="gopang.bean.MemberBean"%>
 <%@page import="gopang.dao.ReplyDao"%>
@@ -135,38 +136,7 @@
    
 </script>
 <style>
-   ul {
-       list-style-type: none;
-       margin: auto;
-       padding: 0;
-       overflow: hidden;
-       background-color: #ff8c00;
-       width: 1600px;
-       border-radius: 10px;
-   }
-   
-   li {
-       float: left;    
-   }
-   
-   li a {
-       display: block;
-       color: white;
-       text-align: center;
-       padding: 14px 16px;
-       text-decoration: none;
-       border-radius: 10px;
-       font-weight: bold;
-   }
-   
-   li a:hover:not(.active) {
-       background-color: gray;
-   }
-   
-   .active {
-       background-color: #ff5722;
-   }
-   
+  
    a#innerA{
       pointer-events: none;
       text-decoration: none;
@@ -285,29 +255,21 @@
       int brandNo = Integer.parseInt(request.getParameter("brandno"));
       
       ChickenDao chickenDao = new ChickenDao();
+      StoreDao storeDao = new StoreDao();
       
       List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
       session.setAttribute("storeList", storeList);
       
-      List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
       
       String storeName = storeList.get(0).getStoreName();
+      List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
       MemberBean memberBean = (MemberBean)session.getAttribute("member");
       String id = memberBean.getId();
    
    %>
    
    <jsp:include page="../main/header.jsp"></jsp:include>
-   <ul>
-     <li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
-     <li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
-     <li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
-     <li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
-     <li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
-     <li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
-     <li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
-     <li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
-   </ul>
+   <jsp:include page="../main/menuNavi.jsp"></jsp:include>
    
    <div id="storeInfoContainer">
    <div class="panel panel-default">

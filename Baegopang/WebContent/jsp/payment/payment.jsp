@@ -57,9 +57,14 @@ li a {
 	border-radius: 10px;
 	font-weight: bold;
 }
-li a :hover :not(.active){
-	background-color : gray ;
-}
+li a:hover:not(.active) {
+	    background-color: orange;
+	    text-decoration: none;
+	}
+	
+	li a.active{
+		text-decoration: none;
+	}
 hr{
 	border: solid 1px gray;
 }
@@ -172,7 +177,7 @@ textarea{
 	<jsp:include page="../main/header.jsp"/>
 
 	<ul>
-		<li><a class="active" href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
+		<li><a href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
 		<li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
 		<li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
 		<li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>

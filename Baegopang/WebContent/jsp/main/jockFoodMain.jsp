@@ -19,37 +19,7 @@
 	}
 </script>
 <style type="text/css">
-	ul {
-	    list-style-type: none;
-	    margin: auto;
-	    padding: 0;
-	    overflow: hidden;
-	    background-color: #ff8c00;
-	    width: 1600px;
-	    border-radius: 10px;
-	}
 	
-	li {
-	    float: left;    
-	}
-	
-	li a {
-	    display: block;
-	    color: white;
-	    text-align: center;
-	    padding: 14px 16px;
-	    text-decoration: none;
-	    border-radius: 10px;
-	    font-weight: bold;
-	}
-	
-	li a:hover:not(.active) {
-	    background-color: gray;
-	}
-	
-	.active {
-	    background-color: #ff5722;
-	}
 	#storeContiner{
 		margin: auto;
 	}
@@ -74,17 +44,7 @@
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>
-	<ul>
-	  <li><a href="chickenMain.jsp">치킨</a></li>
-	  <li><a href="pizzaMain.jsp">피자</a></li>
-	  <li><a href="chinaFoodMain.jsp">중국집</a></li>
-	  <li><a href="koreaFoodMain.jsp">분식</a></li>
-	  <li><a href="tangFoodMain.jsp">찜,탕</a></li>
-	  <li><a class="active" href="jockFoodMain.jsp">족발, 보쌈</a></li>
-	  <li><a href="japanFoodMain.jsp">일식</a></li>
-	  <li><a href="dosirakMain.jsp">도시락</a></li>
-	  <li><a href="fastFoodMain.jsp">패스트푸드</a></li>
-	</ul>
+	<jsp:include page="menuNavi.jsp"></jsp:include>
 	
 	<div id="storeContiner" align="center">
 	<% 
