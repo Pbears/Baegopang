@@ -123,7 +123,11 @@
          });
          
           $("#myButton").click(function () {
-            $('#paymentInfomation').submit();
+        	  if(totalPrice < $('#minPrice').val()){
+        		  alert('최소 주문 금액보다 적습니다.');
+        	  }else{
+	            $('#paymentInfomation').submit();        		  
+        	  }
        
           });   
       });
@@ -347,6 +351,7 @@
         <div class="panel-heading">최소 주문 금액</div>
         <div class="panel-body">
           <strong><%=storeList.get(0).getMinprice()%>원</strong>
+          <input type="hidden" id="minPrice" value="<%=storeList.get(0).getMinprice()%>">
         </div>
       </div>
       
