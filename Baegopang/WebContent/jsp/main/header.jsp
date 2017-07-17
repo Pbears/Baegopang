@@ -92,16 +92,15 @@
 	
 	//회원주소와 동일한 구의 음식점list 가져오기
 	String data = request.getParameter("data");
-	String searchAddress =request.getParameter("searchAddress");
-	//out.println(searchAddress);
-	//out.println(address);
-	//out.println(data);
-	HashMap<String, String> map = new HashMap<String,String>();
-	map.put("address",address);
-	map.put("data",data);
-	StoreDao dao = new StoreDao();
-	List<BrandBean> storeList = dao.selectSearchStore(map);
-	session.setAttribute("searchStoreList",storeList);
+	//String searchAddress =request.getParameter("searchAddress");
+	if(data!=null){
+		HashMap<String, String> map = new HashMap<String,String>();
+		map.put("address",address);
+		map.put("data",data);
+		StoreDao dao = new StoreDao();
+		List<BrandBean> storeList = dao.selectSearchStore(map);
+		session.setAttribute("searchStoreList",storeList);
+	}
 %>
 		<div id="headerContainer">
 			<div id="mainTitle" align="center">

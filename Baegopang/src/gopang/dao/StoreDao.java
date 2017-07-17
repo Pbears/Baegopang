@@ -37,4 +37,6 @@ private SqlSessionFactory sqlSessionFactory;
 			closeSqlSession(sqlSession);
 		}
 	}
+	
+	
 }

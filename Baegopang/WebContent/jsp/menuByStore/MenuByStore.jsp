@@ -245,6 +245,37 @@
      height: 50px;
   }
   
+  .menuInfo{
+    width:242px;
+    height:60px;
+    overflow: hidden;
+    text-overflow: ellipsis; 
+  }  
+  
+  .thumbnail {
+    position: relative;
+    display: inline-block;
+}
+
+ .thumbnail .tooltiptext {
+    visibility: hidden;
+    width: 200px;
+    background-color: #ff8c00;
+    color: #fff;
+    text-align: center;
+    border-radius: 10px;
+    padding: 10px;
+
+    /* Position the tooltip */
+    position: absolute;
+    z-index: 1;
+    top: 95%;
+    right: 10%;
+}
+.thumbnail:hover .tooltiptext {
+    visibility: visible;
+}
+  
 </style>
 </head>
 <body>
@@ -322,9 +353,13 @@
             <div class="caption">
               <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
               <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
-              <p>
+              <p class="menuInfo">
                  <%=menuList.get(i).getInfo() %>
               </p>
+              
+              <!--마우스오버할 때 메뉴info tooltip -->
+				<span class="tooltiptext"><%=menuList.get(i).getInfo() %></span>
+			  
               <h5 style="margin-top: 20px;"><strong><%=menuList.get(i).getPrice() %>원</strong></h5>
               <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
             </div>
