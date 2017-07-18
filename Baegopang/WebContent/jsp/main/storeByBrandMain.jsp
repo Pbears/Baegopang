@@ -1,6 +1,6 @@
 <%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="gopang.dao.ChickenDao"%>
+<%@page import="gopang.dao.TotalDao"%>
 <%@page import="gopang.bean.BrandBean"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
@@ -41,9 +41,10 @@
 </head>
 <body>
 	<%
-		ChickenDao chickenDao = new ChickenDao();
-		List<BrandBean>brandList=chickenDao.selectChicken(1);
-		
+		int brandNo = Integer.parseInt(request.getParameter("brandno"));
+		int brandCheck = brandNo/100;
+		TotalDao totalDao = new TotalDao();
+		List<BrandBean>brandList=totalDao.selectStoreByBrand(brandCheck);
 	%>
 		
 	<jsp:include page="header.jsp"></jsp:include>

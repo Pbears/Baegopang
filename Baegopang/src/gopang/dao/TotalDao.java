@@ -11,10 +11,10 @@ import gopang.bean.MenuBean;
 import gopang.bean.StoreBean;
 import gopang.util.SqlSessionFactoryManager;
 
-public class ChickenDao {
+public class TotalDao {
 private SqlSessionFactory sqlSessionFactory;
 
-	public ChickenDao() {
+	public TotalDao() {
 		sqlSessionFactory=SqlSessionFactoryManager.getSqlSessionFactory();
 	}
 	
@@ -26,11 +26,11 @@ private SqlSessionFactory sqlSessionFactory;
 	      }
 	   }
 	
-	public List<BrandBean>selectChicken(int brandNo){
+	public List<BrandBean>selectStoreByBrand(int brandNo){
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectList("selectChicken",brandNo);			
+			return sqlSessionFactory.openSession().selectList("selectStoreByBrand",brandNo);			
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -40,53 +40,11 @@ private SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
-	public Integer getChickenTotalRow(int brandNo){
+	public List<StoreBean> selectStoreInfo(String StoreName){
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectOne("getChickenTotalRow",brandNo);		
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		} finally {
-			closeSqlSession(sqlSession);
-		}
-	}
-	
-	public List<StoreBean> selectChickenStore(String StoreName){
-		SqlSession sqlSession = null;
-		try {
-			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectList("selectChickenStore", StoreName);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		} finally {
-			closeSqlSession(sqlSession);
-		}
-	}
-	
-	public Integer getChickenMenuTotalRow(int brandNo){
-		SqlSession sqlSession = null;
-		try {
-			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectOne("getChickenMenuTotalRow", brandNo);
-		} catch (Exception e) {
-			// TODO: handle exception
-			e.printStackTrace();
-			return null;
-		} finally {
-			closeSqlSession(sqlSession);
-		}
-	}
-	
-	public List<MenuBean> selectChickenMenu(int brandNo){
-		SqlSession sqlSession = null;
-		try {
-			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectList("selectChickenMenu", brandNo);
+			return sqlSessionFactory.openSession().selectList("selectStoreInfo", StoreName);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();

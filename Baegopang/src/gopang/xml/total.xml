@@ -3,7 +3,7 @@
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="gopang.xml.chicken"> 
-  	<select id="selectChicken" resultType="brand" parameterType="java.lang.Integer">
+  	<select id="selectStoreByBrand" resultType="brand" parameterType="java.lang.Integer">
   		SELECT DISTINCT(B.BRANDNO), BRANDNAME, PICTURE, STORENAME, 
   			LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
 		FROM BRAND B
@@ -11,19 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	ON B.BRANDNO=S.BRANDNO
 		WHERE B.BRANDNO LIKE #{brandNo}||'%'
   	</select>
-  	<select id="selectChickenStore" resultType="store" parameterType="java.lang.String">
+  	<select id="selectStoreInfo" resultType="store" parameterType="java.lang.String">
 		 SELECT LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
 		FROM STORE
 		WHERE STORENAME =  #{storename}
-  	</select>
-  	<select id="getChickenMenuTotalRow" resultType="java.lang.Integer" parameterType="java.lang.Integer">
-  		SELECT COUNT(*) FROM MENUBYSTORE
-		WHERE MBSNO LIKE #{brandNo}||'%'
-  	</select>
-  	<select id="selectChickenMenu" resultType="menu" parameterType="java.lang.Integer">
-		SELECT MENUNAME, PRICE, NVL(INFO,chr(9))INFO, PICTURE
-		FROM MENU
-		WHERE BRANDNO LIKE #{brandNo}||'%'
   	</select>
   	
   	<select id="selectChickenMenuByStore" resultType="menu" parameterType="java.lang.String">

@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.TotalDao"%>
 <%@page import="gopang.dao.StoreDao"%>
 <%@page import="gopang.bean.AddToCartBean"%>
 <%@page import="gopang.bean.MemberBean"%>
@@ -8,7 +9,7 @@
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.util.List"%>
 <%@page import="java.net.URLEncoder"%>
-<%@page import="gopang.dao.ChickenDao"%>
+<%@page import="gopang.dao.TotalDao"%>
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <!DOCTYPE html>
@@ -254,15 +255,15 @@
       request.setCharacterEncoding("UTF-8");
       int brandNo = Integer.parseInt(request.getParameter("brandno"));
       
-      ChickenDao chickenDao = new ChickenDao();
+      TotalDao totalDao = new TotalDao();
       StoreDao storeDao = new StoreDao();
       
       String storeName = request.getParameter("storeName");
-      List<StoreBean>storeList=chickenDao.selectChickenStore(storeName);
+      List<StoreBean>storeList=totalDao.selectStoreInfo(storeName);
       session.setAttribute("storeList", storeList);
       
       
-      List<MenuBean>menuList=chickenDao.selectChickenMenuByStore(storeName);
+      List<MenuBean>menuList=totalDao.selectChickenMenuByStore(storeName);
       MemberBean memberBean = (MemberBean)session.getAttribute("member");
       String id = memberBean.getId();
    
