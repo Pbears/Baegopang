@@ -257,12 +257,12 @@
       ChickenDao chickenDao = new ChickenDao();
       StoreDao storeDao = new StoreDao();
       
-      List<StoreBean>storeList=chickenDao.selectChickenStore(brandNo);
+      String storeName = request.getParameter("storeName");
+      List<StoreBean>storeList=chickenDao.selectChickenStore(storeName);
       session.setAttribute("storeList", storeList);
       
       
-      String storeName = storeList.get(0).getStoreName();
-      List<MenuBean>menuList=chickenDao.selectChickenMenu(brandNo);
+      List<MenuBean>menuList=chickenDao.selectChickenMenuByStore(storeName);
       MemberBean memberBean = (MemberBean)session.getAttribute("member");
       String id = memberBean.getId();
    
@@ -275,7 +275,7 @@
    <div class="panel panel-default">
      <div class="panel-body">
         
-      <strong>매장명 : <%=storeList.get(0).getStoreName()%></strong>  &nbsp;|&nbsp;
+      <strong>매장명 : <%=storeName%></strong>  &nbsp;|&nbsp;
       <strong>매장 주소 : <%=storeList.get(0).getLocation()%></strong>  &nbsp;|&nbsp;
       별점 : 
       <%
@@ -304,26 +304,26 @@
    <div id="menuContiner" align="center" >
    <span>
       <%
-         /* for(MenuBean menu : menuList){ */
-            for(int i=0; i<menuList.size(); i++){
+          for(MenuBean menu : menuList){
+         /*    for(int i=0; i<menuList.size(); i++){ */
       %>
    <div class="row" >
      <div class="col-xm-6 col-sm-4 col-md-3 col-lg-3">
        <div class="thumbnail" onmouseover="onCheck(this)" onmouseout="outCheck(this)">
          <a href="#" id="innerA">
-             <img src="/Baegopang<%=menuList.get(i).getPicture() %>"/> 
+             <img src="/Baegopang<%=menu.getPicture() %>"/> 
             <div class="caption">
-              <h4><strong><%=menuList.get(i).getMenuName() %></strong></h4>
-              <input id="menuName" type="hidden" value="<%=menuList.get(i).getMenuName()%>">
+              <h4><strong><%=menu.getMenuName() %></strong></h4>
+              <input id="menuName" type="hidden" value="<%=menu.getMenuName()%>">
               <p class="menuInfo">
-                 <%=menuList.get(i).getInfo() %>
+                 <%=menu.getInfo() %>
               </p>
               
               <!--마우스오버할 때 메뉴info tooltip -->
-				<span class="tooltiptext"><%=menuList.get(i).getInfo() %></span>
+				<span class="tooltiptext"><%=menu.getInfo() %></span>
 			  
-              <h5 style="margin-top: 20px;"><strong><%=menuList.get(i).getPrice() %>원</strong></h5>
-              <input id="menuPrice" type="hidden" value="<%=menuList.get(i).getPrice() %>">
+              <h5 style="margin-top: 20px;"><strong><%=menu.getPrice() %>원</strong></h5>
+              <input id="menuPrice" type="hidden" value="<%=menu.getPrice() %>">
             </div>
          </a>
        </div>

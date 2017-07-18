@@ -19,6 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		CONTENTS, REGDATE, REF, PNUM, REPLY
   		FROM REPLY
   		WHERE STORENAME = #{storeName}
+  		ORDER BY NO
   	</select>
 </mapper>
 

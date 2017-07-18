@@ -11,12 +11,10 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
         	ON B.BRANDNO=S.BRANDNO
 		WHERE B.BRANDNO LIKE #{brandNo}||'%'
   	</select>
-  	<select id="selectChickenStore" resultType="store" parameterType="java.lang.Integer">
-		SELECT STORENAME, LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
-		FROM BRAND B
-        	FULL OUTER JOIN STORE S
-        	ON B.BRANDNO=S.BRANDNO
-		WHERE B.BRANDNO LIKE #{brandNo}||'%'
+  	<select id="selectChickenStore" resultType="store" parameterType="java.lang.String">
+		 SELECT LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
+		FROM STORE
+		WHERE STORENAME =  #{storename}
   	</select>
   	<select id="getChickenMenuTotalRow" resultType="java.lang.Integer" parameterType="java.lang.Integer">
   		SELECT COUNT(*) FROM MENUBYSTORE
@@ -26,6 +24,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		SELECT MENUNAME, PRICE, NVL(INFO,chr(9))INFO, PICTURE
 		FROM MENU
 		WHERE BRANDNO LIKE #{brandNo}||'%'
+  	</select>
+  	
+  	<select id="selectChickenMenuByStore" resultType="menu" parameterType="java.lang.String">
+  		SELECT MENUNAME, PRICE, NVL(INFO,chr(9))INFO, PICTURE
+		FROM MENU
+    	WHERE MENUNAME IN (SELECT MENUNAME
+  		FROM MENUBYSTORE
+  		WHERE STORENAME = #{storename})
   	</select>
 </mapper>
 

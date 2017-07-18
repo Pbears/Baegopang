@@ -54,11 +54,11 @@ private SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
-	public List<StoreBean> selectChickenStore(int brandNo){
+	public List<StoreBean> selectChickenStore(String StoreName){
 		SqlSession sqlSession = null;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
-			return sqlSessionFactory.openSession().selectList("selectChickenStore", brandNo);
+			return sqlSessionFactory.openSession().selectList("selectChickenStore", StoreName);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
@@ -87,6 +87,20 @@ private SqlSessionFactory sqlSessionFactory;
 		try {
 			sqlSession = sqlSessionFactory.openSession();
 			return sqlSessionFactory.openSession().selectList("selectChickenMenu", brandNo);
+		} catch (Exception e) {
+			// TODO: handle exception
+			e.printStackTrace();
+			return null;
+		} finally {
+			closeSqlSession(sqlSession);
+		}
+	}
+	
+	public List<MenuBean> selectChickenMenuByStore(String storeName){
+		SqlSession sqlSession = null;
+		try {
+			sqlSession = sqlSessionFactory.openSession();
+			return sqlSessionFactory.openSession().selectList("selectChickenMenuByStore", storeName);
 		} catch (Exception e) {
 			// TODO: handle exception
 			e.printStackTrace();
