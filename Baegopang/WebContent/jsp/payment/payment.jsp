@@ -36,35 +36,7 @@
 	
 </script>
 <style>
-ul {
-	list-style-type: none;
-	margin: auto;
-	padding: 0;
-	overflow: hidden;
-	background-color: #ff8c00;
-	width: 1600px;
-	border-radius: 10px;
-}
-li {
-	float: left;
-}
-li a {
-	display: block;
-	color: white;
-	text-align: center;
-	padding: 14px 16px;
-	text-decoration: none;
-	border-radius: 10px;
-	font-weight: bold;
-}
-li a:hover:not(.active) {
-	    background-color: orange;
-	    text-decoration: none;
-	}
-	
-	li a.active{
-		text-decoration: none;
-	}
+
 hr{
 	border: solid 1px gray;
 }
@@ -175,17 +147,7 @@ textarea{
 	%>
 	<!-- 주석풀기 -->
 	<jsp:include page="../main/header.jsp"/>
-
-	<ul>
-		<li><a href="/Baegopang/jsp/main/chickenMain.jsp">치킨</a></li>
-		<li><a href="/Baegopang/jsp/main/pizzaMain.jsp">피자</a></li>
-		<li><a href="/Baegopang/jsp/main/chinaFoodMain.jsp">중국집</a></li>
-		<li><a href="/Baegopang/jsp/main/koreaFoodMain.jsp">한식</a></li>
-		<li><a href="/Baegopang/jsp/main/jockFoodMain.jsp">족발, 보쌈</a></li>
-		<li><a href="/Baegopang/jsp/main/japanFoodMain.jsp">일식</a></li>
-		<li><a href="/Baegopang/jsp/main/dosirakMain.jsp">도시락</a></li>
-		<li><a href="/Baegopang/jsp/main/fastFoodMain.jsp">패스트푸드</a></li>
-	</ul>
+	  <jsp:include page="../main/menuNavi.jsp"></jsp:include>
 
 		<form action="final.jsp" method="post">
 	<!-- 중앙 div 태그 -->

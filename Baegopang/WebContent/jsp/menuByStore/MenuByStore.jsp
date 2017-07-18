@@ -360,6 +360,7 @@
         
         <form id='paymentInfomation' action='/Baegopang/jsp/payment/payment.jsp' method='get'>
            <label for="addMenu" id="menuLabel" ></label> 
+           <input type="hidden" name="brandno" value="<%=brandNo%>">
          </form>
            
         </div>
