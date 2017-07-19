@@ -81,6 +81,7 @@ $(document).ready(function() {
 		String reply = request.getParameter("reply");
 		
 		List<ReplyBean>replyList = replyDao.selectReply(storeName);
+		List<ReplyBean>replyCheckList = null;
 		
 		
 		if(reply != null){
@@ -150,34 +151,12 @@ $(document).ready(function() {
 		    </div>
 		  </li>
 		 </ul>
-	<%
-		} 
-	 %>
-	 </div>
-	
-	
-	
-	<%-- <%
-		if(contents != null){
-	%>
-	&nbsp;&nbsp;&nbsp;
-		<ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 180px; background-color: #f5f5f5;">
-		  <li class="media" style="background-color: ">
-		    <div class="media-left">
-		      <a href="#">
-		        <img class="media-object" src="/Baegopang/img/comment/img_avatar3.png" alt="..." width="50px;" height="50px;">
-		      </a>
-		    </div>
-		    <div class="media-body">
-		      <h5 class="media-heading"><strong>ID : <%=id %></strong> <small>님</small> | 2017-06-28 17:01</h5>
-				<%=contents%>
-		    </div>
-		  </li>
-		 </ul>
-	<%
-		}
-	%> --%>
-	<!-- 	  &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+		 <%
+		 	if(bean.getReply() ==1){
+		 		replyCheckList = replyDao.selectReplyCheck(bean.getPnum());
+		 		for(ReplyBean checkBean : replyCheckList){
+		 %>
+	&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 		 <ul class="media-list" style="padding: 5px; width: 800px; height: 85px; margin-left: 220px; background-color: #f9b39c">
 		  <li class="media">
 		    <div class="media-left">
@@ -186,10 +165,19 @@ $(document).ready(function() {
 		      </a>
 		    </div>
 		    <div class="media-body">
-		      <h5 class="media-heading">사장님 | 2017-06-28 17:01</h5>
-		       주문 할인 1000원 기간 입니다 많은 주문 부탁드립니다.
+		      <h5 class="media-heading">사장님 | <%=checkBean.getRegDate() %></h5>
+		       <%=checkBean.getContents() %>
 		    </div>
 		  </li>
-		</ul> -->
+		</ul> 
+		
+	<%
+		 		}
+		 	}
+		} 
+	 %>
+	 </div>
+	
+	
 </body>
 </html>

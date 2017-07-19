@@ -21,6 +21,14 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		WHERE STORENAME = #{storeName}
   		ORDER BY NO
   	</select>
+  	
+  	<select id="selectReplyCheck" parameterType="java.lang.Integer" resultType="reply">
+  		SELECT NO, STORENAME, ORDERNUMBER, ID,
+  		CONTENTS, REGDATE, REF, PNUM, REPLY
+  		FROM REPLY
+  		WHERE PNUM = #{pnum} AND REPLY = 0
+  		ORDER BY NO
+  	</select>
 </mapper>
 
 

@@ -37,4 +37,8 @@ public class ReplyDao {
 	public List<ReplyBean> selectReply(String storeName){
 		return sqlSessionFactory.openSession().selectList("selectReply", storeName);
 	}
+	
+	public List<ReplyBean> selectReplyCheck(int pnum){
+		return sqlSessionFactory.openSession().selectList("selectReplyCheck", pnum);
+	}
 }
