@@ -25,4 +25,17 @@ public class OrderDao {
 			session.close();
 		}
 	}
+	
+	public void updatePang(String id){
+		SqlSession session = sqlSessionFactory.openSession();
+		try {
+			session.insert("updatePang", id);
+		} catch (Exception e) {
+			e.printStackTrace();
+		} finally {
+			session.commit();
+			session.close();
+		}
+	}
+	
 }

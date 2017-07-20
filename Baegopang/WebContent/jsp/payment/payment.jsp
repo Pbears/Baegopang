@@ -242,7 +242,7 @@ textarea{
 								<div class="col-md-6">
 									<div class="row">
 										<div class="col-md-8">
-											<input type="text" id="pangText" class="form-control" placeholder="0">
+											<input type="text" name="pangText" id="pangText" class="form-control" placeholder="0">
 										</div>
 										<div class="col-md-4">
 											<button type="button" class="btn btn-success" id="checkPang" >사용하기</button>
@@ -316,7 +316,7 @@ textarea{
 						</div>
 						<label class="col-sm-4">팡 결제</label>
 						<div class="col-sm-6 orderPrice redText">
-							<label></label><label id="pangPrice">0</label><label>팡</label>
+							<label></label><label id="pangPrice" name="pangPrice">0</label><label>팡</label>
 						</div>
 						<br><br><br><br><br>
 						<hr>

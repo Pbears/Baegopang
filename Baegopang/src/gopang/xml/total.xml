@@ -12,9 +12,9 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		WHERE B.BRANDNO LIKE #{brandNo}||'%'
   	</select>
   	<select id="selectStoreInfo" resultType="store" parameterType="java.lang.String">
-		 SELECT LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
+		 SELECT STORENAME,LOCATION, GPA, HOURS, TEL, MINPRICE, INFO
 		FROM STORE
-		WHERE STORENAME =  #{storename}
+		WHERE STORENAME = #{storename}
   	</select>
   	
   	<select id="selectChickenMenuByStore" resultType="menu" parameterType="java.lang.String">
@@ -24,6 +24,12 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   		FROM MENUBYSTORE
   		WHERE STORENAME = #{storename})
   	</select>
+  	
+  	<select id="selectDefaultMenuByStore" resultType="menu" parameterType="java.lang.Integer">
+        SELECT MENUNAME, BRANDNO, PRICE, INFO, PICTURE
+         FROM MENU
+         WHERE BRANDNO = #{brandno}
+     </select>
 </mapper>
 
 

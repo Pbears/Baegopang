@@ -2,16 +2,17 @@
 <!DOCTYPE mapper 
 PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
-<!-- ORDERNUMBER, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, PRICE, ORDERINFO, MENUNAME, AMOUNT, STORENAME, 
-STOREADDRESS, STORETEL, ORDERTIME, STATE, HIT -->
-
 <mapper namespace="gopang.xml.order"> 
 	<insert id="orderInsert" parameterType="foodOrder">
-		INSERT INTO FOODORDER(ORDERNUMBER, ORDERTIME, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, PRICE, ORDERINFO, MENUNAME, AMOUNT, STATE, STORENAME, STOREADDRESS, STORETEL, HIT) 
-		VALUES(#{ordernumber},#{ordertime},#{memberid},#{membername},#{membertel},
-														#{memberaddress},#{price},#{orderinfo},#{menuname},#{amount},
-														'승인대기',#{storename},#{storeaddress},#{storetel},0)
+		INSERT INTO FOODORDER(ORDERNUMBER, MEMBERID, MEMBERNAME, MEMBERTEL, MEMBERADDRESS, 
+							PRICE, ORDERINFO, MENUNAME, AMOUNT,STORENAME,STOREADDRESS, STORETEL,ORDERTIME,STATE, HIT) 
+		VALUES(#{ordernumber},#{memberid},#{membername},#{membertel},#{memberaddress},
+				#{price},#{orderinfo},#{menuname},#{amount},#{storename},#{storeaddress},#{storetel},#{ordertime},'승인대기',0)
 	</insert>
+	
+	<update id="updatePang" parameterType="java.lang.String">
+		UPDATE MEMBER SET PANG+=10 WHERE ID=#{id}
+	</update>
   	
 </mapper>
 

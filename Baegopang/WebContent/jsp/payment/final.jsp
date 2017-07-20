@@ -43,6 +43,7 @@
 		MemberBean memberBean =  (MemberBean)session.getAttribute("member");
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
+		int pang = Integer.parseInt(request.getParameter("pangPrice"));
 		FoodOrderBean foodOrderBean = new FoodOrderBean();
 		OrderDao dao = new OrderDao();
 		
@@ -63,12 +64,12 @@
 				foodOrderBean.setOrderinfo(request.getParameter("comment"));
 				foodOrderBean.setMenuname(menuList.get(i).getMenuName());
 				foodOrderBean.setAmount(menuList.get(i).getCnt());
-				foodOrderBean.setStorename(storeList.get(0).getStoreName());
-				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
-				foodOrderBean.setStoretel(storeList.get(0).getTel());
+				foodOrderBean.setStorename(storeList.get(i).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(i).getLocation());
+				foodOrderBean.setStoretel(storeList.get(i).getTel());
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
-				
+				dao.updatePang(memberBean.getId());
 			}			
 		}else{
 				foodOrderBean.setOrdernumber(currentTime+memberBean.getId());
@@ -85,6 +86,7 @@
 				foodOrderBean.setStoretel(storeList.get(0).getTel());
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
+				dao.updatePang(memberBean.getId());
 		}
 						
 		

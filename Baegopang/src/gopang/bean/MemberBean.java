@@ -8,7 +8,7 @@ public class MemberBean {
 	private String tel;
 	private String gender;
 	private String birth;
-	private String pang;
+	private int pang;
 
 	public MemberBean() {
 		super();
@@ -70,16 +70,16 @@ public class MemberBean {
 		this.birth = birth;
 	}
 
-	public String getPang() {
+	public int getPang() {
 		return pang;
 	}
 
-	public void setPang(String pang) {
+	public void setPang(int pang) {
 		this.pang = pang;
 	}
 
 	public MemberBean(String id, String pw, String name, String address, String tel, String gender, String birth,
-			String pang) {
+			int pang) {
 		super();
 		this.id = id;
 		this.pw = pw;

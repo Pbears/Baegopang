@@ -68,5 +68,19 @@ private SqlSessionFactory sqlSessionFactory;
 		}
 	}
 	
+	public List<MenuBean> selectDefaultMenuByStore(String brandno){
+	      SqlSession sqlSession = null;
+	      try {
+	         sqlSession = sqlSessionFactory.openSession();
+	         return sqlSessionFactory.openSession().selectList("selectDefaultMenuByStore", brandno);
+	      } catch (Exception e) {
+	         // TODO: handle exception
+	         e.printStackTrace();
+	         return null;
+	      } finally {
+	         closeSqlSession(sqlSession);
+	      }
+	   }
+	
 	
 }
