@@ -8,7 +8,8 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   	</select>
   	
   	<select id="selectMemberPoint" parameterType="java.lang.String" resultType="foodOrder">
-  		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , STORENAME, PANG FROM FOODORDER F, MEMBER M WHERE F.MEMBERID = M.ID AND MEMBERID=#{id}
+  		SELECT SUBSTR(ORDERTIME,1,8) ORDERTIME , STORENAME, PANG
+  		FROM FOODORDER F, MEMBER M WHERE F.MEMBERID = M.ID AND MEMBERID=#{id} AND STATE='배달완료'
   	</select>
   	
   	<select id="selectMemberReply" parameterType="java.lang.String" resultType="reply">

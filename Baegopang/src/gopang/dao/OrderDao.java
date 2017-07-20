@@ -1,5 +1,7 @@
 package gopang.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -26,10 +28,10 @@ public class OrderDao {
 		}
 	}
 	
-	public void updatePang(String id){
+	public void updatePang(HashMap<Object, Object>map){
 		SqlSession session = sqlSessionFactory.openSession();
 		try {
-			session.insert("updatePang", id);
+			session.insert("updatePang", map);
 		} catch (Exception e) {
 			e.printStackTrace();
 		} finally {

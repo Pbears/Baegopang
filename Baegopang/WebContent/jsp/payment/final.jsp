@@ -1,3 +1,4 @@
+<%@page import="java.util.HashMap"%>
 <%@page import="gopang.dao.OrderDao"%>
 <%@page import="gopang.bean.StoreBean"%>
 <%@page import="java.text.SimpleDateFormat"%>
@@ -43,7 +44,18 @@
 		MemberBean memberBean =  (MemberBean)session.getAttribute("member");
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
-		int pang = Integer.parseInt(request.getParameter("pangPrice"));
+		
+		//pang포인트 업데이트
+		String pangPrice = request.getParameter("pangPrice");
+		HashMap<Object,Object> map = new HashMap<Object,Object>();
+		map.put("id", memberBean.getId());
+		if(pangPrice!=null){
+			int pang=Integer.parseInt(pangPrice);
+			map.put("pang",memberBean.getPang()+10-pang);
+		}else{
+			map.put("pang",memberBean.getPang()+10);
+		}
+		
 		FoodOrderBean foodOrderBean = new FoodOrderBean();
 		OrderDao dao = new OrderDao();
 		
@@ -69,7 +81,6 @@
 				foodOrderBean.setStoretel(storeList.get(i).getTel());
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
-				dao.updatePang(memberBean.getId());
 			}			
 		}else{
 				foodOrderBean.setOrdernumber(currentTime+memberBean.getId());
@@ -86,8 +97,8 @@
 				foodOrderBean.setStoretel(storeList.get(0).getTel());
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
-				dao.updatePang(memberBean.getId());
 		}
+				dao.updatePang(map);
 						
 		
 	%>

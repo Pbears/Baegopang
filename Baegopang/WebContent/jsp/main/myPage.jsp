@@ -215,6 +215,7 @@ th {
 </head>
 <body onload="checkGender()">
 <%
+	request.setCharacterEncoding("UTF-8");
 	MemberBean bean = (MemberBean)session.getAttribute("member");
  	List<FoodOrderBean> list = (List<FoodOrderBean>)session.getAttribute("foodOrderList"); 
  	List<FoodOrderBean> panglist = (List<FoodOrderBean>)session.getAttribute("pangList");
@@ -314,7 +315,8 @@ th {
 			</div>
 		</div>
 				<!--주문내역  -->
-			<div class="orderLog" id="orderLog" style="width: 500px; display: none;" >
+			<div class="orderLog" id="orderLog" style="width: 500px; height:653px; display: none;" >
+			<div class="overflowDiv">
 			 	<table>
 				
 					  <tr>
@@ -327,7 +329,6 @@ th {
 					 <%
 						for(int i =0;i<list.size();i++){
 							FoodOrderBean foodOrderBean = list.get(i);
-							
 					%>
 					  <tr>
 					    <td><%=foodOrderBean.getOrdertime()%></td>
@@ -340,9 +341,11 @@ th {
 					}
 				%>
 				</table>
+				</div>
 			</div>
 			<!--포인트  -->
-			<div class="pointLog" id="pointLog" style="width: 500px; display: none;" >
+			<div class="pointLog" id="pointLog" style="width: 500px; height:653px; display: none;" >
+				<div class="overflowDiv">
 				<table>
 					  <tr>
 					    <th>포인트적립일자</th>
@@ -374,6 +377,7 @@ th {
 					  }
 					  %>
 				</table>
+				</div>
 			</div>
 			<!--리뷰관리  -->
 			<div class="reviewLog" id="reviewLog" style="width: 500px;  height: 653px; display: none;" >
