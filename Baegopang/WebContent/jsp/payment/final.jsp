@@ -45,15 +45,15 @@
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
 		
-		//pang포인트 업데이트
+		//pang포인트 업데이트 //미완성
 		String pangPrice = request.getParameter("pangPrice");
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("id", memberBean.getId());
 		if(pangPrice!=null){
 			int pang=Integer.parseInt(pangPrice);
-			map.put("pang",memberBean.getPang()+10-pang);
+			//map.put("pang",memberBean.getPang()+100-pang);
 		}else{
-			map.put("pang",memberBean.getPang()+10);
+			//map.put("pang",memberBean.getPang()+100);
 		}
 		
 		FoodOrderBean foodOrderBean = new FoodOrderBean();

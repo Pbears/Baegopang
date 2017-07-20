@@ -360,15 +360,15 @@ th {
 					  <tr>
 					    <td><%=pang.getOrdertime() %></td>
 					    <td><%=pang.getStorename()%></td>
-					    <td>10</td>
+					    <td>100</td>
 					    <% 
 					    	if(i==panglist.size()-1){
 					    %>
-						    <td>10</td>
+						    <td>100</td>
 					    <%
 					    	}else{
 					    %>
-					    	<td><%=(panglist.size()-i)*10%></td>
+					    	<td><%=(panglist.size()-i)*100%></td>
 					    <%
 					    	}
 					    %>
