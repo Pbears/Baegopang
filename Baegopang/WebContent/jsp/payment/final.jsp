@@ -76,9 +76,9 @@
 				foodOrderBean.setOrderinfo(request.getParameter("comment"));
 				foodOrderBean.setMenuname(menuList.get(i).getMenuName());
 				foodOrderBean.setAmount(menuList.get(i).getCnt());
-				foodOrderBean.setStorename(storeList.get(i).getStoreName());
-				foodOrderBean.setStoreaddress(storeList.get(i).getLocation());
-				foodOrderBean.setStoretel(storeList.get(i).getTel());
+				foodOrderBean.setStorename(storeList.get(0).getStoreName());
+				foodOrderBean.setStoreaddress(storeList.get(0).getLocation());
+				foodOrderBean.setStoretel(storeList.get(0).getTel());
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
 			}			
