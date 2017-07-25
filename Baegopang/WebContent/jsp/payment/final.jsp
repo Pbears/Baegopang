@@ -1,3 +1,4 @@
+<%@page import="gopang.dao.MemberDao"%>
 <%@page import="java.util.HashMap"%>
 <%@page import="gopang.dao.OrderDao"%>
 <%@page import="gopang.bean.StoreBean"%>
@@ -44,16 +45,15 @@
 		MemberBean memberBean =  (MemberBean)session.getAttribute("member");
 		List<StoreBean>storeList = (List<StoreBean>)session.getAttribute("storeList");
 		List<AddToCartBean>menuList = (List<AddToCartBean>)session.getAttribute("cartList") ;
+		MemberDao member = new MemberDao();
 		
 		//pang포인트 업데이트 //미완성
-		String pangPrice = request.getParameter("pangPrice");
+		String pangPrice = request.getParameter("pangPrice").substring(1);
 		HashMap<Object,Object> map = new HashMap<Object,Object>();
 		map.put("id", memberBean.getId());
 		if(pangPrice!=null){
 			int pang=Integer.parseInt(pangPrice);
-			//map.put("pang",memberBean.getPang()+100-pang);
-		}else{
-			//map.put("pang",memberBean.getPang()+100);
+			map.put("pang", pang);
 		}
 		
 		FoodOrderBean foodOrderBean = new FoodOrderBean();
@@ -98,7 +98,7 @@
 				foodOrderBean.setOrdertime(currentTime);
 				dao.orderInsert(foodOrderBean);
 		}
-				dao.updatePang(map);
+				member.updatePang(map);
 						
 		
 	%>

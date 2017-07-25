@@ -19,4 +19,7 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 	<update id="memberUpdate" parameterType="member">
 		UPDATE MEMBER SET PW=#{pw}, ADDRESS=#{address}, TEL=#{tel} WHERE ID=#{id}
 	</update>
+	<update id="updatePang" parameterType="java.util.HashMap">
+		UPDATE MEMBER SET PANG = PANG-#{pang} WHERE ID=#{id} 
+	</update> 
 </mapper>

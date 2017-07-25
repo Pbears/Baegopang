@@ -32,6 +32,10 @@
 				$('#finalPrice').val(price);
 			}			
 		});
+		$("#finalButton").click(function(){
+			$("form#frm").attr("action","/Baegopang/jsp/payment/final.jsp?pangPrice="+$("#pangPrice").text());
+			$("form#frm").submit();
+		});
 	});
 	
 </script>
@@ -149,7 +153,7 @@ textarea{
 	<jsp:include page="../main/header.jsp"/>
 	  <jsp:include page="../main/menuNavi.jsp"></jsp:include>
 
-		<form action="final.jsp" method="post">
+		<form action="final.jsp" method="post" id="frm">
 	<!-- 중앙 div 태그 -->
 	<div class="rowmainDiv">
 
@@ -331,7 +335,7 @@ textarea{
 					</div>
 					<div class="finalDiv rightDivs">
 						<hr>
-						<button type="submit" class="btn btn-success" id = "finalButton" >결제하기</button>
+						<button type="buttom" class="btn btn-success" id = "finalButton" >결제하기</button>
 					</div>
 				</div>
 			</div>

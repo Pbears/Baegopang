@@ -28,16 +28,5 @@ public class OrderDao {
 		}
 	}
 	
-	public void updatePang(HashMap<Object, Object>map){
-		SqlSession session = sqlSessionFactory.openSession();
-		try {
-			session.insert("updatePang", map);
-		} catch (Exception e) {
-			e.printStackTrace();
-		} finally {
-			session.commit();
-			session.close();
-		}
-	}
 	
 }

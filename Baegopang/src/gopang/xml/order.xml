@@ -10,10 +10,6 @@ PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 				#{price},#{orderinfo},#{menuname},#{amount},#{storename},#{storeaddress},#{storetel},#{ordertime},'승인대기',0)
 	</insert>
 	
-	<update id="updatePang" parameterType="java.util.HashMap">
-		UPDATE MEMBER SET PANG=#{pang} WHERE ID=#{id} 
-	</update> 
-  	
 </mapper>
 
 

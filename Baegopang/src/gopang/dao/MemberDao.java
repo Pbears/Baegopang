@@ -1,5 +1,7 @@
 package gopang.dao;
 
+import java.util.HashMap;
+
 import org.apache.ibatis.session.SqlSession;
 import org.apache.ibatis.session.SqlSessionFactory;
 
@@ -48,6 +50,21 @@ public class MemberDao {
 		} finally {
 			session.commit();
 			session.close();
+		}
+	}
+	
+	public void updatePang(HashMap<Object, Object>map){
+		SqlSession session = sqlSessionFactory.openSession();
+		if(map.get("pang")!=null){
+			try {
+				session.insert("updatePang", map);
+				session.commit();
+			} catch (Exception e) {
+				e.printStackTrace();
+				session.rollback();
+			} finally {
+				session.close();
+			}
 		}
 	}
 	
